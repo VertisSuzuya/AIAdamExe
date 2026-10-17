@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://dfi48k6injklq"]
+
+[ext_resource type="Texture2D" uid="uid://b3i6fux735ivh" path="res://characters/aidam/adamheadDownScaled.png" id="1_l5e4j"]
+
+[resource]
+atlas = ExtResource("1_l5e4j")

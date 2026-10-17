@@ -3,3 +3,4 @@
 
 :ready
 	say($olda, "Kde to jsem?")
+	say($aidam, "Ahoj! Já jsem AIdam.", "", "avatar")

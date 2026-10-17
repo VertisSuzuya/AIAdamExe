@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cttkkqymf5mgr"]
+
+[ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="1_gtpdg"]
+
+[node name="Aidam" type="Area2D" unique_id=1389523226]
+process_mode = 1
+script = ExtResource("1_gtpdg")
+global_id = "aidam"
+actions_requiring_target_object = PackedStringArray()
+is_interactive = false
+metadata/_custom_type_script = "uid://dshelmw7y44qg"

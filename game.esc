@@ -2,4 +2,4 @@
 	show_menu("main")
 :newgame
 	set_global("brick_taken", false)
-	change_scene("res://rooms/stromovka_crossroads/stromovka_crossroads.tscn")
+	change_scene("res://rooms/laboratory/laboratory.tscn")

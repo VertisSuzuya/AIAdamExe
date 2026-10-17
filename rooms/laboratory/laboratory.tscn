@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://kcubxackcpdw"]
+
+[ext_resource type="Script" uid="uid://c7fcpp72w3dnj" path="res://addons/escoria-core/game/core-scripts/esc_room.gd" id="1_q5eoo"]
+[ext_resource type="PackedScene" uid="uid://ihn2iq8wcqag" path="res://characters/olda/olda.tscn" id="2_4tgfv"]
+[ext_resource type="Texture2D" uid="uid://mlf0agfh4y0d" path="res://rooms/laboratory/laboratoryUpscaled.png" id="3_rurk3"]
+[ext_resource type="Script" uid="uid://fnwnfflaoeqp" path="res://addons/escoria-core/game/core-scripts/esc_background.gd" id="4_rurk3"]
+[ext_resource type="Script" uid="uid://5pbcieq7gpdo" path="res://addons/escoria-core/game/core-scripts/esc_terrain.gd" id="5_ddi6i"]
+[ext_resource type="Script" uid="uid://beh3ds4eapldu" path="res://addons/escoria-core/game/core-scripts/esc_location.gd" id="7_ddi6i"]
+
+[sub_resource type="Gradient" id="Gradient_ddi6i"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lx1xr"]
+gradient = SubResource("Gradient_ddi6i")
+width = 1920
+height = 1080
+fill_from = Vector2(0.51282054, 0.6642247)
+fill_to = Vector2(0.51282054, 1)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ddi6i"]
+vertices = PackedVector2Array(417.52344, 727.9922, 1149.5781, 727.85156, 1134.0313, 858.5625, 11.828125, 1075.9609, 8.1171875, 854.34375, 1906.2188, 879.60156, 1912.6484, 1069.0313, 1356.9609, 914.2969, 1462.1406, 888.8281, 1459.25, 728, 1563.8906, 728)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 3, 7), PackedInt32Array(8, 9, 10, 5), PackedInt32Array(3, 2, 7), PackedInt32Array(5, 7, 8)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-2, 847, 416, 718, 1566, 718, 1916, 873, 1923, 1079, 2, 1086), PackedVector2Array(1145, 851, 1357, 904, 1452, 881, 1449, 714, 1160, 725)])
+
+[node name="Laboratory" type="Node2D" unique_id=745546295]
+script = ExtResource("1_q5eoo")
+global_id = "laboratory"
+esc_script = "res://rooms/laboratory/laboratory.esc"
+player_scene = ExtResource("2_4tgfv")
+metadata/_custom_type_script = "uid://c7fcpp72w3dnj"
+
+[node name="escbackground" type="TextureRect" parent="." unique_id=137997366]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("3_rurk3")
+script = ExtResource("4_rurk3")
+metadata/_custom_type_script = "uid://fnwnfflaoeqp"
+
+[node name="ESCTerrain" type="Node2D" parent="." unique_id=2046836270]
+script = ExtResource("5_ddi6i")
+scales = SubResource("GradientTexture2D_lx1xr")
+scale_min = 3.0
+scale_max = 10.0
+metadata/_custom_type_script = "uid://5pbcieq7gpdo"
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="ESCTerrain" unique_id=1819659783]
+navigation_polygon = SubResource("NavigationPolygon_ddi6i")
+
+[node name="ESCLocation" type="Marker2D" parent="." unique_id=1717437481]
+position = Vector2(505, 846)
+script = ExtResource("7_ddi6i")
+global_id = "start_in_lab"
+is_start_location = true
+metadata/_custom_type_script = "uid://beh3ds4eapldu"

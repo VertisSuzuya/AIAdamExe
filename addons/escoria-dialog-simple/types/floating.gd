@@ -155,7 +155,7 @@ func say(character: String, line: String) :
 	var text_color_html = text_color.to_html(false)
 
 	text_node.text = "[center][color=#" + text_color_html + "]" \
-		.format([text_color_html]) + tr(line) + "[/color][center]"
+		.format([text_color_html]) + tr(line) + "[/color][/center]"
 
 	if _current_character.is_inside_tree() and \
 			is_instance_valid(dialog_location_node):

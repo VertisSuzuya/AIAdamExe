@@ -358,6 +358,7 @@ position = Vector2(0, 1)
 script = ExtResource("1_u2acx")
 global_id = "olda"
 is_movable = true
+dialog_color = Color(0.69411767, 0.5176471, 1, 1)
 actions_requiring_target_object = PackedStringArray()
 speed = 50
 animations = SubResource("Resource_xffai")

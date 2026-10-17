@@ -1,0 +1,5 @@
+:setup
+	teleport($olda, $start_in_lab)
+
+:ready
+	say($olda, "Kde to jsem?")

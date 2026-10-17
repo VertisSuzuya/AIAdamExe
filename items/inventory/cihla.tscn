@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://c3nvhuh6px2dq"]
+
+[ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="1_k0bgq"]
+[ext_resource type="Texture2D" uid="uid://i4wognerogi1" path="res://items/inventory/brick.png" id="2_hnod3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqt0v"]
+size = Vector2(36, 30)
+
+[node name="cihla" type="Area2D" unique_id=2085353597]
+process_mode = 1
+script = ExtResource("1_k0bgq")
+global_id = "cihla"
+esc_script = "res://items/inventory/cihla.esc"
+tooltip_name = "těžká cihla"
+actions_requiring_target_object = PackedStringArray("use")
+use_from_inventory_only = true
+inventory_texture = ExtResource("2_hnod3")
+inventory_texture_hovered = ExtResource("2_hnod3")
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=967637420]
+position = Vector2(-9.536743e-07, 0)
+scale = Vector2(2.2, 2.2857144)
+texture = ExtResource("2_hnod3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=803761648]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_vqt0v")

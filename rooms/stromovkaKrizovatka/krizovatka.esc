@@ -1,0 +1,13 @@
+:setup
+	print("test setup")
+	play_snd("res://sound/music/sneakySong.mp3", _music)
+	if ESC_LAST_SCENE == "stromovkaDlouha":
+		teleport($olda, $exit_to_dlouha)
+		set_angle($olda, 60)
+	else:
+		teleport($olda, $player_start)
+	if cihla_taken:
+		set_active("cihla", false)
+:ready
+	print("testuju ready")
+	say($olda, "Testuju hudbu")

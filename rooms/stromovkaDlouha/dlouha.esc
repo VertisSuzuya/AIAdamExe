@@ -1,0 +1,7 @@
+:setup
+	if ESC_LAST_SCENE == "stromovkaKrizovatka":
+		teleport($olda, $exit_do_krizovatky)
+		set_angle($olda, 60)
+	else:
+		teleport($olda, $player_start)
+	play_snd("res://sound/music/rainOverRamen.mp3", _music)

@@ -1,0 +1,5 @@
+:init
+	show_menu("main")
+:newgame
+	set_global("cihla_taken", false)
+	change_scene("res://rooms/stromovkaKrizovatka/stromovkaKrizovatka.tscn")

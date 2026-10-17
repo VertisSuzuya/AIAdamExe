@@ -1,10 +1,10 @@
 :look
 
-	if $cihla in inventory:
+	if $brick in inventory:
 		say("olda", "Tohle tam nejspíš nedohodím...")
 	else:
 		say("olda", "Co na mě tak čumí? Abych mu nevysklil okno, škoda že nemám čím..")
 
-:use cihla
+:use brick
 
 	say($olda, "Nemyslím si, že tam dohodím...")

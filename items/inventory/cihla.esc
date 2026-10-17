@@ -1,5 +1,0 @@
-:pickup
-	print("Sebral jsi cihlu")
-	inventory_add("cihla")
-	set_active("cihla", false)
-	set_global("cihla_taken", true)

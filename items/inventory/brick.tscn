@@ -6,11 +6,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vqt0v"]
 size = Vector2(36, 30)
 
-[node name="cihla" type="Area2D" unique_id=2085353597]
+[node name="brick" type="Area2D" unique_id=2085353597]
 process_mode = 1
 script = ExtResource("1_k0bgq")
-global_id = "cihla"
-esc_script = "res://items/inventory/cihla.esc"
+global_id = "brick"
+esc_script = "res://items/inventory/brick.esc"
 tooltip_name = "těžká cihla"
 actions_requiring_target_object = PackedStringArray("use")
 use_from_inventory_only = true

@@ -1,0 +1,5 @@
+:pickup
+	print("Sebral jsi cihlu")
+	inventory_add("brick")
+	set_active("brick", false)
+	set_global("brick_taken", true)

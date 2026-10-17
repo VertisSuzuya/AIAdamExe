@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="7_a54ss"]
 [ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="8_v7vqg"]
 [ext_resource type="Texture2D" uid="uid://diyv8cjd76jvb" path="res://rooms/stromovkaKrizovatka/popelnice.png" id="9_l0jc4"]
-[ext_resource type="PackedScene" uid="uid://c3nvhuh6px2dq" path="res://items/inventory/cihla.tscn" id="10_l0jc4"]
+[ext_resource type="PackedScene" uid="uid://c3nvhuh6px2dq" path="res://items/inventory/brick.tscn" id="10_l0jc4"]
 [ext_resource type="Script" uid="uid://btt4cprco53ec" path="res://addons/escoria-core/game/core-scripts/esc_exit.gd" id="11_6x1vv"]
 [ext_resource type="AudioStream" uid="uid://yqk2bk32pivx" path="res://sound/efekt.mp3" id="12_ptrtu"]
 
@@ -102,9 +102,9 @@ offset_right = 66.0
 offset_bottom = 13.0
 texture = ExtResource("9_l0jc4")
 
-[node name="cihla" parent="." unique_id=2085353597 instance=ExtResource("10_l0jc4")]
+[node name="brick" parent="." unique_id=2085353597 instance=ExtResource("10_l0jc4")]
 position = Vector2(177, 812)
-esc_script = "res://items/inventory/cihla.esc"
+esc_script = "res://items/inventory/brick.esc"
 
 [node name="ESCExit" type="Area2D" parent="." unique_id=2143521335]
 position = Vector2(43, 1007)

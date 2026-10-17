@@ -6,8 +6,8 @@
 		set_angle($olda, 60)
 	else:
 		teleport($olda, $player_start)
-	if cihla_taken:
-		set_active("cihla", false)
+	if brick_taken:
+		set_active("brick", false)
 :ready
 	print("testuju ready")
 	say($olda, "Testuju hudbu")

@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://5pbcieq7gpdo" path="res://addons/escoria-core/game/core-scripts/esc_terrain.gd" id="4_a54ss"]
 [ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="7_a54ss"]
 [ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="8_v7vqg"]
-[ext_resource type="Texture2D" uid="uid://diyv8cjd76jvb" path="res://rooms/stromovkaKrizovatka/popelnice.png" id="9_l0jc4"]
+[ext_resource type="Texture2D" uid="uid://diyv8cjd76jvb" path="res://rooms/stromovkaKrizovatka/trash_bin.png" id="9_l0jc4"]
 [ext_resource type="PackedScene" uid="uid://c3nvhuh6px2dq" path="res://items/inventory/brick.tscn" id="10_l0jc4"]
 [ext_resource type="Script" uid="uid://btt4cprco53ec" path="res://addons/escoria-core/game/core-scripts/esc_exit.gd" id="11_6x1vv"]
 [ext_resource type="AudioStream" uid="uid://yqk2bk32pivx" path="res://sound/efekt.mp3" id="12_ptrtu"]
@@ -55,47 +55,47 @@ metadata/_custom_type_script = "uid://5pbcieq7gpdo"
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="ESCTerrain" unique_id=1687425243]
 navigation_polygon = SubResource("NavigationPolygon_xffai")
 
-[node name="okno" type="Area2D" parent="." unique_id=1461547601]
+[node name="window" type="Area2D" parent="." unique_id=1461547601]
 process_mode = 1
 position = Vector2(853, 381)
 script = ExtResource("7_a54ss")
-global_id = "okno"
-esc_script = "res://rooms/stromovkaKrizovatka/okno.esc"
+global_id = "window"
+esc_script = "res://rooms/stromovkaKrizovatka/window.esc"
 tooltip_name = "V tom okně někdo je"
 actions_requiring_target_object = PackedStringArray()
 metadata/_custom_type_script = "uid://dshelmw7y44qg"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="okno" unique_id=260266034]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="window" unique_id=260266034]
 position = Vector2(-853, -381)
 polygon = PackedVector2Array(850, 324, 850, 408, 982, 409, 981, 322)
 
-[node name="ESCInteractionLocation" type="Marker2D" parent="okno" unique_id=954171031]
+[node name="ESCInteractionLocation" type="Marker2D" parent="window" unique_id=954171031]
 position = Vector2(72, 401)
 script = ExtResource("8_v7vqg")
 metadata/_custom_type_script = "uid://chu4bvqgwxuts"
 
-[node name="popelnice" type="Area2D" parent="." unique_id=1555829681]
+[node name="trash_bin" type="Area2D" parent="." unique_id=1555829681]
 process_mode = 1
 z_index = 760
 position = Vector2(1085, 773)
 script = ExtResource("7_a54ss")
-global_id = "popelnice"
-esc_script = "res://rooms/stromovkaKrizovatka/popelnice.esc"
+global_id = "trash_bin"
+esc_script = "res://rooms/stromovkaKrizovatka/trash_bin.esc"
 tooltip_name = "špinavá popelnice..."
 actions_requiring_target_object = PackedStringArray()
 inventory_texture = ExtResource("9_l0jc4")
 inventory_texture_hovered = ExtResource("9_l0jc4")
 metadata/_custom_type_script = "uid://dshelmw7y44qg"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="popelnice" unique_id=880892820]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="trash_bin" unique_id=880892820]
 polygon = PackedVector2Array(-55, 10, -57, -150, 59, -148, 59, 11)
 
-[node name="ESCInteractionLocation" type="Marker2D" parent="popelnice" unique_id=205704483]
+[node name="ESCInteractionLocation" type="Marker2D" parent="trash_bin" unique_id=205704483]
 position = Vector2(2, 26)
 script = ExtResource("8_v7vqg")
 metadata/_custom_type_script = "uid://chu4bvqgwxuts"
 
-[node name="TextureRect" type="TextureRect" parent="popelnice" unique_id=1994834225]
+[node name="TextureRect" type="TextureRect" parent="trash_bin" unique_id=1994834225]
 offset_left = -57.0
 offset_top = -152.0
 offset_right = 66.0
@@ -104,7 +104,6 @@ texture = ExtResource("9_l0jc4")
 
 [node name="brick" parent="." unique_id=2085353597 instance=ExtResource("10_l0jc4")]
 position = Vector2(177, 812)
-esc_script = "res://items/inventory/brick.esc"
 
 [node name="ESCExit" type="Area2D" parent="." unique_id=2143521335]
 position = Vector2(43, 1007)

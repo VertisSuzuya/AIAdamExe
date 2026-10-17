@@ -42,6 +42,10 @@ var _current_line: String
 # Whether the dialog manager is paused
 @onready var is_paused: bool = true
 
+# Distance of the dialog box bottom edge from the screen bottom
+# (60 px peeking inventory panel + 20 px gap)
+const BOTTOM_OFFSET: int = 80
+
 # Build up the UI
 func _ready():
 	_text_time_per_character = ProjectSettings.get_setting(
@@ -137,7 +141,7 @@ func say(character: String, line: String):
 
 	_is_speeding_up = false
 
-	popup_centered()
+	_popup_at_bottom()
 	set_current_character(character)
 
 	text_node.text = tr(line)
@@ -229,7 +233,7 @@ func _on_resumed():
 		# We can't rely on "show()" to make an invisible popup reappear, as per the docs for
 		# CanvasItem. Instead, we need to use one of the popup_* methods.
 		if is_inside_tree():
-			popup_centered()
+			_popup_at_bottom()
 
 		is_paused = false
 		tween.resume()
@@ -237,3 +241,13 @@ func _on_resumed():
 
 func _on_tree_exited():
 	queue_free()
+
+
+# Show the dialog box centered horizontally near the bottom of the screen
+func _popup_at_bottom() -> void:
+	var screen: Vector2 = get_parent().get_viewport().get_visible_rect().size
+	var pos := Vector2i(
+		int((screen.x - size.x) / 2),
+		int(screen.y - size.y - BOTTOM_OFFSET)
+	)
+	popup(Rect2i(pos, size))

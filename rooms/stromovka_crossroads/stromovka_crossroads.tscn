@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://c7fcpp72w3dnj" path="res://addons/escoria-core/game/core-scripts/esc_room.gd" id="1_ow0mg"]
 [ext_resource type="PackedScene" uid="uid://ihn2iq8wcqag" path="res://characters/olda/olda.tscn" id="2_e48p7"]
 [ext_resource type="Script" uid="uid://fnwnfflaoeqp" path="res://addons/escoria-core/game/core-scripts/esc_background.gd" id="3_e48p7"]
-[ext_resource type="Texture2D" uid="uid://i2ajyow3tf4g" path="res://rooms/stromovkaKrizovatka/bgn11-3x.png" id="3_outif"]
+[ext_resource type="Texture2D" uid="uid://i2ajyow3tf4g" path="res://rooms/stromovka_crossroads/bgn11-3x.png" id="3_outif"]
 [ext_resource type="Script" uid="uid://5pbcieq7gpdo" path="res://addons/escoria-core/game/core-scripts/esc_terrain.gd" id="4_a54ss"]
 [ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="7_a54ss"]
 [ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="8_v7vqg"]
-[ext_resource type="Texture2D" uid="uid://diyv8cjd76jvb" path="res://rooms/stromovkaKrizovatka/trash_bin.png" id="9_l0jc4"]
+[ext_resource type="Texture2D" uid="uid://diyv8cjd76jvb" path="res://rooms/stromovka_crossroads/trash_bin.png" id="9_l0jc4"]
 [ext_resource type="PackedScene" uid="uid://c3nvhuh6px2dq" path="res://items/inventory/brick.tscn" id="10_l0jc4"]
 [ext_resource type="Script" uid="uid://btt4cprco53ec" path="res://addons/escoria-core/game/core-scripts/esc_exit.gd" id="11_6x1vv"]
 [ext_resource type="AudioStream" uid="uid://yqk2bk32pivx" path="res://sound/efekt.mp3" id="12_ptrtu"]
@@ -31,8 +31,8 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-1, 1077, 1923, 1080, 1
 
 [node name="StromovkaKrizovatka" type="Node2D" unique_id=1186611560]
 script = ExtResource("1_ow0mg")
-global_id = "stromovkaKrizovatka"
-esc_script = "res://rooms/stromovkaKrizovatka/krizovatka.esc"
+global_id = "stromovka_crossroads"
+esc_script = "res://rooms/stromovka_crossroads/stromovka_crossroads.esc"
 player_scene = ExtResource("2_e48p7")
 camera_limits = [Rect2(0, 0, 1920, 1080)]
 metadata/_custom_type_script = "uid://c7fcpp72w3dnj"
@@ -60,7 +60,7 @@ process_mode = 1
 position = Vector2(853, 381)
 script = ExtResource("7_a54ss")
 global_id = "window"
-esc_script = "res://rooms/stromovkaKrizovatka/window.esc"
+esc_script = "res://rooms/stromovka_crossroads/window.esc"
 tooltip_name = "V tom okně někdo je"
 actions_requiring_target_object = PackedStringArray()
 metadata/_custom_type_script = "uid://dshelmw7y44qg"
@@ -80,7 +80,7 @@ z_index = 760
 position = Vector2(1085, 773)
 script = ExtResource("7_a54ss")
 global_id = "trash_bin"
-esc_script = "res://rooms/stromovkaKrizovatka/trash_bin.esc"
+esc_script = "res://rooms/stromovka_crossroads/trash_bin.esc"
 tooltip_name = "špinavá popelnice..."
 actions_requiring_target_object = PackedStringArray()
 inventory_texture = ExtResource("9_l0jc4")
@@ -110,7 +110,7 @@ position = Vector2(43, 1007)
 script = ExtResource("11_6x1vv")
 target_scene = "uid://ctx1svesdmltj"
 switch_sound = ExtResource("12_ptrtu")
-global_id = "exit_to_dlouha"
+global_id = "exit_to_long"
 tooltip_name = "cesta k laboratoři"
 default_action = "use"
 metadata/_custom_type_script = "uid://btt4cprco53ec"

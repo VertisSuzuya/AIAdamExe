@@ -1,8 +1,8 @@
 :setup
 	print("test setup")
 	play_snd("res://sound/music/sneakySong.mp3", _music)
-	if ESC_LAST_SCENE == "stromovkaDlouha":
-		teleport($olda, $exit_to_dlouha)
+	if ESC_LAST_SCENE == "stromovka_long":
+		teleport($olda, $exit_to_long)
 		set_angle($olda, 60)
 	else:
 		teleport($olda, $player_start)

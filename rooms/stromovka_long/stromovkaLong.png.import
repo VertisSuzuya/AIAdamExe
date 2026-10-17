@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://or7e1axe0kob"
-path="res://.godot/imported/Stromovka1background.png-e9215d2913e23b0d0893d4f97540ac51.ctex"
+uid="uid://11bt8ifuchwc"
+path="res://.godot/imported/stromovkaLong.png-4438eede8b64386c726732ece0adae41.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://rooms/stromovkaKrizovatka/Stromovka1background.png"
-dest_files=["res://.godot/imported/Stromovka1background.png-e9215d2913e23b0d0893d4f97540ac51.ctex"]
+source_file="res://rooms/stromovka_long/stromovkaLong.png"
+dest_files=["res://.godot/imported/stromovkaLong.png-4438eede8b64386c726732ece0adae41.ctex"]
 
 [params]
 

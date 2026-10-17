@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c7fcpp72w3dnj" path="res://addons/escoria-core/game/core-scripts/esc_room.gd" id="1_08ypu"]
 [ext_resource type="PackedScene" uid="uid://ihn2iq8wcqag" path="res://characters/olda/olda.tscn" id="2_7uqsy"]
-[ext_resource type="Texture2D" uid="uid://dbkafuk804aa8" path="res://rooms/stromovkaDlouha/stromovkaLong-3x.png" id="3_0ucoo"]
+[ext_resource type="Texture2D" uid="uid://dbkafuk804aa8" path="res://rooms/stromovka_long/stromovkaLong-3x.png" id="3_0ucoo"]
 [ext_resource type="Script" uid="uid://fnwnfflaoeqp" path="res://addons/escoria-core/game/core-scripts/esc_background.gd" id="4_4mf1l"]
 [ext_resource type="Script" uid="uid://5pbcieq7gpdo" path="res://addons/escoria-core/game/core-scripts/esc_terrain.gd" id="5_n5c1c"]
 [ext_resource type="Script" uid="uid://btt4cprco53ec" path="res://addons/escoria-core/game/core-scripts/esc_exit.gd" id="6_n5c1c"]
@@ -27,8 +27,8 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(0, 1079, 1, 714, 98, 69
 
 [node name="stromovkaDlouha" type="Node2D" unique_id=1381403444]
 script = ExtResource("1_08ypu")
-global_id = "stromovkaDlouha"
-esc_script = "res://rooms/stromovkaDlouha/dlouha.esc"
+global_id = "stromovka_long"
+esc_script = "res://rooms/stromovka_long/stromovka_long.esc"
 player_scene = ExtResource("2_7uqsy")
 metadata/_custom_type_script = "uid://c7fcpp72w3dnj"
 
@@ -55,7 +55,7 @@ position = Vector2(64, 1004)
 script = ExtResource("6_n5c1c")
 target_scene = "uid://tx4ttaq0i75b"
 switch_sound = ExtResource("7_3yyy0")
-global_id = "exit_do_krizovatky"
+global_id = "exit_to_crossroads"
 tooltip_name = "Cesta na krizovatku"
 default_action = "use"
 metadata/_custom_type_script = "uid://btt4cprco53ec"
@@ -65,7 +65,7 @@ polygon = PackedVector2Array(-66, 73, -63, -165, 48, -162, 174, -76, 172, 86)
 
 [node name="ESCInteractionLocation" type="Marker2D" parent="ESCExit" unique_id=709549081]
 script = ExtResource("7_6wxwk")
-global_id = "dlouha_exit"
+global_id = "long_exit"
 metadata/_custom_type_script = "uid://chu4bvqgwxuts"
 
 [node name="player_start" type="Marker2D" parent="." unique_id=696703279]

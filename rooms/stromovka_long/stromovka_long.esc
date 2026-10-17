@@ -1,6 +1,6 @@
 :setup
-	if ESC_LAST_SCENE == "stromovkaKrizovatka":
-		teleport($olda, $exit_do_krizovatky)
+	if ESC_LAST_SCENE == "stromovka_crossroads":
+		teleport($olda, $exit_to_crossroads)
 		set_angle($olda, 60)
 	else:
 		teleport($olda, $player_start)

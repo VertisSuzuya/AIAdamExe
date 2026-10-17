@@ -29,7 +29,7 @@ vertices = PackedVector2Array(1603.0469, 724.8672, 1911.0625, 898.8672, 1912.890
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(0, 4, 5, 6, 7, 8, 9), PackedInt32Array(6, 5, 10, 11), PackedInt32Array(2, 12, 13, 14), PackedInt32Array(15, 11, 10, 16), PackedInt32Array(17, 8, 7, 18), PackedInt32Array(17, 18, 19, 20), PackedInt32Array(20, 19, 21), PackedInt32Array(22, 3, 2), PackedInt32Array(23, 24, 25, 26, 27, 16), PackedInt32Array(20, 21, 15, 16), PackedInt32Array(13, 28, 23, 16, 14), PackedInt32Array(29, 20, 16, 27), PackedInt32Array(14, 22, 2)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1, 1077, 1923, 1080, 1921, 893, 1613, 719, 1612, 608, 1513, 603, 1014, 711, 824, 716, 733, 700, 561, 705, 396, 641, 200, 658, 117, 740, 103, 783, 51, 783, -3, 818), PackedVector2Array(1340, 893, 1437, 906, 1479, 945, 1438, 972, 1301, 979, 1202, 954, 1202, 914), PackedVector2Array(1031, 745, 1111, 741, 1151, 780, 1054, 782, 1018, 747)])
 
-[node name="StromovkaKrizovatka" type="Node2D" unique_id=1186611560]
+[node name="Stromovka_crossroads" type="Node2D" unique_id=1186611560]
 script = ExtResource("1_ow0mg")
 global_id = "stromovka_crossroads"
 esc_script = "res://rooms/stromovka_crossroads/stromovka_crossroads.esc"

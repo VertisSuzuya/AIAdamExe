@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://5pbcieq7gpdo" path="res://addons/escoria-core/game/core-scripts/esc_terrain.gd" id="5_ddi6i"]
 [ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="7_6ql6i"]
 [ext_resource type="Script" uid="uid://beh3ds4eapldu" path="res://addons/escoria-core/game/core-scripts/esc_location.gd" id="7_ddi6i"]
+[ext_resource type="PackedScene" uid="uid://bp2m82fj4aqhg" path="res://characters/scientist/scientist.tscn" id="8_6ql6i"]
 
 [sub_resource type="Gradient" id="Gradient_ddi6i"]
 
@@ -48,10 +49,13 @@ metadata/_custom_type_script = "uid://5pbcieq7gpdo"
 navigation_polygon = SubResource("NavigationPolygon_ddi6i")
 
 [node name="ESCLocation" type="Marker2D" parent="." unique_id=1717437481]
-position = Vector2(505, 846)
+position = Vector2(1179, 898)
 script = ExtResource("7_ddi6i")
 global_id = "start_in_lab"
 is_start_location = true
 metadata/_custom_type_script = "uid://beh3ds4eapldu"
 
 [node name="Aidam" parent="." unique_id=1389523226 instance=ExtResource("7_6ql6i")]
+
+[node name="Scientist" parent="." unique_id=294159516 instance=ExtResource("8_6ql6i")]
+position = Vector2(514, 816)

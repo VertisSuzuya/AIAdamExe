@@ -2,5 +2,6 @@
 	show_menu("main")
 :newgame
 	set_global("brick_taken", false)
+	set_global("lab_flashbacks_done", false)
 	set_global("lab_intro_done", false)
 	change_scene("res://rooms/laboratory/laboratory.tscn")

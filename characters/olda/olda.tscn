@@ -375,6 +375,6 @@ position = Vector2(0, -32)
 shape = SubResource("CapsuleShape2D_vqt0v")
 
 [node name="dialog_position" type="Marker2D" parent="." unique_id=1558312694]
-position = Vector2(0, -70)
+position = Vector2(0, -74)
 script = ExtResource("6_t0mv1")
 metadata/_custom_type_script = "uid://85bledusisk1"

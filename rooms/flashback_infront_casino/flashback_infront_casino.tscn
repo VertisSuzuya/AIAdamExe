@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://do2iq4jvyjapk"]
+
+[ext_resource type="Script" uid="uid://c7fcpp72w3dnj" path="res://addons/escoria-core/game/core-scripts/esc_room.gd" id="1_x2ux0"]
+[ext_resource type="Texture2D" uid="uid://da3waaidwi4jb" path="res://rooms/flashback_infront_casino/flashback_infront_casino.png" id="2_clkee"]
+[ext_resource type="PackedScene" uid="uid://ihn2iq8wcqag" path="res://characters/olda/olda.tscn" id="2_ps6ix"]
+[ext_resource type="Script" uid="uid://fnwnfflaoeqp" path="res://addons/escoria-core/game/core-scripts/esc_background.gd" id="3_kjct0"]
+[ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="4_kjct0"]
+
+[node name="FlashbackInfrontCasino" type="Node2D" unique_id=1482080588]
+script = ExtResource("1_x2ux0")
+global_id = "flashback_infront_casino"
+esc_script = "res://rooms/flashback_infront_casino/flashback_infront_casino.esc"
+player_scene = ExtResource("2_ps6ix")
+metadata/_custom_type_script = "uid://c7fcpp72w3dnj"
+
+[node name="escbackground" type="TextureRect" parent="." unique_id=180763767]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("2_clkee")
+script = ExtResource("3_kjct0")
+metadata/_custom_type_script = "uid://fnwnfflaoeqp"
+
+[node name="Aidam" parent="." unique_id=1389523226 instance=ExtResource("4_kjct0")]

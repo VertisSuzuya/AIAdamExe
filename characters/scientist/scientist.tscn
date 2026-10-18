@@ -1,6 +1,12 @@
 [gd_scene format=3 uid="uid://bp2m82fj4aqhg"]
 
 [ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="1_ywots"]
+[ext_resource type="Texture2D" uid="uid://ckcob3785ohkr" path="res://characters/scientist/scientist.png" id="2_v3gt4"]
+[ext_resource type="Script" uid="uid://85bledusisk1" path="res://addons/escoria-core/game/core-scripts/esc_dialog_location.gd" id="3_b5nr2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vqt0v"]
+radius = 59.0
+height = 366.0
 
 [node name="Scientist" type="Area2D" unique_id=294159516]
 process_mode = 1
@@ -8,4 +14,18 @@ script = ExtResource("1_ywots")
 global_id = "scientist"
 actions_requiring_target_object = PackedStringArray()
 is_interactive = false
+inventory_texture = ExtResource("2_v3gt4")
+inventory_texture_hovered = ExtResource("2_v3gt4")
 metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=608450851]
+shape = SubResource("CapsuleShape2D_vqt0v")
+
+[node name="ESCDialogLocation" type="Marker2D" parent="." unique_id=421600479]
+position = Vector2(0, -198)
+script = ExtResource("3_b5nr2")
+metadata/_custom_type_script = "uid://85bledusisk1"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1908910693]
+position = Vector2(1, -3)
+texture = ExtResource("2_v3gt4")

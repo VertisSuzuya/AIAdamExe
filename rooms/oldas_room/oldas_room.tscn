@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bl67jskq5y3pr"]
+
+[ext_resource type="Script" uid="uid://c7fcpp72w3dnj" path="res://addons/escoria-core/game/core-scripts/esc_room.gd" id="1_xy3uh"]
+[ext_resource type="PackedScene" uid="uid://ihn2iq8wcqag" path="res://characters/olda/olda.tscn" id="2_2800j"]
+[ext_resource type="Script" uid="uid://fnwnfflaoeqp" path="res://addons/escoria-core/game/core-scripts/esc_background.gd" id="2_22372"]
+[ext_resource type="Texture2D" uid="uid://dk1wxw0dtgueq" path="res://rooms/oldas_room/oldas_room.png" id="2_q6a5s"]
+[ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="3_1jc50"]
+[ext_resource type="Script" uid="uid://5pbcieq7gpdo" path="res://addons/escoria-core/game/core-scripts/esc_terrain.gd" id="5_2800j"]
+[ext_resource type="Script" uid="uid://beh3ds4eapldu" path="res://addons/escoria-core/game/core-scripts/esc_location.gd" id="6_0xtuq"]
+
+[sub_resource type="Gradient" id="Gradient_2800j"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0xtuq"]
+gradient = SubResource("Gradient_2800j")
+width = 1920
+height = 1080
+fill_from = Vector2(0.5, 0.52991456)
+fill_to = Vector2(0.4957265, 1)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_vqt0v"]
+vertices = PackedVector2Array(283.6875, 747.8906, 719.5, 694.9531, 708.3125, 723.2422, 667, 739.1328, 410.28906, 1089.9922, 145.79688, 1070.0078, 217, 869.71875, 282.71875, 776.28125, 667, 815.60156, 1074.2891, 1065.2891, 1491.1016, 877.0781, 1502.6172, 924.9297, 217, 789.21875, 1914.4375, 1074.1094, 1744.5078, 997.28906, 1830.8438, 980.2422, 1908.3984, 965.40625, 1861.6406, 950.3594)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8, 9), PackedInt32Array(9, 10, 11), PackedInt32Array(0, 3, 8, 7), PackedInt32Array(6, 12, 7), PackedInt32Array(13, 4, 9), PackedInt32Array(13, 9, 11, 14), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(16, 15, 17)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(132, 1079, 207, 868, 207, 781, 273, 768, 274, 739, 735, 683, 716, 731, 677, 746, 677, 810, 1075, 1054, 1498, 863, 1511, 917, 1745, 987, 1826, 971, 1859, 939, 1918, 958, 1925, 1084, 410, 1100)])
+
+[node name="OldasRoom" type="Node2D" unique_id=487785702]
+script = ExtResource("1_xy3uh")
+global_id = "oldas_room"
+esc_script = "res://rooms/oldas_room/oldas_room.esc"
+player_scene = ExtResource("2_2800j")
+metadata/_custom_type_script = "uid://c7fcpp72w3dnj"
+
+[node name="escbackground" type="TextureRect" parent="." unique_id=1263317290]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("2_q6a5s")
+script = ExtResource("2_22372")
+metadata/_custom_type_script = "uid://fnwnfflaoeqp"
+
+[node name="Aidam" parent="." unique_id=1389523226 instance=ExtResource("3_1jc50")]
+
+[node name="ESCTerrain" type="Node2D" parent="." unique_id=2009969959]
+script = ExtResource("5_2800j")
+scales = SubResource("GradientTexture2D_0xtuq")
+scale_min = 2.0
+scale_max = 10.0
+metadata/_custom_type_script = "uid://5pbcieq7gpdo"
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="ESCTerrain" unique_id=1890504805]
+navigation_polygon = SubResource("NavigationPolygon_vqt0v")
+
+[node name="ESCLocation" type="Marker2D" parent="." unique_id=1521669090]
+position = Vector2(341, 860)
+script = ExtResource("6_0xtuq")
+global_id = "oldas_room_start_location"
+is_start_location = true
+metadata/_custom_type_script = "uid://beh3ds4eapldu"

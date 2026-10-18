@@ -1,0 +1,5 @@
+:ready
+	teleport($olda, $oldas_room_start_location)
+	say($aidam, "Tak. Nejdřív základy: abys šel, musíš... zatnout pravou půlku mozku. Nebo klikat myší. Jedno z toho.", "", "avatar")
+
+	

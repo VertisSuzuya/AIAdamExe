@@ -58,4 +58,5 @@ metadata/_custom_type_script = "uid://beh3ds4eapldu"
 [node name="Aidam" parent="." unique_id=1389523226 instance=ExtResource("7_6ql6i")]
 
 [node name="Scientist" parent="." unique_id=294159516 instance=ExtResource("8_6ql6i")]
-position = Vector2(514, 816)
+position = Vector2(583, 680)
+scale = Vector2(1.5, 1.5)

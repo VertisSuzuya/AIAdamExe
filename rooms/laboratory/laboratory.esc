@@ -3,22 +3,28 @@
 
 :ready
 	if not lab_intro_done:
-		say($scientist, "Operace proběhla. Jestli mě slyšíte, zkuste mrknout.")
-		say($olda, "...Slyším. Co mi to vlastně dali do hlavy?")
-		say($aidam, "Ahoj! Já jsem AIdam. Jako AI Adam. Nebo Eidam. To se ještě řeší.", "", "avatar")
-		say($olda, "Ty jsi to v mojí hlavě?")
-		say($aidam, "Jo, jsem a taky budu. Už se tu vyznám. Viděl jsem na to video.", "", "avatar")
-		say($scientist, "(tiše) On nikdy žádné video neviděl.")
-		say($aidam, "Slyšel jsem to! Tak. Nejdřív základy: abys šel, musíš... zatnout pravou půlku mozku. Nebo klikat myší. Jedno z toho.", "", "avatar")
+		if not lab_flashbacks_done:
+			say($scientist, "Operace proběhla. Jestli mě slyšíte, zkuste mrknout.")
+			say($olda, "...Slyším. Co mi to vlastně dali do hlavy?")
+			say($aidam, "Ahoj! Já jsem AIdam. Jako AI Adam. Nebo Eidam. To se ještě řeší.", "", "avatar")
+			say($olda, "Ty jsi to v mojí hlavě?")
+			say($aidam, "Jo, jsem a taky budu. Už se tu vyznám. Viděl jsem na to video.", "", "avatar")
+			say($scientist, "(tiše) On nikdy žádné video neviděl.")
+			say($olda, "Jak jsem se sem vlastně dostal?")
+			say($aidam, "bhahah ty jsi to už zapomněl? No nic, pomůžu ti si vzpomenout", "", "avatar")
+			change_scene("res://rooms/flashback_in_casino/flashback_in_casino.tscn")
+		
 
 		?!
 			- "Můžeš to říct jinak?"
 				say($aidam, "Můžu, ale moc se mi nechce.", "", "avatar")
-			- "Co je tohle za místo?"
+			- "Co je tohle vlastně za místo?"
 				say($scientist, "To vám radši neřekneme.")
 			- "Chci pryč."
 				say($aidam, "To se nám hodí, protože já bych taky někam šel.", "", "avatar")
 				done
-
+		
 		say($aidam, "A až půjdeš spát, neboj se, já tě pohlídám. Hlavně se nebojíš toho co se děje v noci, že?", "", "avatar")
+		say($scientist, "Dostaneme vás do bytu, tak abyste nevěděl kde se naše laboratoř nachází, tak jak jste podepsal.")
 		set_global("lab_intro_done", true)
+		change_scene("res://rooms/oldas_room/oldas_room.tscn")

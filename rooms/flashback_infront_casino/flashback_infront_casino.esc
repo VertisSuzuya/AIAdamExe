@@ -1,0 +1,5 @@
+:ready
+	say($aidam, "Vypnutej a zničenej před kasínem v louži za tebou přišli 2 typci v oblecích", "", "avatar")
+	say($aidam, "Dostal jsi dobrou nabídku: peníze, bydlení, trochu mě v hlavě. Já bych taky souhlasil.", "", "avatar")
+	set_global("lab_flashbacks_done", true)
+	change_scene("res://rooms/laboratory/laboratory.tscn")

@@ -1,0 +1,4 @@
+:ready
+	say($aidam, "Takže. Prohrál jsi dům, auto, úspory a podle mých odhadů, i nějaké peníze se kterýma jsi se nenaučil pracovat.", "", "avatar")
+	say($aidam, "A rodina od tebe odešla. Což je ta nejsmutnější část, takže jdeme rychle dál.", "", "avatar")
+	change_scene("res://rooms/flashback_infront_casino/flashback_infront_casino.tscn")

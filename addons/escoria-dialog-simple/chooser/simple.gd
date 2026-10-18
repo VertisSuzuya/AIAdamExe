@@ -4,7 +4,8 @@ extends ESCDialogOptionsChooser
 
 
 @export var color_normal = Color(1.0,1.0,1.0,1.0) # (Color, RGB)
-@export var color_hover = Color(165.0,42.0,42.0, 1.0) # (Color, RGB)
+@export var color_hover = Color(0.0, 0.792157, 0.803922, 1.0) # (Color, RGB)
+@export var font_size: int = 32
 
 
 var _no_more_options: bool = false
@@ -18,7 +19,7 @@ func _ready() -> void:
 
 # Process the timeout display
 func _process(_delta: float) -> void:
-	if $MarginContainer.visible and self.dialog and self.dialog.timeout > 0:
+	if $choices_panel.visible and self.dialog and self.dialog.timeout > 0:
 		$TimerProgress.value = (
 			self.dialog.timeout - $Timer.time_left
 		) / self.dialog.timeout * 100
@@ -26,7 +27,7 @@ func _process(_delta: float) -> void:
 
 # Show the chooser
 func show_chooser():
-	var vbox = $MarginContainer/ScrollContainer/VBoxContainer
+	var vbox = $choices_panel/ScrollContainer/VBoxContainer
 	for option_node in vbox.get_children():
 		vbox.remove_child(option_node)
 
@@ -37,8 +38,11 @@ func show_chooser():
 			var option_node = Button.new()
 			option_node.text = (option as ESCDialogOption).option
 			option_node.flat = true
+			option_node.alignment = HORIZONTAL_ALIGNMENT_LEFT
+			option_node.add_theme_font_size_override("font_size", font_size)
 			option_node.add_theme_color_override("font_color", color_normal)
-			option_node.add_theme_color_override("font_color_hover", color_hover)
+			option_node.add_theme_color_override("font_hover_color", color_hover)
+			option_node.add_theme_color_override("font_pressed_color", color_hover)
 			vbox.add_child(option_node)
 
 			option_node.pressed.connect(_on_answer_selected.bind(option))
@@ -57,7 +61,7 @@ func show_chooser():
 			ResourceLoader.load(self.dialog.avatar).instantiate()
 		)
 
-	$MarginContainer.show()
+	$choices_panel.show()
 
 	if self.dialog.timeout > 0 and self.dialog.get_timeout_option():
 		$Timer.start(self.dialog.timeout)
@@ -67,7 +71,7 @@ func show_chooser():
 
 # Hide the chooser
 func hide_chooser():
-	$MarginContainer.hide()
+	$choices_panel.hide()
 
 
 # An option was choosen, emit the option

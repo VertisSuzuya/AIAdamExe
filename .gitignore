@@ -27,7 +27,4 @@ mono_crash.*.json
 # Claude Code (lokální)
 CLAUDE.md
 .claude/settings.local.json
-
-# Claude Code (lokální)
-CLAUDE.md
-.claude/settings.local.json
+docs/ai-log.md

@@ -1,0 +1,12 @@
+:look
+	if tutorial_step == 2:
+		say($olda, "Kolik je vlastně hodin? Venku už je tma. Hodinky jsem asi někde ztratil.")
+		say($aidam, "Na stolku vidím budík. Přepni na ruku a vezmi ho.", "", "avatar")
+		set_global("tutorial_step", 3)
+	else:
+		say($olda, "Město pod mrakem. Nikdo ani nezvedne hlavu.")
+		
+:arrived
+	if tutorial_step == 1:
+		say($aidam, "Výborně. Teď se podívej z okna. Kolečkem myši přepínáš akce co chceš provést, přepni na oko a klikni na okno", "", "avatar")
+		set_global("tutorial_step", 2)

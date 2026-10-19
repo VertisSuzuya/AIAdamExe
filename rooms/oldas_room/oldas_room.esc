@@ -1,5 +1,14 @@
-:ready
+:setup
 	teleport($olda, $oldas_room_start_location)
-	say($aidam, "Tak. Nejdřív základy: abys šel, musíš... zatnout pravou půlku mozku. Nebo klikat myší. Jedno z toho.", "", "avatar")
-
+	if alarm_taken:
+		set_active("alarm", false)
+	if battery_taken:
+		set_active("batteries", false)
+		
+:ready
+	if tutorial_step == 0:
+		say($aidam, "Vítej doma. Prvně tě naučím jak se pohybovat po scéně.", "", "avatar")
+		say($aidam, "Abys šel, musíš... zatnout pravou půlku mozku. Nebo klikat myší. Jedno z toho.", "", "avatar")
+		say($aidam, "Zkus dojít k oknu.", "", "avatar")
+		set_global("tutorial_step", 1)
 	

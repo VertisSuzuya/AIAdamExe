@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dw6fvw5akgkyt"]
+
+[ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="1_k4o2e"]
+[ext_resource type="Texture2D" uid="uid://dxietftymok6x" path="res://grafika/batteries.png" id="2_t0p6q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqt0v"]
+size = Vector2(214, 129)
+
+[node name="Batteries" type="Area2D" unique_id=768690128]
+process_mode = 1
+script = ExtResource("1_k4o2e")
+global_id = "batteries"
+esc_script = "res://items/inventory/batteries.esc"
+actions_requiring_target_object = PackedStringArray("use")
+inventory_texture = ExtResource("2_t0p6q")
+inventory_texture_hovered = ExtResource("2_t0p6q")
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1915667594]
+position = Vector2(-1, 0.5)
+scale = Vector2(0.3, 0.3)
+shape = SubResource("RectangleShape2D_vqt0v")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1601864450]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_t0p6q")

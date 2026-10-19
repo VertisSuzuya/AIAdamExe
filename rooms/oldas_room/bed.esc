@@ -1,0 +1,8 @@
+:use
+	if alarm_set:
+		say($olda, "Jsem pro dnešek hotovej. Dobrou.")
+		say($aidam, "Dobrou noc. Já tě pohlídám.", "", "avatar")
+		say($olda, "Počkej, co přesně tím myslíš...")
+		say($aidam, "TUTORIAL DONE", "", "avatar")
+	else:
+		say($aidam, "Bez budíku? Zaspíš a pak budeš vinit mě.", "", "avatar")

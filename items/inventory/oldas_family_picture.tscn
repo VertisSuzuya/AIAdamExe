@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://e3s4youbhlry"]
+
+[ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="1_dkpww"]
+[ext_resource type="Texture2D" uid="uid://cgugr1i3mrqxe" path="res://grafika/family_picture.png" id="2_lrik2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqt0v"]
+size = Vector2(90, 80)
+
+[node name="OldasFamilyPicture" type="Area2D" unique_id=1707046650]
+process_mode = 1
+script = ExtResource("1_dkpww")
+global_id = "oldas_family_picture"
+esc_script = "res://items/inventory/oldas_family_picture.esc"
+actions_requiring_target_object = PackedStringArray()
+inventory_texture = ExtResource("2_lrik2")
+inventory_texture_hovered = ExtResource("2_lrik2")
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=901109974]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_lrik2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=480771306]
+position = Vector2(4, 1)
+shape = SubResource("RectangleShape2D_vqt0v")

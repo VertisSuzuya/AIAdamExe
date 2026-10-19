@@ -1,0 +1,10 @@
+:use alarm
+	if tutorial_step == 6:
+		say($olda, "Nastavím tedy budík, ať nezaspím.")
+		set_global("alarm_set", true)
+		set_global("tutorial_step", 7)
+		
+		inventory_remove("alarm")
+		set_active("alarm", true)
+
+		say($aidam, "Super, máš nastavený budík, tak můžeš klidně jít spát, klikni s ozubeným kolem na postel.", "", "avatar")

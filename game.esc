@@ -4,4 +4,11 @@
 	set_global("brick_taken", false)
 	set_global("lab_flashbacks_done", false)
 	set_global("lab_intro_done", false)
+	
+	set_global("tutorial_step", 0)
+	set_global("alarm_taken", false)
+	set_global("battery_taken", false)
+	set_global("alarm_set", false)
+
+	#change_scene("res://rooms/oldas_room/oldas_room.tscn")
 	change_scene("res://rooms/laboratory/laboratory.tscn")

@@ -1,0 +1,16 @@
+:pickup
+	if tutorial_step == 3:
+		inventory_add("alarm")
+		set_active("alarm", false)
+		set_global("alarm_taken", true)
+		
+		say($aidam, "Rozbitý. Chybí mu baterky. Rozhlédni se, nějaké tu budou, seber je.", "", "avatar")
+		set_global("tutorial_step", 4)
+
+:use batteries
+	inventory_remove("alarm")
+	inventory_remove("batteries")
+	inventory_add("alarm")
+	say($olda, "Jde to.")
+	say($aidam, "Gratuluji, zprovoznil jsi budík. Zkus ho položit zpět na noční stolek.", "", "avatar")
+	set_global("tutorial_step", 6)

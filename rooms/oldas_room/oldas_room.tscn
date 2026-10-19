@@ -7,6 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="3_1jc50"]
 [ext_resource type="Script" uid="uid://5pbcieq7gpdo" path="res://addons/escoria-core/game/core-scripts/esc_terrain.gd" id="5_2800j"]
 [ext_resource type="Script" uid="uid://beh3ds4eapldu" path="res://addons/escoria-core/game/core-scripts/esc_location.gd" id="6_0xtuq"]
+[ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="8_0xtuq"]
+[ext_resource type="PackedScene" uid="uid://cxm3lgxrhtqqj" path="res://items/inventory/alarm.tscn" id="9_1jew0"]
+[ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="9_ultcx"]
+[ext_resource type="PackedScene" uid="uid://dw6fvw5akgkyt" path="res://items/inventory/batteries.tscn" id="10_x0yt2"]
+[ext_resource type="PackedScene" uid="uid://e3s4youbhlry" path="res://items/inventory/oldas_family_picture.tscn" id="11_x0yt2"]
 
 [sub_resource type="Gradient" id="Gradient_2800j"]
 
@@ -21,6 +26,9 @@ fill_to = Vector2(0.4957265, 1)
 vertices = PackedVector2Array(283.6875, 747.8906, 719.5, 694.9531, 708.3125, 723.2422, 667, 739.1328, 410.28906, 1089.9922, 145.79688, 1070.0078, 217, 869.71875, 282.71875, 776.28125, 667, 815.60156, 1074.2891, 1065.2891, 1491.1016, 877.0781, 1502.6172, 924.9297, 217, 789.21875, 1914.4375, 1074.1094, 1744.5078, 997.28906, 1830.8438, 980.2422, 1908.3984, 965.40625, 1861.6406, 950.3594)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8, 9), PackedInt32Array(9, 10, 11), PackedInt32Array(0, 3, 8, 7), PackedInt32Array(6, 12, 7), PackedInt32Array(13, 4, 9), PackedInt32Array(13, 9, 11, 14), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(16, 15, 17)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(132, 1079, 207, 868, 207, 781, 273, 768, 274, 739, 735, 683, 716, 731, 677, 746, 677, 810, 1075, 1054, 1498, 863, 1511, 917, 1745, 987, 1826, 971, 1859, 939, 1918, 958, 1925, 1084, 410, 1100)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqt0v"]
+size = Vector2(477, 241)
 
 [node name="OldasRoom" type="Node2D" unique_id=487785702]
 script = ExtResource("1_xy3uh")
@@ -42,16 +50,85 @@ metadata/_custom_type_script = "uid://fnwnfflaoeqp"
 [node name="ESCTerrain" type="Node2D" parent="." unique_id=2009969959]
 script = ExtResource("5_2800j")
 scales = SubResource("GradientTexture2D_0xtuq")
-scale_min = 2.0
-scale_max = 10.0
+scale_min = 1.0
+scale_max = 8.0
 metadata/_custom_type_script = "uid://5pbcieq7gpdo"
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="ESCTerrain" unique_id=1890504805]
 navigation_polygon = SubResource("NavigationPolygon_vqt0v")
 
 [node name="ESCLocation" type="Marker2D" parent="." unique_id=1521669090]
-position = Vector2(341, 860)
+position = Vector2(317, 839)
 script = ExtResource("6_0xtuq")
 global_id = "oldas_room_start_location"
 is_start_location = true
 metadata/_custom_type_script = "uid://beh3ds4eapldu"
+
+[node name="window" type="Area2D" parent="." unique_id=234054817]
+process_mode = 1
+position = Vector2(483, 596)
+script = ExtResource("8_0xtuq")
+global_id = "window"
+esc_script = "res://rooms/oldas_room/window.esc"
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="window" unique_id=133222382]
+position = Vector2(30, -8)
+shape = SubResource("RectangleShape2D_vqt0v")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="window" unique_id=1458843783]
+position = Vector2(40, 139)
+script = ExtResource("9_ultcx")
+global_id = "window_interaction"
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="Alarm" parent="." unique_id=764769222 instance=ExtResource("9_1jew0")]
+position = Vector2(1597, 710)
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="Alarm" unique_id=831776487]
+position = Vector2(-75, 248)
+script = ExtResource("9_ultcx")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="Batteries" parent="." unique_id=768690128 instance=ExtResource("10_x0yt2")]
+position = Vector2(361, 963)
+
+[node name="OldasFamilyPicture" parent="." unique_id=1707046650 instance=ExtResource("11_x0yt2")]
+position = Vector2(1726, 757)
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="OldasFamilyPicture" unique_id=1694696847]
+position = Vector2(-38, 241)
+script = ExtResource("9_ultcx")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="nightstand" type="Area2D" parent="." unique_id=2088778288]
+process_mode = 1
+position = Vector2(1643, 861)
+script = ExtResource("8_0xtuq")
+global_id = "nightstand"
+esc_script = "res://rooms/oldas_room/nightstand.esc"
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="nightstand" unique_id=864848955]
+position = Vector2(-42, 125)
+script = ExtResource("9_ultcx")
+global_id = "nightstand_interaction"
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="nightstand" unique_id=1930852281]
+position = Vector2(-42, 125)
+polygon = PackedVector2Array(-98, -114, -76, -69, 157, -6, 237, -35, 238, -187, 182, -216, 180, -174, 76, -190, 80, -234, 51, -239, 44, -208, -54, -215, -56, -246, -84, -245)
+
+[node name="bed" type="Area2D" parent="." unique_id=1723255190]
+process_mode = 1
+position = Vector2(757, 927)
+script = ExtResource("8_0xtuq")
+global_id = "bed"
+esc_script = "res://rooms/oldas_room/bed.esc"
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bed" unique_id=2038813062]
+polygon = PackedVector2Array(-89, -111, 314, 129, 756, -70, 752, -209, 326, -285, -39, -232, -39, -184, -81, -175)

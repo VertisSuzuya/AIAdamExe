@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cxm3lgxrhtqqj"]
+
+[ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="1_v6h8x"]
+[ext_resource type="Texture2D" uid="uid://dndq6t25e6lb3" path="res://grafika/alarm.png" id="2_cwfly"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqt0v"]
+size = Vector2(94, 115)
+
+[node name="Alarm" type="Area2D" unique_id=764769222]
+process_mode = 1
+script = ExtResource("1_v6h8x")
+global_id = "alarm"
+esc_script = "res://items/inventory/alarm.esc"
+actions_requiring_target_object = PackedStringArray("use")
+use_from_inventory_only = true
+inventory_texture = ExtResource("2_cwfly")
+inventory_texture_hovered = ExtResource("2_cwfly")
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1361803003]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_cwfly")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=823586084]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_vqt0v")

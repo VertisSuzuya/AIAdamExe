@@ -1,0 +1,8 @@
+:pickup
+	if tutorial_step == 4:
+		inventory_add("batteries")
+		set_active("batteries", false)
+		set_global("battery_taken", true)
+	
+		say($aidam, "Baterky, píšou infinite, to asi těžko... Teď: přepni na ruku s kolečkem, vyber v inventáři budík a klikni na baterky.", "", "avatar")
+		set_global("tutorial_step", 5)

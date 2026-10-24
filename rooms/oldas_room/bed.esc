@@ -1,8 +1,15 @@
 :use
-	if alarm_set:
+	if game_day == 6:
+		# Neděle je poslední den (dva konce), spát se už nechodí. Zatím jen placeholder.
+		say($aidam, "Konec týdne, tady demo končí.", "", "avatar")
+	elif day_task_done:
 		say($olda, "Jsem pro dnešek hotovej. Dobrou.")
-		say($aidam, "Dobrou noc. Já tě pohlídám.", "", "avatar")
-		say($olda, "Počkej, co přesně tím myslíš...")
-		say($aidam, "TUTORIAL DONE", "", "avatar")
-	else:
+		if game_day == 0:
+			say($aidam, "Dobrou noc. Já tě pohlídám.", "", "avatar")
+			say($olda, "Počkej, co přesně tím myslíš...")
+		# Nový den spustí game_clock (:new_day v game.esc), až tahle událost skončí.
+		set_global("sleep_requested", true)
+	elif game_day == 0 and not alarm_set:
 		say($aidam, "Bez budíku? Zaspíš a pak budeš vinit mě.", "", "avatar")
+	else:
+		say($aidam, "Ještě nemůžeš spát, dnes máš něco nedodělaného.", "", "avatar")

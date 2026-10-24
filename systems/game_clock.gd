@@ -20,7 +20,7 @@ extends Node
 # Ve 2:00 se zastaví a spustí :day_timeout z game.esc.
 
 ## Kolik herních minut uběhne za jednu reálnou sekundu.
-@export var minutes_per_second: float = 60
+@export var minutes_per_second: float = 1
 
 const DAY_START: int = 7 * 60    # 7:00
 const DAY_END: int = 26 * 60     # 2:00 ráno dalšího dne
@@ -68,6 +68,21 @@ func _process(delta: float) -> void:
 			_run_steps([[room.compiled_script, EVENT_APPLY_TIME]])
 			return
 
+	# Postel nastavila sleep_requested: nový den (s mrknutím).
+	if escoria.globals_manager.has("sleep_requested") \
+			and escoria.globals_manager.get_global("sleep_requested"):
+		var steps: Array = [
+			[escoria.start_script, "time_fade_out"],
+			[escoria.start_script, "new_day"],
+			func(): _pending_key = _current_key(),
+			[escoria.start_script, "update_schedule"],
+		]
+		if _room_has_apply_time(room):
+			steps.append([room.compiled_script, EVENT_APPLY_TIME])
+		steps.append([escoria.start_script, "time_fade_in"])
+		_run_steps(steps)
+		return
+
 	var minute: int = int(escoria.globals_manager.get_global("day_minute"))
 
 	if minute >= DAY_END:
@@ -78,7 +93,7 @@ func _process(delta: float) -> void:
 	_timed_out = false
 
 	var phase: String = phase_for_minute(minute)
-	var key: String = "%d_%s" % [int(escoria.globals_manager.get_global("game_day")), phase]
+	var key: String = _current_key()
 
 	# Čas přešel do jiné části dne: mrknutí.
 	if escoria.globals_manager.get_global("day_phase") != phase:
@@ -108,6 +123,14 @@ func _process(delta: float) -> void:
 		escoria.globals_manager.set_global("day_minute", mini(minute + whole, DAY_END))
 
 
+# Klíč rozvrhu pro aktuální den a část dne podle času ("den_cast").
+func _current_key() -> String:
+	return "%d_%s" % [
+		int(escoria.globals_manager.get_global("game_day")),
+		phase_for_minute(int(escoria.globals_manager.get_global("day_minute"))),
+	]
+
+
 ## Vrátí část dne pro danou minutu. Minuty po půlnoci jdou dál (0:30 = 1470),
 ## takže se neořezávají na 24 h, jinak by 0:00–2:00 vyšlo jako ráno.
 static func phase_for_minute(minute: int) -> String:
@@ -121,6 +144,10 @@ static func phase_for_minute(minute: int) -> String:
 # a když se zrovna nic jiného neděje (žádný dialog, načítání).
 func _is_running() -> bool:
 	if not escoria.globals_manager.has("day_minute"):
+		return false
+	# Před příchodem domů v pondělí večer (laboratoř, flashbacky) čas stojí.
+	if escoria.globals_manager.has("clock_enabled") \
+			and not escoria.globals_manager.get_global("clock_enabled"):
 		return false
 	if escoria.main == null or not (escoria.main.current_scene is ESCRoom):
 		return false

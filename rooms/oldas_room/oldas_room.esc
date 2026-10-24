@@ -1,5 +1,11 @@
 :setup
 	teleport($olda, $oldas_room_start_location)
+	# Pondělí: Olda se z laboratoře dostane domů ve 22:00, teprve teď
+	# se spustí hodiny (do 2:00 má čas na tutorial).
+	if not clock_enabled:
+		set_global("day_minute", 1320)
+		set_global("day_phase", "night")
+		set_global("clock_enabled", true)
 	if alarm_taken:
 		set_active("alarm", false)
 	if battery_taken:

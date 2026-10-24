@@ -15,13 +15,18 @@
 	set_global("day_minute", 420)
 	set_global("day_phase", "morning")
 	set_global("day_task_done", false)
+	# Hodiny stojí, dokud se Olda v pondělí večer nedostane domů
+	# (zapíná je :setup v oldas_room.esc).
+	set_global("clock_enabled", false)
+	# Nastaví postel, hodiny pak spustí :new_day (s mrknutím).
+	set_global("sleep_requested", false)
 
 	# Příznaky z rozvrhu (:update_schedule je přepíše, tady jen výchozí hodnoty,
 	# aby byly definované dřív, než je přečte :setup místnosti)
 	set_global("shop_open", true)
 
-	change_scene("res://rooms/oldas_room/oldas_room.tscn")
-	#change_scene("res://rooms/laboratory/laboratory.tscn")
+	#change_scene("res://rooms/oldas_room/oldas_room.tscn")
+	change_scene("res://rooms/laboratory/laboratory.tscn")
 
 :update_schedule
 	# Rozvrh světa. Spouští ho game_clock při změně dne nebo části dne.
@@ -39,14 +44,27 @@
 :time_fade_in
 	transition("fade_black", "in", 0.5)
 
+:new_day
+	# Spouští game_clock (ve tmě po :time_fade_out), když postel nastaví
+	# sleep_requested. Později: uložení checkpointu nového dne.
+	set_global("sleep_requested", false)
+	set_global("game_day", game_day + 1)
+	set_global("day_minute", 420)
+	set_global("day_phase", "morning")
+	set_global("day_task_done", false)
+
 :day_timeout
 	# Spustí game_clock, když čas dojde do 2:00 a hráč nešel spát.
-	# Zatím jen dočasně: návrat do pokoje na ráno téhož dne.
-	# Později: načtení checkpointu dne.
+	# Zatím jen dočasně: návrat do pokoje na začátek téhož dne (pondělí 22:00,
+	# kdy Olda poprvé přijde domů, ostatní dny 7:00). Vrací se jen čas,
+	# postup ve hře zůstává. Později: načtení checkpointu dne.
 	# Mluví current_player, mozna lepsi by Aidam
 	# (say na objekt mimo místnost shodí hru).
 	say("current_player", "Už jsou dvě ráno... Nějak se mi zavírají oči.")
-	set_global("day_minute", 420)
+	if game_day == 0:
+		set_global("day_minute", 1320)
+	else:
+		set_global("day_minute", 420)
 	# change_scene na místnost, ve které hráč už je, shodí hru (chyba Escorie,
 	# esc_room_manager.gd _check_and_prepare_managers_for_room), proto jen mimo pokoj.
 	if ESC_CURRENT_SCENE != "oldas_room":

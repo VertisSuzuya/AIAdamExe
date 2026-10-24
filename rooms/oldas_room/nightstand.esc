@@ -2,6 +2,8 @@
 	if tutorial_step == 6:
 		say($olda, "Nastavím tedy budík, ať nezaspím.")
 		set_global("alarm_set", true)
+		# Úkol pondělí: nastavit budík. Teď může jít spát.
+		set_global("day_task_done", true)
 		set_global("tutorial_step", 7)
 		
 		inventory_remove("alarm")

@@ -22,6 +22,7 @@ buses/default_bus_layout="res://addons/escoria-core/buses/default_bus_layout.tre
 [autoload]
 
 escoria="*uid://dcskv8vx80gov"
+game_clock="*uid://c3ff6eyjvat8r"
 
 [display]
 

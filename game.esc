@@ -4,11 +4,41 @@
 	set_global("brick_taken", false)
 	set_global("lab_flashbacks_done", false)
 	set_global("lab_intro_done", false)
-	
+
 	set_global("tutorial_step", 0)
 	set_global("alarm_taken", false)
 	set_global("battery_taken", false)
 	set_global("alarm_set", false)
 
-	#change_scene("res://rooms/oldas_room/oldas_room.tscn")
-	change_scene("res://rooms/laboratory/laboratory.tscn")
+	# Čas a den (počítá autoload game_clock, viz systems/game_clock.gd)
+	set_global("game_day", 0)
+	set_global("day_minute", 420)
+	set_global("day_phase", "morning")
+	set_global("day_task_done", false)
+
+	# Příznaky z rozvrhu (:update_schedule je přepíše, tady jen výchozí hodnoty,
+	# aby byly definované dřív, než je přečte :setup místnosti)
+	set_global("shop_open", true)
+
+	change_scene("res://rooms/oldas_room/oldas_room.tscn")
+	#change_scene("res://rooms/laboratory/laboratory.tscn")
+
+:update_schedule
+	# Rozvrh světa. Spouští ho game_clock při změně dne nebo části dne.
+	# Z game_day (0 = pondělí ... 6 = neděle) a day_phase ("morning",
+	# "afternoon", "evening", "night") spočítá příznaky pro místnosti.
+	# Místnosti a dialogy čtou jen tyto příznaky, ne čas přímo.
+	set_global("shop_open", (day_phase == "morning" or day_phase == "afternoon") and game_day != 6)
+
+:day_timeout
+	# Spustí game_clock, když čas dojde do 2:00 a hráč nešel spát.
+	# Zatím jen dočasně: návrat do pokoje na ráno téhož dne.
+	# Později: načtení checkpointu dne.
+	# Mluví current_player, mozna lepsi by Aidam
+	# (say na objekt mimo místnost shodí hru).
+	say("current_player", "Už jsou dvě ráno... Nějak se mi zavírají oči.")
+	set_global("day_minute", 420)
+	# change_scene na místnost, ve které hráč už je, shodí hru (chyba Escorie,
+	# esc_room_manager.gd _check_and_prepare_managers_for_room), proto jen mimo pokoj.
+	if ESC_CURRENT_SCENE != "oldas_room":
+		change_scene("res://rooms/oldas_room/oldas_room.tscn")

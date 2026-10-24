@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="9_ultcx"]
 [ext_resource type="PackedScene" uid="uid://dw6fvw5akgkyt" path="res://items/inventory/batteries.tscn" id="10_x0yt2"]
 [ext_resource type="PackedScene" uid="uid://e3s4youbhlry" path="res://items/inventory/oldas_family_picture.tscn" id="11_x0yt2"]
+[ext_resource type="Script" uid="uid://bg1sl307y6lbi" path="res://systems/room_lighting.gd" id="13_u3ias"]
 
 [sub_resource type="Gradient" id="Gradient_2800j"]
 
@@ -132,3 +133,6 @@ metadata/_custom_type_script = "uid://dshelmw7y44qg"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bed" unique_id=2038813062]
 polygon = PackedVector2Array(-89, -111, 314, 129, 756, -70, 752, -209, 326, -285, -39, -232, -39, -184, -81, -175)
+
+[node name="lightning" type="CanvasModulate" parent="." unique_id=1769523431]
+script = ExtResource("13_u3ias")

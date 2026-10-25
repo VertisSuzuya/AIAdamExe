@@ -20,6 +20,10 @@
 	set_global("clock_enabled", false)
 	# Nastaví postel, hodiny pak spustí :new_day (s mrknutím).
 	set_global("sleep_requested", false)
+	# Checkpoint dne (ukládá a načítá game_clock mimo běžné savy,
+	# user://checkpoint/day.tres).
+	set_global("checkpoint_pending", false)
+	set_global("checkpoint_load_requested", false)
 
 	# Příznaky z rozvrhu (:update_schedule je přepíše, tady jen výchozí hodnoty,
 	# aby byly definované dřív, než je přečte :setup místnosti)
@@ -46,21 +50,26 @@
 
 :new_day
 	# Spouští game_clock (ve tmě po :time_fade_out), když postel nastaví
-	# sleep_requested. Později: uložení checkpointu nového dne.
+	# sleep_requested.
 	set_global("sleep_requested", false)
 	set_global("game_day", game_day + 1)
 	set_global("day_minute", 420)
 	set_global("day_phase", "morning")
 	set_global("day_task_done", false)
+	# game_clock uloží checkpoint dne, až doběhne mrknutí a bude klid.
+	set_global("checkpoint_pending", true)
 
 :day_timeout
 	# Spustí game_clock, když čas dojde do 2:00 a hráč nešel spát.
-	# Zatím jen dočasně: návrat do pokoje na začátek téhož dne (pondělí 22:00,
-	# kdy Olda poprvé přijde domů, ostatní dny 7:00). Vrací se jen čas,
-	# postup ve hře zůstává. Později: načtení checkpointu dne.
+	# game_clock pak načte checkpoint dne (začátek dne i s inventářem a postupem).
 	# Mluví current_player, mozna lepsi by Aidam
 	# (say na objekt mimo místnost shodí hru).
 	say("current_player", "Už jsou dvě ráno... Nějak se mi zavírají oči.")
+	set_global("checkpoint_load_requested", true)
+
+:day_reset
+	# Náhrada, když checkpoint neexistuje (např. starý save): vrátí se jen čas
+	# na začátek dne (pondělí 22:00, kdy Olda poprvé přijde domů, ostatní dny 7:00).
 	if game_day == 0:
 		set_global("day_minute", 1320)
 	else:

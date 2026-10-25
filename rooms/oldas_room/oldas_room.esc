@@ -6,6 +6,8 @@
 		set_global("day_minute", 1320)
 		set_global("day_phase", "night")
 		set_global("clock_enabled", true)
+		# Začátek pondělí: game_clock uloží checkpoint (ve 2:00 se sem hráč vrátí).
+		set_global("checkpoint_pending", true)
 	if alarm_taken:
 		set_active("alarm", false)
 	if battery_taken:

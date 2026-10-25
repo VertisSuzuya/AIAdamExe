@@ -17,7 +17,10 @@ extends Node
 # :apply_time místnosti se spouští i při příchodu do místnosti, hned po :setup
 # (ještě před prolnutím), a po načtení hry (tam Escoria :setup nespouští).
 #
-# Ve 2:00 se zastaví a spustí :day_timeout z game.esc.
+# Ve 2:00 se zastaví a spustí :day_timeout z game.esc, potom načte checkpoint.
+#
+# Checkpoint dne: když skript nastaví checkpoint_pending (:new_day, pondělí
+# v oldas_room.esc), uloží hru do CHECKPOINT_PATH, mimo běžné savy.
 
 ## Kolik herních minut uběhne za jednu reálnou sekundu.
 @export var minutes_per_second: float = 1
@@ -34,6 +37,10 @@ const PHASES: Array = [
 ]
 
 const EVENT_APPLY_TIME: String = "apply_time"
+
+# Checkpoint dne (uloží se při začátku dne, načte ve 2:00).
+const CHECKPOINT_PATH: String = "user://checkpoint/day.tres"
+const CHECKPOINT_SLOT: int = 900
 
 var _minute_accumulator: float = 0.0
 # Pro jaký den a část dne naposledy proběhl rozvrh ("den_cast").
@@ -68,9 +75,24 @@ func _process(delta: float) -> void:
 			_run_steps([[room.compiled_script, EVENT_APPLY_TIME]])
 			return
 
+	# Začátek dne: uložit checkpoint, až žádná událost neběží ani nečeká.
+	if _flag("checkpoint_pending") and _front_channel_idle() \
+			and escoria.save_manager.save_enabled:
+		escoria.globals_manager.set_global("checkpoint_pending", false)
+		_save_checkpoint()
+		return
+
+	# Vypršel den (:day_timeout): načíst checkpoint, bez něj vrátit jen čas.
+	if _flag("checkpoint_load_requested"):
+		escoria.globals_manager.set_global("checkpoint_load_requested", false)
+		if FileAccess.file_exists(CHECKPOINT_PATH):
+			_load_checkpoint()
+		else:
+			_run_steps([[escoria.start_script, "day_reset"]])
+		return
+
 	# Postel nastavila sleep_requested: nový den (s mrknutím).
-	if escoria.globals_manager.has("sleep_requested") \
-			and escoria.globals_manager.get_global("sleep_requested"):
+	if _flag("sleep_requested"):
 		var steps: Array = [
 			[escoria.start_script, "time_fade_out"],
 			[escoria.start_script, "new_day"],
@@ -152,6 +174,47 @@ func _is_running() -> bool:
 	if escoria.main == null or not (escoria.main.current_scene is ESCRoom):
 		return false
 	return escoria.current_state == escoria.GameState.DEFAULT
+
+
+func _flag(global_name: String) -> bool:
+	return escoria.globals_manager.has(global_name) \
+			and bool(escoria.globals_manager.get_global(global_name))
+
+
+func _front_channel_idle() -> bool:
+	var manager = escoria.event_manager
+	return manager.get_running_event(manager.CHANNEL_FRONT) == null \
+			and manager.events_queue.get(manager.CHANNEL_FRONT, []).is_empty()
+
+
+# Checkpoint je běžný save Escorie, ale leží mimo složku savů, aby nebyl
+# v menu Save/Load a hráč ho nemohl přepsat. Escoria umí ukládat a načítat
+# jen podle čísla slotu, proto se soubor přesouvá přes slot CHECKPOINT_SLOT.
+func _save_checkpoint() -> void:
+	var slot_path: String = _slot_path()
+	escoria.save_manager.save_game(CHECKPOINT_SLOT, "Checkpoint")
+	if not FileAccess.file_exists(slot_path):
+		escoria.logger.warn(self, "Checkpoint se nepodařilo uložit.")
+		return
+	DirAccess.make_dir_recursive_absolute(CHECKPOINT_PATH.get_base_dir())
+	if FileAccess.file_exists(CHECKPOINT_PATH):
+		DirAccess.remove_absolute(CHECKPOINT_PATH)
+	DirAccess.rename_absolute(slot_path, CHECKPOINT_PATH)
+
+
+func _load_checkpoint() -> void:
+	var slot_path: String = _slot_path()
+	DirAccess.copy_absolute(CHECKPOINT_PATH, slot_path)
+	# load_game soubor přečte hned na začátku (před prvním await),
+	# takže kopii jde smazat, jakmile se volání vrátí.
+	escoria.save_manager.load_game(CHECKPOINT_SLOT)
+	DirAccess.remove_absolute(slot_path)
+
+
+func _slot_path() -> String:
+	return escoria.save_manager.save_folder.path_join(
+		escoria.save_manager.SAVE_NAME_TEMPLATE % CHECKPOINT_SLOT
+	)
 
 
 func _room_has_apply_time(room: ESCRoom) -> bool:

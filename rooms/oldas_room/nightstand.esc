@@ -4,6 +4,7 @@
 		set_global("alarm_set", true)
 		# Úkol pondělí: nastavit budík. Teď může jít spát.
 		set_global("day_task_done", true)
+		set_global("diary_alarm_set", true)
 		set_global("tutorial_step", 7)
 		
 		inventory_remove("alarm")

@@ -25,12 +25,15 @@
 	set_global("checkpoint_pending", false)
 	set_global("checkpoint_load_requested", false)
 
+	# Deník AIdama (autoload diary, texty v diary/diary_entries.json).
+	set_global("diary_alarm_set", false)
+
 	# Příznaky z rozvrhu (:update_schedule je přepíše, tady jen výchozí hodnoty,
 	# aby byly definované dřív, než je přečte :setup místnosti)
 	set_global("shop_open", true)
 
-	#change_scene("res://rooms/oldas_room/oldas_room.tscn")
-	change_scene("res://rooms/laboratory/laboratory.tscn")
+	change_scene("res://rooms/oldas_room/oldas_room.tscn")
+	#change_scene("res://rooms/laboratory/laboratory.tscn")
 
 :update_schedule
 	# Rozvrh světa. Spouští ho game_clock při změně dne nebo části dne.

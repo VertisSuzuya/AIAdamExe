@@ -40,11 +40,11 @@
 			say($shopkeeper, "Ale kdybyste měl pár korun navíc, dám vám hezčí a vyberete si barvu.")
 			# AIdam napoví, kde ještě jsou peníze.
 			if not booth_coins_taken:
-				say($aidam, "V telefonní budce jsme se ještě nedívali. Rukou do vracení mincí.", "", "avatar")
+				say($aidam, "V telefonní budce jsme se ještě nedívali. vyber ruku a klikni na budku.", "", "avatar")
 			if not machine_coins_taken:
 				say($aidam, "A co vracení mincí v automatu na kafe?", "", "avatar")
 			if not bottles_taken or not bin_bottles_taken:
-				say($aidam, "Někde se ještě válí zálohovaný lahve.", "", "avatar")
+				say($aidam, "Říkal jsem ti už, že jedna z mých nejoblíběnějších aktivit je vracet vratný lahve?", "", "avatar")
 			if (bottles_taken and not bottles_returned) or (bin_bottles_taken and not bin_bottles_returned):
 				say($aidam, "Lahve máš u sebe, tak mu je vrať.", "", "avatar")
 			?!

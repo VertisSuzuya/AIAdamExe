@@ -181,4 +181,5 @@ metadata/_custom_type_script = "uid://chu4bvqgwxuts"
 [node name="Aidam" parent="." unique_id=1389523226 instance=ExtResource("14_wpulp")]
 
 [node name="coffee" parent="." unique_id=667119190 instance=ExtResource("14_uwva0")]
-position = Vector2(1210, 771)
+z_index = 1
+position = Vector2(1062, 630)

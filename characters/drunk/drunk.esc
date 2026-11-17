@@ -10,7 +10,11 @@
 			set_global("drunk_talked", true)
 	elif not coffee_given:
 		say($drunk, "Nech mě bejt! Vypadni!")
-		say($aidam, "Říkal jsem ti to. Zkus mu dát kafe.", "", "avatar")
+		if drunk_talked:
+			say($aidam, "Říkal jsem ti to. Zkus mu dát kafe.", "", "avatar")
+		else:
+			say($aidam, "Tenhle je úplně na šrot. Na střízlivo by byl možná vstřícnější. Co mu dát kafe? Někde jsem slyšel, že to pomáhá...", "", "avatar")
+			set_global("drunk_talked", true)
 	else:
 		say($olda, "Hele, já vím, jaký to je. Nedávno jsem ležel v louži před kasinem.")
 		say($drunk, "Mně je fuk, kde ses válel. Vodprejskni.")

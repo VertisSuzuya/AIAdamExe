@@ -31,6 +31,9 @@
 	# Příznaky z rozvrhu (:update_schedule je přepíše, tady jen výchozí hodnoty,
 	# aby byly definované dřív, než je přečte :setup místnosti)
 	set_global("shop_open", true)
+	
+	set_global("drunk_gone", false)
+	set_global("bottles_taken", false)
 
 	change_scene("res://rooms/oldas_room/oldas_room.tscn")
 	#change_scene("res://rooms/laboratory/laboratory.tscn")

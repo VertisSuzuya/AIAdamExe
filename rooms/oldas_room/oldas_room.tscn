@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dw6fvw5akgkyt" path="res://items/inventory/batteries.tscn" id="10_x0yt2"]
 [ext_resource type="PackedScene" uid="uid://e3s4youbhlry" path="res://items/inventory/oldas_family_picture.tscn" id="11_x0yt2"]
 [ext_resource type="Script" uid="uid://bg1sl307y6lbi" path="res://systems/room_lighting.gd" id="13_u3ias"]
+[ext_resource type="Script" uid="uid://btt4cprco53ec" path="res://addons/escoria-core/game/core-scripts/esc_exit.gd" id="14_go63i"]
 
 [sub_resource type="Gradient" id="Gradient_2800j"]
 
@@ -30,6 +31,9 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(132, 1079, 207, 868, 20
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vqt0v"]
 size = Vector2(477, 241)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xffai"]
+size = Vector2(101, 562)
 
 [node name="OldasRoom" type="Node2D" unique_id=487785702]
 script = ExtResource("1_xy3uh")
@@ -58,8 +62,8 @@ metadata/_custom_type_script = "uid://5pbcieq7gpdo"
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="ESCTerrain" unique_id=1890504805]
 navigation_polygon = SubResource("NavigationPolygon_vqt0v")
 
-[node name="ESCLocation" type="Marker2D" parent="." unique_id=1521669090]
-position = Vector2(317, 839)
+[node name="ESCStartLocation" type="Marker2D" parent="." unique_id=1521669090]
+position = Vector2(742, 905)
 script = ExtResource("6_0xtuq")
 global_id = "oldas_room_start_location"
 is_start_location = true
@@ -136,3 +140,20 @@ polygon = PackedVector2Array(-89, -111, 314, 129, 756, -70, 752, -209, 326, -285
 
 [node name="lightning" type="CanvasModulate" parent="." unique_id=1769523431]
 script = ExtResource("13_u3ias")
+
+[node name="ESCExit" type="Area2D" parent="." unique_id=1090258592]
+script = ExtResource("14_go63i")
+target_scene = "uid://djysrcw13uoa8"
+global_id = "exit_to_street"
+tooltip_name = "Jít ven"
+default_action = "use"
+metadata/_custom_type_script = "uid://btt4cprco53ec"
+
+[node name="ESCLocation" type="Marker2D" parent="ESCExit" unique_id=1974965721]
+position = Vector2(229, 820)
+script = ExtResource("6_0xtuq")
+metadata/_custom_type_script = "uid://beh3ds4eapldu"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ESCExit" unique_id=1893104764]
+position = Vector2(202.5, 584)
+shape = SubResource("RectangleShape2D_xffai")

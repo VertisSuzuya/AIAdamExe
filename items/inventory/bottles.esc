@@ -1,0 +1,8 @@
+:pickup
+	if not drunk_gone:
+		say($drunk, "Na ty flašky mi nesahej, ty sou moje!")
+	else:
+		say($olda, "Vrátím je u Vietnamce. Pár korun se hodí.")
+		inventory_add("bottles")
+		set_active("bottles", false)
+		set_global("bottles_taken", true)

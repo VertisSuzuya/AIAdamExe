@@ -1,5 +1,9 @@
 :setup
-	teleport($olda, $oldas_room_start_location)
+	# Příchod z ulice: Olda stojí u dveří, jinak (laboratoř, nový den) na startu.
+	if ESC_LAST_SCENE == "home_street":
+		teleport($olda, $exit_to_street)
+	else:
+		teleport($olda, $oldas_room_start_location)
 	# Pondělí: Olda se z laboratoře dostane domů ve 22:00, teprve teď
 	# se spustí hodiny (do 2:00 má čas na tutorial).
 	if not clock_enabled:

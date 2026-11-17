@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dwbb2iacwwlxq"]
+
+[ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="1_onvib"]
+[ext_resource type="Texture2D" uid="uid://ft51nnnnjybe" path="res://rooms/home_street/bottles.png" id="3_w2ra7"]
+[ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="4_jupb4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqt0v"]
+size = Vector2(130, 109.99999)
+
+[node name="bottles" type="Area2D" unique_id=768690128]
+process_mode = 1
+script = ExtResource("1_onvib")
+global_id = "bottles"
+esc_script = "res://items/inventory/bottles.esc"
+tooltip_name = "Lahve"
+default_action = "pickup"
+actions_requiring_target_object = PackedStringArray("use")
+inventory_texture = ExtResource("3_w2ra7")
+inventory_texture_hovered = ExtResource("3_w2ra7")
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1915667594]
+scale = Vector2(0.3, 0.3)
+shape = SubResource("RectangleShape2D_vqt0v")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1601864450]
+scale = Vector2(0.97058827, 1.3333334)
+texture = ExtResource("3_w2ra7")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="." unique_id=704789273]
+position = Vector2(0, 19)
+script = ExtResource("4_jupb4")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"

@@ -23,7 +23,7 @@ extends Node
 # v oldas_room.esc), uloží hru do CHECKPOINT_PATH, mimo běžné savy.
 
 ## Kolik herních minut uběhne za jednu reálnou sekundu.
-@export var minutes_per_second: float = 10
+@export var minutes_per_second: float = 1
 
 const DAY_START: int = 7 * 60    # 7:00
 const DAY_END: int = 26 * 60     # 2:00 ráno dalšího dne

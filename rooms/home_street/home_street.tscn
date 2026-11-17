@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://djysrcw13uoa8"]
+
+[ext_resource type="Script" uid="uid://c7fcpp72w3dnj" path="res://addons/escoria-core/game/core-scripts/esc_room.gd" id="1_lkx6a"]
+[ext_resource type="PackedScene" uid="uid://ihn2iq8wcqag" path="res://characters/olda/olda.tscn" id="2_dytly"]
+[ext_resource type="Texture2D" uid="uid://c7ray54vhynmi" path="res://rooms/home_street/home_street.png" id="3_1j03f"]
+[ext_resource type="Script" uid="uid://fnwnfflaoeqp" path="res://addons/escoria-core/game/core-scripts/esc_background.gd" id="4_guab0"]
+[ext_resource type="Script" uid="uid://5pbcieq7gpdo" path="res://addons/escoria-core/game/core-scripts/esc_terrain.gd" id="5_2bdfw"]
+[ext_resource type="Script" uid="uid://btt4cprco53ec" path="res://addons/escoria-core/game/core-scripts/esc_exit.gd" id="6_m3kow"]
+[ext_resource type="AudioStream" uid="uid://yqk2bk32pivx" path="res://sound/efekt.mp3" id="7_dcxb5"]
+[ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="8_d0d1h"]
+[ext_resource type="Script" uid="uid://bg1sl307y6lbi" path="res://systems/room_lighting.gd" id="9_3myet"]
+[ext_resource type="PackedScene" uid="uid://dwbb2iacwwlxq" path="res://items/inventory/bottles.tscn" id="11_y1023"]
+[ext_resource type="PackedScene" uid="uid://v1oytxd8ieqh" path="res://characters/opilec/drunk.tscn" id="12_wpulp"]
+
+[sub_resource type="Gradient" id="Gradient_6wxwk"]
+offsets = PackedFloat32Array(0, 0.38311687, 0.73376626, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.2987013, 0.2987013, 0.2987013, 1, 0.763773, 0.763773, 0.763773, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ptrtu"]
+gradient = SubResource("Gradient_6wxwk")
+width = 5760
+height = 1080
+fill_from = Vector2(1, 0.5504587)
+fill_to = Vector2(0.9908257, 1)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xffai"]
+vertices = PackedVector2Array(1123.6406, 831.96875, 1120.5625, 776.0078, 1163.6406, 776.0625, 1163.6406, 776.0703, 3703.4688, 836.4922, 3763, 833.5078, 3763, 847.6875, 3.0625, 1075, 3827.3125, 849.7031, 3834.6719, 1077.9922, 1557.8594, 770.03906, 3404.6406, 777.9531, 3402.6563, 833.35156, 1556.8672, 845, 4.9296875, 767.1328, 937.5078, 779.8672, 940.53125, 836.21875, 1366.8438, 778.8594, 1365.8516, 845, 3455.0938, 814.96094, 3702.4375, 814.03125, 3453.039, 836.60156)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 7, 6), PackedInt32Array(10, 11, 12, 13), PackedInt32Array(7, 14, 15, 16), PackedInt32Array(3, 17, 18, 0), PackedInt32Array(19, 20, 4, 21), PackedInt32Array(21, 4, 7), PackedInt32Array(12, 21, 7, 13), PackedInt32Array(18, 13, 7), PackedInt32Array(18, 7, 16, 0)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(3415, 768, 3413, 824, 3444, 826, 3446, 805, 3712, 804, 3713, 826, 3773, 823, 3773, 838, 3837, 840, 3845, 1088, -7, 1085, -5, 757, 947, 770, 950, 826, 1113.0897, 822.2134, 1110, 766, 1163.7803, 766.0703, 1377, 769, 1376, 835, 1547, 835, 1548, 760)])
+
+[node name="home_street" type="Node2D" unique_id=1381403444]
+script = ExtResource("1_lkx6a")
+global_id = "home_street"
+esc_script = "res://rooms/home_street/home_street.esc"
+player_scene = ExtResource("2_dytly")
+metadata/_custom_type_script = "uid://c7fcpp72w3dnj"
+
+[node name="escbackground" type="TextureRect" parent="." unique_id=1212681230]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("3_1j03f")
+script = ExtResource("4_guab0")
+metadata/_custom_type_script = "uid://fnwnfflaoeqp"
+
+[node name="ESCTerrain" type="Node2D" parent="." unique_id=1168787270]
+script = ExtResource("5_2bdfw")
+scales = SubResource("GradientTexture2D_ptrtu")
+scale_min = 2.0
+scale_max = 5.0
+metadata/_custom_type_script = "uid://5pbcieq7gpdo"
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="ESCTerrain" unique_id=400683327]
+navigation_polygon = SubResource("NavigationPolygon_xffai")
+
+[node name="ESCExit_home" type="Area2D" parent="." unique_id=524930276]
+position = Vector2(64, 1004)
+script = ExtResource("6_m3kow")
+target_scene = "uid://bl67jskq5y3pr"
+switch_sound = ExtResource("7_dcxb5")
+global_id = "exit_to_room"
+tooltip_name = "Jít domů"
+default_action = "use"
+metadata/_custom_type_script = "uid://btt4cprco53ec"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ESCExit_home" unique_id=211552841]
+polygon = PackedVector2Array(1780, -248, 1784, -576, 2029, -569, 2032, -252)
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="ESCExit_home" unique_id=709549081]
+position = Vector2(1909, -230)
+script = ExtResource("8_d0d1h")
+global_id = "home_exit"
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="player_start" type="Marker2D" parent="." unique_id=696703279]
+position = Vector2(3592, 885)
+script = ExtResource("8_d0d1h")
+global_id = "player_start"
+is_start_location = true
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1813585703]
+script = ExtResource("9_3myet")
+
+[node name="drunk" parent="." unique_id=294159516 instance=ExtResource("12_wpulp")]
+position = Vector2(442, 739)
+
+[node name="bottles" parent="." unique_id=768690128 instance=ExtResource("11_y1023")]
+position = Vector2(364, 766)

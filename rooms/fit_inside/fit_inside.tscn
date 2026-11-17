@@ -63,7 +63,7 @@ centered = false
 [node name="ESCTerrain" type="Node2D" parent="." unique_id=1168787270]
 script = ExtResource("5_s36yo")
 scales = SubResource("GradientTexture2D_ptrtu")
-scale_min = 2.0
+scale_min = 1.5
 scale_max = 8.0
 metadata/_custom_type_script = "uid://5pbcieq7gpdo"
 

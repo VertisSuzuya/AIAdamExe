@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c7fcpp72w3dnj" path="res://addons/escoria-core/game/core-scripts/esc_room.gd" id="1_q5eoo"]
 [ext_resource type="PackedScene" uid="uid://ihn2iq8wcqag" path="res://characters/olda/olda.tscn" id="2_4tgfv"]
-[ext_resource type="Texture2D" uid="uid://mlf0agfh4y0d" path="res://rooms/laboratory/laboratoryUpscaled.png" id="3_rurk3"]
+[ext_resource type="Texture2D" uid="uid://c1oy51qmkd2l4" path="res://rooms/laboratory/laboratory.png" id="3_6ql6i"]
 [ext_resource type="Script" uid="uid://fnwnfflaoeqp" path="res://addons/escoria-core/game/core-scripts/esc_background.gd" id="4_rurk3"]
 [ext_resource type="Script" uid="uid://5pbcieq7gpdo" path="res://addons/escoria-core/game/core-scripts/esc_terrain.gd" id="5_ddi6i"]
 [ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="7_6ql6i"]
@@ -19,9 +19,9 @@ fill_from = Vector2(0.51282054, 0.6642247)
 fill_to = Vector2(0.51282054, 1)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ddi6i"]
-vertices = PackedVector2Array(417.52344, 727.9922, 1149.5781, 727.85156, 1134.0313, 858.5625, 11.828125, 1075.9609, 8.1171875, 854.34375, 1906.2188, 879.60156, 1912.6484, 1069.0313, 1356.9609, 914.2969, 1462.1406, 888.8281, 1459.25, 728, 1563.8906, 728)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 3, 7), PackedInt32Array(8, 9, 10, 5), PackedInt32Array(3, 2, 7), PackedInt32Array(5, 7, 8)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-2, 847, 416, 718, 1566, 718, 1916, 873, 1923, 1079, 2, 1086), PackedVector2Array(1145, 851, 1357, 904, 1452, 881, 1449, 714, 1160, 725)])
+vertices = PackedVector2Array(1912.6484, 1069.0313, 56.3125, 1075.7969, 219.52344, 1012.96875, 651.96094, 737.96094, 1133.3516, 858.39844, 1158.1172, 732.4375, 1356.9609, 914.2969, 1463.1719, 888.5781, 1906.2188, 879.60156, 1563.9375, 728.02344, 1440.7109, 729.3594)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(0, 2, 3, 4), PackedInt32Array(3, 5, 4), PackedInt32Array(0, 4, 6), PackedInt32Array(0, 6, 7, 8), PackedInt32Array(9, 8, 7, 10)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(215, 1004, 649, 728, 1566, 718, 1916, 873, 1923, 1079, 2, 1086), PackedVector2Array(1145, 851, 1357, 904, 1452, 881, 1430, 725, 1169, 729)])
 
 [node name="Laboratory" type="Node2D" unique_id=745546295]
 script = ExtResource("1_q5eoo")
@@ -34,7 +34,7 @@ metadata/_custom_type_script = "uid://c7fcpp72w3dnj"
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
-texture = ExtResource("3_rurk3")
+texture = ExtResource("3_6ql6i")
 script = ExtResource("4_rurk3")
 metadata/_custom_type_script = "uid://fnwnfflaoeqp"
 

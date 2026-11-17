@@ -66,8 +66,8 @@
 	set_global("diary_stop_in_laws", false)
 	set_global("diary_stop_center", false)
 	
-	change_scene("res://rooms/oldas_room/oldas_room.tscn")
-	#change_scene("res://rooms/laboratory/laboratory.tscn")
+	#change_scene("res://rooms/oldas_room/oldas_room.tscn")
+	change_scene("res://rooms/laboratory/laboratory.tscn")
 
 :update_schedule
 	# Rozvrh světa. Spouští ho game_clock při změně dne nebo části dne.

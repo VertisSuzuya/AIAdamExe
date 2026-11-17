@@ -24,3 +24,12 @@
 		say($aidam, "Zkus dojít k oknu.", "", "avatar")
 		set_global("tutorial_step", 1)
 	
+:morning
+	# Spouští game_clock po probuzení (po mrknutí). Repliky podle dne.
+	if game_day == 2:
+		say($olda, "Pořád mi vrtá hlavou, co mi to vlastně dali do hlavy.")
+		say($olda, "Rád bych se o umělý inteligenci dozvěděl víc. Ale kde?")
+		say($aidam, "Co třeba Dejvice? Na ČVUT FIT tohle studujou. Studenti o tom budou vědět víc než já. Skoro.", "", "avatar")
+		set_global("stop_dejvice", true)
+		set_global("diary_stop_dejvice", true)
+		say($aidam, "Přidal jsem ti Dejvice na mapu linek, pokud by jsi se tam chtěl podívat:)", "", "avatar")

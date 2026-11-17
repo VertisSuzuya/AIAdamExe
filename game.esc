@@ -53,6 +53,19 @@
 	set_global("coins_have", false)
 	set_global("coffee_made", false)
 	
+		# Tramvaj
+	set_global("tram_from", "home_street")
+	set_global("tram_moving", false)
+	set_global("tram_map_open", false)
+	set_global("tram_target", "")
+	# Zastávky na mapě (Domov je vždy)
+	set_global("stop_dejvice", false)
+	set_global("stop_in_laws", false)
+	set_global("stop_center", false)
+	set_global("diary_stop_dejvice", false)
+	set_global("diary_stop_in_laws", false)
+	set_global("diary_stop_center", false)
+	
 	change_scene("res://rooms/oldas_room/oldas_room.tscn")
 	#change_scene("res://rooms/laboratory/laboratory.tscn")
 

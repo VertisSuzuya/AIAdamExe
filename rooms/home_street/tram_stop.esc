@@ -1,0 +1,8 @@
+:look
+	say($olda, "Tramvajová zastávka.")
+
+:use
+	say($olda, "Počkám na tramvaj.")
+	set_global("day_minute", day_minute + 5)
+	set_global("tram_from", "home_street")
+	change_scene("res://rooms/tram/tram.tscn")

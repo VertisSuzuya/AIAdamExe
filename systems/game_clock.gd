@@ -102,6 +102,8 @@ func _process(delta: float) -> void:
 		if _room_has_apply_time(room):
 			steps.append([room.compiled_script, EVENT_APPLY_TIME])
 		steps.append([escoria.start_script, "time_fade_in"])
+		# Ranní repliky v místnosti (:morning), až je obrazovka zase vidět.
+		steps.append([room.compiled_script, "morning"])
 		_run_steps(steps)
 		return
 

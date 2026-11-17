@@ -1,0 +1,16 @@
+:setup
+	set_global("tram_map_open", false)
+
+:travel
+	# Spouští mapa (tram_map_ui.gd), cíl je v tram_target.
+	# Vystoupit tam, kde nastoupil, než se tramvaj rozjede, je zadarmo.
+	if not (tram_target == tram_from and not tram_moving):
+		set_global("day_minute", day_minute + 30)
+	if tram_target == "home_street":
+		change_scene("res://rooms/home_street/home_street.tscn")
+	elif tram_target == "fit_front":
+		change_scene("res://rooms/fit_front/fit_front.tscn")
+	elif tram_target == "in_laws_house":
+		change_scene("res://rooms/in_laws_house/in_laws_house.tscn")
+	elif tram_target == "police_station":
+		change_scene("res://rooms/police_station/police_station.tscn")

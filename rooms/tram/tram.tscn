@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://bkb0q26g6nmpt"]
+
+[ext_resource type="Script" uid="uid://c7fcpp72w3dnj" path="res://addons/escoria-core/game/core-scripts/esc_room.gd" id="1_r0061"]
+[ext_resource type="PackedScene" uid="uid://ihn2iq8wcqag" path="res://characters/olda/olda.tscn" id="2_4jyyl"]
+[ext_resource type="Texture2D" uid="uid://d0hnxde3i0wm3" path="res://rooms/tram/tram_outside.png" id="3_1rn2y"]
+[ext_resource type="Script" uid="uid://fnwnfflaoeqp" path="res://addons/escoria-core/game/core-scripts/esc_background.gd" id="4_baffg"]
+[ext_resource type="Texture2D" uid="uid://gs8j0p7qadt" path="res://rooms/tram/tram.png" id="4_h0o5q"]
+[ext_resource type="Script" uid="uid://5pbcieq7gpdo" path="res://addons/escoria-core/game/core-scripts/esc_terrain.gd" id="5_ag7vo"]
+[ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="8_1brlw"]
+[ext_resource type="Script" uid="uid://bg1sl307y6lbi" path="res://systems/room_lighting.gd" id="9_5uxqx"]
+[ext_resource type="Script" uid="uid://cl12mdbgdbk6x" path="res://rooms/tram/tram_map_ui.gd" id="11_h0o5q"]
+[ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="12_mesou"]
+[ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="13_s7qkm"]
+
+[sub_resource type="Gradient" id="Gradient_6wxwk"]
+offsets = PackedFloat32Array(0, 0.38311687, 0.73376626, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.2987013, 0.2987013, 0.2987013, 1, 0.763773, 0.763773, 0.763773, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ptrtu"]
+gradient = SubResource("Gradient_6wxwk")
+width = 5760
+height = 1080
+fill_from = Vector2(1, 0.5504587)
+fill_to = Vector2(0.9908257, 1)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xffai"]
+vertices = PackedVector2Array(1332.6797, 1082.7109, 499.1875, 1072.1172, 513.8125, 301, 647.46875, 301)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(489, 1082, 504, 291, 652, 291, 1355, 1093)])
+
+[node name="tram" type="Node2D" unique_id=1381403444]
+script = ExtResource("1_r0061")
+global_id = "tram"
+esc_script = "res://rooms/tram/tram.esc"
+player_scene = ExtResource("2_4jyyl")
+metadata/_custom_type_script = "uid://c7fcpp72w3dnj"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=516059212]
+position = Vector2(1680, 544)
+scale = Vector2(0.8677083, 1.0055555)
+texture = ExtResource("3_1rn2y")
+
+[node name="escbackground" type="TextureRect" parent="." unique_id=1212681230]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("4_h0o5q")
+script = ExtResource("4_baffg")
+metadata/_custom_type_script = "uid://fnwnfflaoeqp"
+
+[node name="ESCTerrain" type="Node2D" parent="." unique_id=1168787270]
+script = ExtResource("5_ag7vo")
+scales = SubResource("GradientTexture2D_ptrtu")
+scale_min = 2.0
+scale_max = 5.0
+metadata/_custom_type_script = "uid://5pbcieq7gpdo"
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="ESCTerrain" unique_id=400683327]
+navigation_polygon = SubResource("NavigationPolygon_xffai")
+
+[node name="player_start" type="Marker2D" parent="." unique_id=696703279]
+position = Vector2(620, 1030)
+script = ExtResource("8_1brlw")
+global_id = "player_start"
+is_start_location = true
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1813585703]
+script = ExtResource("9_5uxqx")
+
+[node name="Aidam" parent="." unique_id=1389523226 instance=ExtResource("13_s7qkm")]
+
+[node name="map" type="Area2D" parent="." unique_id=100253115]
+process_mode = 1
+position = Vector2(1654, 267)
+script = ExtResource("12_mesou")
+global_id = "map"
+esc_script = "res://rooms/tram/tram.esc"
+tooltip_name = "Kam chci jet?"
+default_action = "look"
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="map" unique_id=1484446362]
+position = Vector2(-1658, -267)
+polygon = PackedVector2Array(1527, 401, 1885, 504, 1881, 56, 1517, 73)
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="map" unique_id=1691348701]
+position = Vector2(-583, 588)
+script = ExtResource("8_1brlw")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="map_ui" type="CanvasLayer" parent="." unique_id=151463510]
+script = ExtResource("11_h0o5q")

@@ -1,0 +1,5 @@
+:look
+	set_global("tram_map_open", true)
+	
+:use
+	set_global("tram_map_open", true)

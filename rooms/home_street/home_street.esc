@@ -2,6 +2,8 @@
 	# Příchod z pokoje: Olda stojí u vchodu do domu, jinak na startu.
 	if ESC_LAST_SCENE == "oldas_room":
 		teleport($olda, $exit_to_room)
+	elif ESC_LAST_SCENE == "corner_shop":
+		teleport($olda, $exit_to_corner_shop)
 	else:
 		teleport($olda, $player_start)
 		

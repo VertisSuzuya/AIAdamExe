@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://c1gjsgktafs5j"]
+
+[ext_resource type="Script" uid="uid://c7fcpp72w3dnj" path="res://addons/escoria-core/game/core-scripts/esc_room.gd" id="1_his46"]
+[ext_resource type="PackedScene" uid="uid://ihn2iq8wcqag" path="res://characters/olda/olda.tscn" id="2_j12bx"]
+[ext_resource type="Texture2D" uid="uid://c7x5404pe3omu" path="res://rooms/corner_shop/corner_shop.png" id="3_abbhq"]
+[ext_resource type="Script" uid="uid://fnwnfflaoeqp" path="res://addons/escoria-core/game/core-scripts/esc_background.gd" id="4_526h8"]
+[ext_resource type="Script" uid="uid://5pbcieq7gpdo" path="res://addons/escoria-core/game/core-scripts/esc_terrain.gd" id="5_a85or"]
+[ext_resource type="Script" uid="uid://btt4cprco53ec" path="res://addons/escoria-core/game/core-scripts/esc_exit.gd" id="6_4m7rp"]
+[ext_resource type="AudioStream" uid="uid://yqk2bk32pivx" path="res://sound/efekt.mp3" id="7_skdrw"]
+[ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="8_y2dmt"]
+[ext_resource type="Script" uid="uid://bg1sl307y6lbi" path="res://systems/room_lighting.gd" id="9_33rn8"]
+[ext_resource type="Texture2D" uid="uid://pbo30ju8ievr" path="res://rooms/corner_shop/shop_counter.png" id="10_cbd3w"]
+[ext_resource type="PackedScene" uid="uid://y8rcnhro5eea" path="res://characters/shopkeeper/shopkeeper.tscn" id="11_0ab4e"]
+[ext_resource type="Texture2D" uid="uid://4q1j4wgic18e" path="res://rooms/corner_shop/shop_register.png" id="12_f8beq"]
+
+[sub_resource type="Gradient" id="Gradient_f8beq"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y1023"]
+gradient = SubResource("Gradient_f8beq")
+width = 1920
+height = 1080
+fill_from = Vector2(0, 0.6188467)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_abbhq"]
+vertices = PackedVector2Array(1670.7578, 1057.1016, 465.90625, 1069.0313, 891, 976.0469, 1283.9219, 728, 1663.2188, 730.9219, 891, 749.03906, 991.0781, 727, 1283.9219, 727.9922)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 0, 2, 5, 6), PackedInt32Array(6, 7, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1284, 718, 1673, 721, 1681, 1067, 369, 1080, 881, 968, 881, 741, 990, 717)])
+
+[node name="corner_shop" type="Node2D" unique_id=1381403444]
+script = ExtResource("1_his46")
+global_id = "corner_shop"
+esc_script = "res://rooms/corner_shop/corner_shop.esc"
+player_scene = ExtResource("2_j12bx")
+metadata/_custom_type_script = "uid://c7fcpp72w3dnj"
+
+[node name="escbackground" type="TextureRect" parent="." unique_id=1212681230]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("3_abbhq")
+script = ExtResource("4_526h8")
+metadata/_custom_type_script = "uid://fnwnfflaoeqp"
+
+[node name="ESCTerrain" type="Node2D" parent="." unique_id=1168787270]
+script = ExtResource("5_a85or")
+scales = SubResource("GradientTexture2D_y1023")
+scale_min = 4.0
+scale_max = 7.0
+metadata/_custom_type_script = "uid://5pbcieq7gpdo"
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="ESCTerrain" unique_id=400683327]
+navigation_polygon = SubResource("NavigationPolygon_abbhq")
+
+[node name="ESCExit_home" type="Area2D" parent="." unique_id=524930276]
+position = Vector2(64, 1004)
+script = ExtResource("6_4m7rp")
+target_scene = "uid://djysrcw13uoa8"
+switch_sound = ExtResource("7_skdrw")
+global_id = "exit_to_home_street"
+tooltip_name = "Jít ven na ulici"
+default_action = "use"
+metadata/_custom_type_script = "uid://btt4cprco53ec"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ESCExit_home" unique_id=211552841]
+position = Vector2(-894, 329)
+polygon = PackedVector2Array(1647, -237, 1678, -326, 2506, -333, 2531, -251)
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="ESCExit_home" unique_id=709549081]
+position = Vector2(1112, 49)
+script = ExtResource("8_y2dmt")
+global_id = "home_exit"
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="player_start" type="Marker2D" parent="." unique_id=696703279]
+position = Vector2(1110, 1054)
+script = ExtResource("8_y2dmt")
+global_id = "player_start"
+is_start_location = true
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1813585703]
+script = ExtResource("9_33rn8")
+
+[node name="shopkeeper" parent="." unique_id=294159516 instance=ExtResource("11_0ab4e")]
+position = Vector2(1380, 528)
+default_action = "look"
+
+[node name="table" type="TextureRect" parent="shopkeeper" unique_id=1079478745]
+offset_left = -378.0
+offset_top = 20.0
+offset_right = 318.0
+offset_bottom = 198.0
+texture = ExtResource("10_cbd3w")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1061658634]
+offset_left = 1053.0
+offset_top = 492.0
+offset_right = 1179.0
+offset_bottom = 576.0
+texture = ExtResource("12_f8beq")

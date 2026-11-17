@@ -9,8 +9,10 @@
 [ext_resource type="AudioStream" uid="uid://yqk2bk32pivx" path="res://sound/efekt.mp3" id="7_dcxb5"]
 [ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="8_d0d1h"]
 [ext_resource type="Script" uid="uid://bg1sl307y6lbi" path="res://systems/room_lighting.gd" id="9_3myet"]
+[ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="10_p4vv1"]
 [ext_resource type="PackedScene" uid="uid://dwbb2iacwwlxq" path="res://items/inventory/bottles.tscn" id="11_y1023"]
 [ext_resource type="PackedScene" uid="uid://v1oytxd8ieqh" path="res://characters/opilec/drunk.tscn" id="12_wpulp"]
+[ext_resource type="Script" uid="uid://beh3ds4eapldu" path="res://addons/escoria-core/game/core-scripts/esc_location.gd" id="13_lhpmt"]
 
 [sub_resource type="Gradient" id="Gradient_6wxwk"]
 offsets = PackedFloat32Array(0, 0.38311687, 0.73376626, 1)
@@ -27,6 +29,18 @@ fill_to = Vector2(0.9908257, 1)
 vertices = PackedVector2Array(1123.6406, 831.96875, 1120.5625, 776.0078, 1163.6406, 776.0625, 1163.6406, 776.0703, 3703.4688, 836.4922, 3763, 833.5078, 3763, 847.6875, 3.0625, 1075, 3827.3125, 849.7031, 3834.6719, 1077.9922, 1557.8594, 770.03906, 3404.6406, 777.9531, 3402.6563, 833.35156, 1556.8672, 845, 4.9296875, 767.1328, 937.5078, 779.8672, 940.53125, 836.21875, 1366.8438, 778.8594, 1365.8516, 845, 3455.0938, 814.96094, 3702.4375, 814.03125, 3453.039, 836.60156)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 7, 6), PackedInt32Array(10, 11, 12, 13), PackedInt32Array(7, 14, 15, 16), PackedInt32Array(3, 17, 18, 0), PackedInt32Array(19, 20, 4, 21), PackedInt32Array(21, 4, 7), PackedInt32Array(12, 21, 7, 13), PackedInt32Array(18, 13, 7), PackedInt32Array(18, 7, 16, 0)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(3415, 768, 3413, 824, 3444, 826, 3446, 805, 3712, 804, 3713, 826, 3773, 823, 3773, 838, 3837, 840, 3845, 1088, -7, 1085, -5, 757, 947, 770, 950, 826, 1113.0897, 822.2134, 1110, 766, 1163.7803, 766.0703, 1377, 769, 1376, 835, 1547, 835, 1548, 760)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqt0v"]
+size = Vector2(160, 208)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xffai"]
+size = Vector2(154, 278)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rlnn4"]
+size = Vector2(170, 405.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6l7ny"]
+size = Vector2(81, 125)
 
 [node name="home_street" type="Node2D" unique_id=1381403444]
 script = ExtResource("1_lkx6a")
@@ -84,6 +98,78 @@ script = ExtResource("9_3myet")
 
 [node name="drunk" parent="." unique_id=294159516 instance=ExtResource("12_wpulp")]
 position = Vector2(442, 739)
+default_action = "look"
 
 [node name="bottles" parent="." unique_id=768690128 instance=ExtResource("11_y1023")]
 position = Vector2(364, 766)
+
+[node name="ESCExit" type="Area2D" parent="." unique_id=1166144501]
+position = Vector2(821, 656)
+script = ExtResource("6_m3kow")
+target_scene = "uid://c1gjsgktafs5j"
+global_id = "exit_to_corner_shop"
+tooltip_name = "Jít do večerky"
+metadata/_custom_type_script = "uid://btt4cprco53ec"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ESCExit" unique_id=927965820]
+position = Vector2(16, 1)
+shape = SubResource("RectangleShape2D_vqt0v")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="ESCExit" unique_id=1839325239]
+position = Vector2(18, 127)
+script = ExtResource("8_d0d1h")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="coffee_mashine" type="Area2D" parent="." unique_id=155332734]
+process_mode = 1
+position = Vector2(1024, 682)
+script = ExtResource("10_p4vv1")
+global_id = "coffee_mashine"
+default_action = "look"
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="coffee_mashine" unique_id=1731438088]
+position = Vector2(6, 10)
+shape = SubResource("RectangleShape2D_xffai")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="coffee_mashine" unique_id=206213339]
+position = Vector2(11, 167)
+script = ExtResource("8_d0d1h")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="telephone" type="Area2D" parent="." unique_id=2016217086]
+process_mode = 1
+position = Vector2(1448, 614)
+script = ExtResource("10_p4vv1")
+global_id = "telephone"
+default_action = "look"
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="telephone" unique_id=2119519046]
+position = Vector2(11, 17)
+shape = SubResource("RectangleShape2D_rlnn4")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="telephone" unique_id=1654611831]
+position = Vector2(8, 242)
+script = ExtResource("8_d0d1h")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="trashbin" type="Area2D" parent="." unique_id=746250072]
+process_mode = 1
+position = Vector2(1207, 794)
+script = ExtResource("10_p4vv1")
+global_id = "trashbin_street"
+default_action = "look"
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="trashbin" unique_id=1412490031]
+position = Vector2(2.5, -13.5)
+shape = SubResource("RectangleShape2D_6l7ny")
+
+[node name="ESCLocation" type="Marker2D" parent="trashbin" unique_id=1154191220]
+position = Vector2(3, 56)
+script = ExtResource("13_lhpmt")
+metadata/_custom_type_script = "uid://beh3ds4eapldu"

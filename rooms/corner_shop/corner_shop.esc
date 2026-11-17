@@ -1,0 +1,9 @@
+:setup
+	# Příchod z pokoje: Olda stojí u vchodu do domu, jinak na startu.
+	if ESC_LAST_SCENE == "oldas_room":
+		teleport($olda, $exit_to_room)
+	else:
+		teleport($olda, $player_start)
+		
+	if bottles_taken:
+		set_active("bottles", false)

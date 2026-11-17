@@ -24,7 +24,8 @@ scale = Vector2(0.3, 0.3)
 shape = SubResource("RectangleShape2D_vqt0v")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1601864450]
-scale = Vector2(0.97058827, 1.3333334)
+position = Vector2(-0.4999981, 0)
+scale = Vector2(0.2242424, 0.32323232)
 texture = ExtResource("3_w2ra7")
 
 [node name="ESCInteractionLocation" type="Marker2D" parent="." unique_id=704789273]

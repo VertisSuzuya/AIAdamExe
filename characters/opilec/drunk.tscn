@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="4_qg7m6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vqt0v"]
-radius = 60.0
-height = 170.0
+radius = 51.0
+height = 140.0
 
 [node name="drunk" type="Area2D" unique_id=294159516]
 process_mode = 1
@@ -20,7 +20,7 @@ inventory_texture_hovered = ExtResource("4_efs31")
 metadata/_custom_type_script = "uid://dshelmw7y44qg"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=608450851]
-position = Vector2(4, -1)
+position = Vector2(5, 1)
 shape = SubResource("CapsuleShape2D_vqt0v")
 
 [node name="ESCDialogLocation" type="Marker2D" parent="." unique_id=421600479]
@@ -29,8 +29,8 @@ script = ExtResource("3_yqggw")
 metadata/_custom_type_script = "uid://85bledusisk1"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1908910693]
-position = Vector2(1.0000001, -5)
-scale = Vector2(2.5520833, 2.9479167)
+position = Vector2(6, 1)
+scale = Vector2(0.27522254, 0.3850932)
 texture = ExtResource("4_efs31")
 
 [node name="ESCInteractionLocation" type="Marker2D" parent="." unique_id=1667240957]

@@ -11,3 +11,7 @@
 		set_active("bottles", false)
 	if drunk_gone:
 		set_active("drunk", false)
+		
+	# Kelímek je v automatu, jen když je kafe uvařené a ještě nesebrané.
+	if not coffee_made or coffee_taken:
+		set_active("coffee", false)

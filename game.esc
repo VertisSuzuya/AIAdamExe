@@ -37,7 +37,6 @@
 	set_global("drunk_gone", false)
 	set_global("bottles_taken", false)
 	set_global("shop_deal", false)
-	set_global("coffee_money", false)
 	set_global("coffee_taken", false)
 	set_global("coffee_given", false)
 	set_global("machine_coins_taken", false)
@@ -50,7 +49,10 @@
 	set_global("watch_color", "none")
 	set_global("diary_drunk_gone", false)
 	set_global("diary_watch_taken", false)
-
+	set_global("drunk_talked", false)
+	set_global("coins_have", false)
+	set_global("coffee_made", false)
+	
 	change_scene("res://rooms/oldas_room/oldas_room.tscn")
 	#change_scene("res://rooms/laboratory/laboratory.tscn")
 

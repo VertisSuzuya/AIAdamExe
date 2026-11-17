@@ -5,14 +5,14 @@
 [ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="3_1nqm4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vqt0v"]
-size = Vector2(33.333332, 49.999996)
+size = Vector2(53.333332, 70)
 
 [node name="coffee" type="Area2D" unique_id=768690128]
 process_mode = 1
 script = ExtResource("1_2ijtg")
 global_id = "coffee"
 esc_script = "res://items/inventory/coffee.esc"
-tooltip_name = "Lahve"
+tooltip_name = "Horká kávička"
 default_action = "look"
 actions_requiring_target_object = PackedStringArray("use")
 inventory_texture = ExtResource("2_2ijtg")
@@ -20,15 +20,16 @@ inventory_texture_hovered = ExtResource("2_2ijtg")
 metadata/_custom_type_script = "uid://dshelmw7y44qg"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1915667594]
-position = Vector2(-2.9802322e-08, 0.5)
+position = Vector2(0, 0.49999964)
 scale = Vector2(0.3, 0.3)
 shape = SubResource("RectangleShape2D_vqt0v")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1601864450]
-scale = Vector2(0.003160507, 0.0039949617)
+position = Vector2(-5.9604645e-08, 0.4999989)
+scale = Vector2(0.25000003, 0.29166666)
 texture = ExtResource("2_2ijtg")
 
 [node name="ESCInteractionLocation" type="Marker2D" parent="." unique_id=704789273]
-position = Vector2(0, 19)
+position = Vector2(0, 33)
 script = ExtResource("3_1nqm4")
 metadata/_custom_type_script = "uid://chu4bvqgwxuts"

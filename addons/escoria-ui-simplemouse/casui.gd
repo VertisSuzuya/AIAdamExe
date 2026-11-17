@@ -2,10 +2,17 @@ extends CanvasLayer
 
 const DAYS = ["PONDĚLÍ", "ÚTERÝ", "STŘEDA", "ČTVRTEK", "PÁTEK", "SOBOTA", "NEDĚLE"]
 
+# Místnost, kde Olda vidí čas i bez hodinek (digitální budík).
+const CLOCK_ROOM = "oldas_room"
+
 # Hodnoty se berou z globálů game_day a day_minute (počítá je autoload
 # game_clock). Tyhle se použijí jen, dokud globály neexistují (před New Game).
 @export_range(0, 6) var day_index: int = 0
 @export var minute_of_day: int = 7 * 60   # 7:00
+
+# Čas je vidět jen s hodinkami (watch_taken) nebo v Oldově pokoji.
+var has_watch: bool = false
+var current_room: String = ""
 
 @onready var den_label: Label = $TextureRect/Den
 @onready var cas_label: Label = $TextureRect/Cas
@@ -27,26 +34,41 @@ func _ready() -> void:
 # Escoria posílá signál ještě před uložením nové hodnoty, proto se bere
 # new_value ze signálu, ne get_global().
 func _on_global_changed(global: String, _old_value, new_value) -> void:
-	if global == "game_day":
-		day_index = clampi(int(new_value), 0, 6)
-		_redraw()
-	elif global == "day_minute":
-		minute_of_day = int(new_value)
-		_redraw()
-
-
-func refresh() -> void:
-	if escoria.globals_manager.has("game_day"):
-		day_index = clampi(int(escoria.globals_manager.get_global("game_day")), 0, 6)
-	if escoria.globals_manager.has("day_minute"):
-		minute_of_day = int(escoria.globals_manager.get_global("day_minute"))
+	match global:
+		"game_day":
+			day_index = clampi(int(new_value), 0, 6)
+		"day_minute":
+			minute_of_day = int(new_value)
+		"watch_taken":
+			has_watch = bool(new_value)
+		escoria.room_manager.GLOBAL_CURRENT_SCENE:
+			current_room = str(new_value)
+		_:
+			return
 	_redraw()
 
 
+func refresh() -> void:
+	var g = escoria.globals_manager
+	if g.has("game_day"):
+		day_index = clampi(int(g.get_global("game_day")), 0, 6)
+	if g.has("day_minute"):
+		minute_of_day = int(g.get_global("day_minute"))
+	if g.has("watch_taken"):
+		has_watch = bool(g.get_global("watch_taken"))
+	if g.has(escoria.room_manager.GLOBAL_CURRENT_SCENE):
+		current_room = str(g.get_global(escoria.room_manager.GLOBAL_CURRENT_SCENE))
+	_redraw()
+
+
+
 func _redraw() -> void:
-	var m: int = posmod(minute_of_day, 1440)
 	den_label.text = DAYS[day_index]
-	cas_label.text = "%02d:%02d" % [floori(m / 60.0), m % 60]
+	if has_watch or current_room == CLOCK_ROOM:
+		var m: int = posmod(minute_of_day, 1440)
+		cas_label.text = "%02d:%02d" % [floori(m / 60.0), m % 60]
+	else:
+		cas_label.text = "##:##"
 
 
 func _update_visibility() -> void:

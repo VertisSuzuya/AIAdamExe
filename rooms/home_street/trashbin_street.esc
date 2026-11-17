@@ -1,7 +1,7 @@
 :look
 	say($olda, "Popelnice. Smrdí to tu.")
 
-:use
+:pickup
 	if not bin_bottles_taken:
 		say($olda, "Pár zálohovaných lahví. Ty se hoděj.")
 		inventory_add("trash_bottles")

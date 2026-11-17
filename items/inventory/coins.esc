@@ -1,0 +1,2 @@
+:look
+	say($olda, "Pár drobných. Na kafe to stačí.")

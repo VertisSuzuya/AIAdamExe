@@ -1,9 +1,15 @@
 :look
 	say($olda, "Telefonní budka. Ještě že tu nějaký zůstaly.")
 
-:use
+:pickup
 	if not booth_coins_taken:
 		say($olda, "Ve vracení mincí cinkly drobný.")
+		if not coins_have:
+			inventory_add("coins")
+			set_global("coins_have", true)
 		set_global("booth_coins_taken", true)
 	else:
-		say($olda, "Zatím nemám komu volat.")
+		say($olda, "Už tam nic není.")
+
+:use
+	say($olda, "Zatím nemám komu volat.")

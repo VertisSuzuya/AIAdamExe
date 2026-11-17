@@ -4,9 +4,13 @@
 :talk
 	if not shop_deal:
 		say($drunk, "Co čumíš? Táhni, nebo ti jednu fláknu!")
+		# AIdam poradí kafe hned napoprvé (jen jednou).
+		if not drunk_talked:
+			say($aidam, "Tenhle je úplně na šrot. Na střízlivo by byl možná vstřícnější. Co mu dát kafe? Někde jsem slyšel, že to pomáhá...", "", "avatar")
+			set_global("drunk_talked", true)
 	elif not coffee_given:
 		say($drunk, "Nech mě bejt! Vypadni!")
-		say($aidam, "Na střízlivo by byl možná vstřícnější. Co mu dát kafe? Jsem někde slyšel že to má pomáhat...", "", "avatar")
+		say($aidam, "Říkal jsem ti to. Zkus mu dát kafe.", "", "avatar")
 	else:
 		say($olda, "Hele, já vím, jaký to je. Nedávno jsem ležel v louži před kasinem.")
 		say($drunk, "Mně je fuk, kde ses válel. Vodprejskni.")
@@ -14,15 +18,22 @@
 		?!
 			- "Hele, jedou sem policajti!"
 				say($drunk, "Cože? Do prdele...")
+				set_global("shop_reward_now", false)
+				# Mrknutí jako při změně části dne, opilec zmizí ve tmě.
+				transition("fade_black", "out", 0.5)
 				set_active("drunk", false)
 				set_global("drunk_gone", true)
 				set_global("diary_drunk_gone", true)
+				transition("fade_black", "in", 0.5)
 				done
 			- "Tak nic."
 				done
 
 :use coffee
-	say($olda, "Na, dej si kafe. Pomůže to.")
-	say($drunk, "...Hm. Díky. Ale stejně tě tu nechci.")
-	inventory_remove("coffee")
-	set_global("coffee_given", true)
+	if not shop_deal:
+		say($drunk, "Co mi to strkáš? Táhni!")
+	else:
+		say($olda, "Na, dej si kafe. Pomůže to.")
+		say($drunk, "...Hm. Díky. Ale stejně tě tu nechci.")
+		inventory_remove("coffee")
+		set_global("coffee_given", true)

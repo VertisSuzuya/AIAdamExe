@@ -6,3 +6,6 @@
 		inventory_add("bottles")
 		set_active("bottles", false)
 		set_global("bottles_taken", true)
+
+:look
+	say($olda, "Prázdný lahve. Zálohovaný.")

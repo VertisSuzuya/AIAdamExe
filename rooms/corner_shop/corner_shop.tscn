@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://pbo30ju8ievr" path="res://rooms/corner_shop/shop_counter.png" id="10_cbd3w"]
 [ext_resource type="PackedScene" uid="uid://y8rcnhro5eea" path="res://characters/shopkeeper/shopkeeper.tscn" id="11_0ab4e"]
 [ext_resource type="Texture2D" uid="uid://4q1j4wgic18e" path="res://rooms/corner_shop/shop_register.png" id="12_f8beq"]
+[ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="13_78x35"]
 
 [sub_resource type="Gradient" id="Gradient_f8beq"]
 
@@ -52,7 +53,7 @@ metadata/_custom_type_script = "uid://5pbcieq7gpdo"
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="ESCTerrain" unique_id=400683327]
 navigation_polygon = SubResource("NavigationPolygon_abbhq")
 
-[node name="ESCExit_home" type="Area2D" parent="." unique_id=524930276]
+[node name="ESCExit_back_on_street" type="Area2D" parent="." unique_id=524930276]
 position = Vector2(64, 1004)
 script = ExtResource("6_4m7rp")
 target_scene = "uid://djysrcw13uoa8"
@@ -62,11 +63,11 @@ tooltip_name = "Jít ven na ulici"
 default_action = "use"
 metadata/_custom_type_script = "uid://btt4cprco53ec"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ESCExit_home" unique_id=211552841]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ESCExit_back_on_street" unique_id=211552841]
 position = Vector2(-894, 329)
 polygon = PackedVector2Array(1647, -237, 1678, -326, 2506, -333, 2531, -251)
 
-[node name="ESCInteractionLocation" type="Marker2D" parent="ESCExit_home" unique_id=709549081]
+[node name="ESCInteractionLocation" type="Marker2D" parent="ESCExit_back_on_street" unique_id=709549081]
 position = Vector2(1112, 49)
 script = ExtResource("8_y2dmt")
 global_id = "home_exit"
@@ -99,3 +100,5 @@ offset_top = 492.0
 offset_right = 1179.0
 offset_bottom = 576.0
 texture = ExtResource("12_f8beq")
+
+[node name="Aidam" parent="." unique_id=1389523226 instance=ExtResource("13_78x35")]

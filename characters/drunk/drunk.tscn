@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="1_63t7t"]
 [ext_resource type="Script" uid="uid://85bledusisk1" path="res://addons/escoria-core/game/core-scripts/esc_dialog_location.gd" id="3_yqggw"]
-[ext_resource type="Texture2D" uid="uid://dy8kd5g1jadah" path="res://characters/opilec/drunk.png" id="4_efs31"]
+[ext_resource type="Texture2D" uid="uid://dy8kd5g1jadah" path="res://characters/drunk/drunk.png" id="4_efs31"]
 [ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="4_qg7m6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vqt0v"]
@@ -13,6 +13,7 @@ height = 140.0
 process_mode = 1
 script = ExtResource("1_63t7t")
 global_id = "drunk"
+esc_script = "res://characters/drunk/drunk.esc"
 default_action = "say"
 actions_requiring_target_object = PackedStringArray()
 inventory_texture = ExtResource("4_efs31")

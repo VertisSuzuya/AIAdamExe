@@ -1,0 +1,16 @@
+:look
+	say($olda, "Kávovej automat. Kafe za dvacku.")
+
+:use
+	if coffee_money and not coffee_taken:
+		say($olda, "Jedno kafe pro kámoše u dveří.")
+		inventory_add("coffee")
+		set_global("coffee_taken", true)
+		if not machine_coins_taken:
+			say($olda, "A ve vracení mincí někdo zapomněl drobný.")
+			set_global("machine_coins_taken", true)
+	elif not machine_coins_taken:
+		say($olda, "Ve vracení mincí někdo zapomněl drobný.")
+		set_global("machine_coins_taken", true)
+	else:
+		say($olda, "Na další kafe nemám.")

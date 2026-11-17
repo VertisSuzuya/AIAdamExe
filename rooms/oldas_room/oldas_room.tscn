@@ -142,18 +142,20 @@ polygon = PackedVector2Array(-89, -111, 314, 129, 756, -70, 752, -209, 326, -285
 script = ExtResource("13_u3ias")
 
 [node name="ESCExit" type="Area2D" parent="." unique_id=1090258592]
+position = Vector2(200, 634)
 script = ExtResource("14_go63i")
 target_scene = "uid://djysrcw13uoa8"
 global_id = "exit_to_street"
+esc_script = "res://rooms/oldas_room/exit_to_street.esc"
 tooltip_name = "Jít ven"
 default_action = "use"
 metadata/_custom_type_script = "uid://btt4cprco53ec"
 
 [node name="ESCLocation" type="Marker2D" parent="ESCExit" unique_id=1974965721]
-position = Vector2(229, 820)
+position = Vector2(26.5, 193)
 script = ExtResource("6_0xtuq")
 metadata/_custom_type_script = "uid://beh3ds4eapldu"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ESCExit" unique_id=1893104764]
-position = Vector2(202.5, 584)
+position = Vector2(0, -43)
 shape = SubResource("RectangleShape2D_xffai")

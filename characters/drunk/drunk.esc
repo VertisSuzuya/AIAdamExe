@@ -1,0 +1,28 @@
+:look
+	say($olda, "Chudák. Před pár dny jsem na tom byl stejně.")
+
+:talk
+	if not shop_deal:
+		say($drunk, "Co čumíš? Táhni, nebo ti jednu fláknu!")
+	elif not coffee_given:
+		say($drunk, "Nech mě bejt! Vypadni!")
+		say($aidam, "Na střízlivo by byl možná vstřícnější. Co mu dát kafe? Jsem někde slyšel že to má pomáhat...", "", "avatar")
+	else:
+		say($olda, "Hele, já vím, jaký to je. Nedávno jsem ležel v louži před kasinem.")
+		say($drunk, "Mně je fuk, kde ses válel. Vodprejskni.")
+		say($aidam, "Řekni mu, že sem jede policie. Na tyhle to platí vždycky.", "", "avatar")
+		?!
+			- "Hele, jedou sem policajti!"
+				say($drunk, "Cože? Do prdele...")
+				set_active("drunk", false)
+				set_global("drunk_gone", true)
+				set_global("diary_drunk_gone", true)
+				done
+			- "Tak nic."
+				done
+
+:use coffee
+	say($olda, "Na, dej si kafe. Pomůže to.")
+	say($drunk, "...Hm. Díky. Ale stejně tě tu nechci.")
+	inventory_remove("coffee")
+	set_global("coffee_given", true)

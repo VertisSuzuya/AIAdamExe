@@ -11,8 +11,8 @@
 [ext_resource type="Script" uid="uid://bg1sl307y6lbi" path="res://systems/room_lighting.gd" id="9_3myet"]
 [ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="10_p4vv1"]
 [ext_resource type="PackedScene" uid="uid://dwbb2iacwwlxq" path="res://items/inventory/bottles.tscn" id="11_y1023"]
-[ext_resource type="PackedScene" uid="uid://v1oytxd8ieqh" path="res://characters/opilec/drunk.tscn" id="12_wpulp"]
-[ext_resource type="Script" uid="uid://beh3ds4eapldu" path="res://addons/escoria-core/game/core-scripts/esc_location.gd" id="13_lhpmt"]
+[ext_resource type="PackedScene" uid="uid://v1oytxd8ieqh" path="res://characters/drunk/drunk.tscn" id="12_wpulp"]
+[ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="14_wpulp"]
 
 [sub_resource type="Gradient" id="Gradient_6wxwk"]
 offsets = PackedFloat32Array(0, 0.38311687, 0.73376626, 1)
@@ -125,6 +125,7 @@ process_mode = 1
 position = Vector2(1024, 682)
 script = ExtResource("10_p4vv1")
 global_id = "coffee_mashine"
+esc_script = "res://rooms/home_street/coffee_mashine.esc"
 default_action = "look"
 actions_requiring_target_object = PackedStringArray()
 metadata/_custom_type_script = "uid://dshelmw7y44qg"
@@ -143,6 +144,7 @@ process_mode = 1
 position = Vector2(1448, 614)
 script = ExtResource("10_p4vv1")
 global_id = "telephone"
+esc_script = "res://rooms/home_street/telephone.esc"
 default_action = "look"
 actions_requiring_target_object = PackedStringArray()
 metadata/_custom_type_script = "uid://dshelmw7y44qg"
@@ -161,6 +163,7 @@ process_mode = 1
 position = Vector2(1207, 794)
 script = ExtResource("10_p4vv1")
 global_id = "trashbin_street"
+esc_script = "res://rooms/home_street/trashbin_street.esc"
 default_action = "look"
 actions_requiring_target_object = PackedStringArray()
 metadata/_custom_type_script = "uid://dshelmw7y44qg"
@@ -169,7 +172,9 @@ metadata/_custom_type_script = "uid://dshelmw7y44qg"
 position = Vector2(2.5, -13.5)
 shape = SubResource("RectangleShape2D_6l7ny")
 
-[node name="ESCLocation" type="Marker2D" parent="trashbin" unique_id=1154191220]
-position = Vector2(3, 56)
-script = ExtResource("13_lhpmt")
-metadata/_custom_type_script = "uid://beh3ds4eapldu"
+[node name="ESCInteractionLocation" type="Marker2D" parent="trashbin" unique_id=1442801250]
+position = Vector2(3, 59)
+script = ExtResource("8_d0d1h")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="Aidam" parent="." unique_id=1389523226 instance=ExtResource("14_wpulp")]

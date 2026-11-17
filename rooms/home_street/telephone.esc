@@ -1,0 +1,9 @@
+:look
+	say($olda, "Telefonní budka. Ještě že tu nějaký zůstaly.")
+
+:use
+	if not booth_coins_taken:
+		say($olda, "Ve vracení mincí cinkly drobný.")
+		set_global("booth_coins_taken", true)
+	else:
+		say($olda, "Zatím nemám komu volat.")

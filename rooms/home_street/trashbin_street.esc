@@ -1,0 +1,10 @@
+:look
+	say($olda, "Popelnice. Smrdí to tu.")
+
+:use
+	if not bin_bottles_taken:
+		say($olda, "Pár zálohovaných lahví. Ty se hoděj.")
+		inventory_add("trash_bottles")
+		set_global("bin_bottles_taken", true)
+	else:
+		say($olda, "Už tam jsou jen odpadky. Nebudu se v nich hrabat...")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dy8kd5g1jadah"
-path="res://.godot/imported/drunk.png-402d9b77a0bdf0c74f1acd37d7538d8a.ctex"
+uid="uid://dwfjxwsbrsjgv"
+path="res://.godot/imported/coffee.png-fda378ec064e9a6c2bdef4630a02075d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/opilec/drunk.png"
-dest_files=["res://.godot/imported/drunk.png-402d9b77a0bdf0c74f1acd37d7538d8a.ctex"]
+source_file="res://grafika/coffee.png"
+dest_files=["res://.godot/imported/coffee.png-fda378ec064e9a6c2bdef4630a02075d.ctex"]
 
 [params]
 

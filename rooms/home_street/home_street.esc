@@ -9,3 +9,5 @@
 		
 	if bottles_taken:
 		set_active("bottles", false)
+	if drunk_gone:
+		set_active("drunk", false)

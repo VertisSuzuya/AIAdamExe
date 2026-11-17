@@ -1,0 +1,55 @@
+:look
+	say($olda, "Prodavač. Vypadá, že tu stojí od rána do noci.")
+
+:talk
+	set_global("shop_reward_now", false)
+	?!
+		- "Nemáte nějaké hodinky? Klidně levné... nebo zadarmo?" [not shop_deal]
+			say($shopkeeper, "Zadarmo nic není. Ale...")
+			say($shopkeeper, "Venku sedí opilý chlap a řve na zákazníky. Když ho odeženete, dám vám hodinky.")
+			say($shopkeeper, "Tady máte na kafe z automatu. Možná ho to probere.")
+			set_global("shop_deal", true)
+			set_global("coffee_money", true)
+		- "Vykoupíte ode mě zálohované lahve?" [(bottles_taken and not bottles_returned) or (bin_bottles_taken and not bin_bottles_returned)]
+			say($shopkeeper, "Lahve? Dobře, pár korun za ně dostanete.")
+			if bottles_taken and not bottles_returned:
+				inventory_remove("bottles")
+				set_global("bottles_returned", true)
+			if bin_bottles_taken and not bin_bottles_returned:
+				inventory_remove("trash_bottles")
+				set_global("bin_bottles_returned", true)
+		- "Opilec je pryč." [shop_deal and drunk_gone and not watch_taken]
+			set_global("shop_reward_now", true)
+			done
+		- "Nic, jen se dívám."
+			done
+
+	if shop_reward_now:
+		if booth_coins_taken and machine_coins_taken and bottles_returned and bin_bottles_returned:
+			say($shopkeeper, "Díky! A vy máte i peníze, tak si vyberte barvu.")
+			?!
+				- "Černé."
+					set_global("watch_color", "black")
+					done
+				- "Stříbrné."
+					set_global("watch_color", "silver")
+					done
+				- "Zlaté."
+					set_global("watch_color", "gold")
+					done
+		else:
+			say($shopkeeper, "Díky! Tady máte nějaké levné.")
+			say($shopkeeper, "Kdybyste ještě našel pár lahví nebo drobných, nechám vás vybrat barvu.")
+			?!
+				- "Dobře, zkusím to."
+					set_global("shop_reward_now", false)
+					done
+				- "Stačí mi tyhle."
+					done
+
+	if shop_reward_now:
+		inventory_add("watches")
+		set_global("watch_taken", true)
+		set_global("diary_watch_taken", true)
+		set_global("day_task_done", true)
+		say($aidam, "Konečně víme, kolik je hodin. Můžeš jít domů spát.", "", "avatar")

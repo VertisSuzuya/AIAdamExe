@@ -1,0 +1,2 @@
+:look
+	say($olda, "Kafe z automatu. Horký.")

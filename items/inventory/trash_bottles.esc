@@ -1,0 +1,2 @@
+:look
+	say($olda, "Lahve z popelnice. Zálohovaný.")

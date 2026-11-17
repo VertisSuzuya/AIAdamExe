@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://btt4cprco53ec" path="res://addons/escoria-core/game/core-scripts/esc_exit.gd" id="6_n5c1c"]
 [ext_resource type="AudioStream" uid="uid://yqk2bk32pivx" path="res://sound/efekt.mp3" id="7_3yyy0"]
 [ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="7_6wxwk"]
+[ext_resource type="Script" uid="uid://bg1sl307y6lbi" path="res://systems/room_lighting.gd" id="9_5bu6t"]
 
 [sub_resource type="Gradient" id="Gradient_6wxwk"]
 offsets = PackedFloat32Array(0, 0.38311687, 0.73376626, 1)
@@ -74,3 +75,6 @@ script = ExtResource("7_6wxwk")
 global_id = "player_start"
 is_start_location = true
 metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=573217032]
+script = ExtResource("9_5bu6t")

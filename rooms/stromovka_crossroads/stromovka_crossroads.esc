@@ -4,6 +4,8 @@
 	if ESC_LAST_SCENE == "stromovka_long":
 		teleport($olda, $exit_to_long)
 		set_angle($olda, 60)
+	if ESC_LAST_SCENE == "fit_front":
+		teleport($olda, $exit_to_fit_front)
 	else:
 		teleport($olda, $player_start)
 	if brick_taken:

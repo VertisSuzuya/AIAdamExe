@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://bfhk1tumm6yxh"]
+
+[ext_resource type="Script" uid="uid://c7fcpp72w3dnj" path="res://addons/escoria-core/game/core-scripts/esc_room.gd" id="1_ktvhi"]
+[ext_resource type="PackedScene" uid="uid://ihn2iq8wcqag" path="res://characters/olda/olda.tscn" id="2_83dir"]
+[ext_resource type="Texture2D" uid="uid://b86jlmp8cvfvc" path="res://rooms/fit_inside/fit_inside.png" id="3_q0gin"]
+[ext_resource type="Script" uid="uid://fnwnfflaoeqp" path="res://addons/escoria-core/game/core-scripts/esc_background.gd" id="4_hsmb1"]
+[ext_resource type="Script" uid="uid://5pbcieq7gpdo" path="res://addons/escoria-core/game/core-scripts/esc_terrain.gd" id="5_s36yo"]
+[ext_resource type="Script" uid="uid://btt4cprco53ec" path="res://addons/escoria-core/game/core-scripts/esc_exit.gd" id="6_4am88"]
+[ext_resource type="Texture2D" uid="uid://yct2pehjlksh" path="res://rooms/fit_inside/fit_inside_concert.png" id="6_j47r5"]
+[ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="8_cbxj7"]
+[ext_resource type="Script" uid="uid://bg1sl307y6lbi" path="res://systems/room_lighting.gd" id="9_lw5ix"]
+[ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="12_p2hur"]
+[ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="13_nwmeq"]
+
+[sub_resource type="Gradient" id="Gradient_6wxwk"]
+offsets = PackedFloat32Array(0, 0.38311687, 0.73376626, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.2987013, 0.2987013, 0.2987013, 1, 0.763773, 0.763773, 0.763773, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ptrtu"]
+gradient = SubResource("Gradient_6wxwk")
+width = 1920
+height = 1080
+fill_from = Vector2(1, 0.4275668)
+fill_to = Vector2(0.9908257, 1)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xffai"]
+vertices = PackedVector2Array(783.0781, 576.02344, 1125.7891, 583.72656, 1100.1719, 708.9297, 3.0625, 1074.9531, 4.953125, 764.8672, 1902.2891, 861.3281, 1909.6406, 1067.0391)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 3, 2)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-7, 1085, -5, 757, 782, 566, 1138, 574, 1112, 701, 1912, 853, 1920, 1077)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqt0v"]
+size = Vector2(322, 303)
+
+[node name="fit_inside" type="Node2D" unique_id=1381403444]
+script = ExtResource("1_ktvhi")
+global_id = "fit_inside"
+esc_script = "res://rooms/fit_inside/fit_inside.esc"
+player_scene = ExtResource("2_83dir")
+metadata/_custom_type_script = "uid://c7fcpp72w3dnj"
+
+[node name="escbackground" type="TextureRect" parent="." unique_id=1212681230]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("3_q0gin")
+script = ExtResource("4_hsmb1")
+metadata/_custom_type_script = "uid://fnwnfflaoeqp"
+
+[node name="concert" type="Area2D" parent="." unique_id=440901282]
+process_mode = 1
+script = ExtResource("12_p2hur")
+global_id = "concert"
+actions_requiring_target_object = PackedStringArray()
+is_interactive = false
+inventory_texture = ExtResource("6_j47r5")
+inventory_texture_hovered = ExtResource("6_j47r5")
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="Sprite2D" type="Sprite2D" parent="concert" unique_id=1154732214]
+texture = ExtResource("6_j47r5")
+centered = false
+
+[node name="ESCTerrain" type="Node2D" parent="." unique_id=1168787270]
+script = ExtResource("5_s36yo")
+scales = SubResource("GradientTexture2D_ptrtu")
+scale_min = 2.0
+scale_max = 8.0
+metadata/_custom_type_script = "uid://5pbcieq7gpdo"
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="ESCTerrain" unique_id=400683327]
+navigation_polygon = SubResource("NavigationPolygon_xffai")
+
+[node name="player_start" type="Marker2D" parent="." unique_id=696703279]
+position = Vector2(431, 1025)
+script = ExtResource("8_cbxj7")
+global_id = "player_start"
+is_start_location = true
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1813585703]
+script = ExtResource("9_lw5ix")
+
+[node name="exit_infront_school" type="Area2D" parent="." unique_id=1166144501]
+position = Vector2(821, 656)
+script = ExtResource("6_4am88")
+target_scene = "uid://boiv4y0sf8v7e"
+global_id = "exit_to_fit_front"
+tooltip_name = "Jít ven ze školy"
+metadata/_custom_type_script = "uid://btt4cprco53ec"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="exit_infront_school" unique_id=927965820]
+position = Vector2(-659, 267.5)
+shape = SubResource("RectangleShape2D_vqt0v")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="exit_infront_school" unique_id=1839325239]
+position = Vector2(-782, 378)
+script = ExtResource("8_cbxj7")
+global_id = "fit_front_door"
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="Aidam" parent="." unique_id=1389523226 instance=ExtResource("13_nwmeq")]

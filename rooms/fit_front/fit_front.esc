@@ -1,0 +1,9 @@
+:setup
+	if ESC_LAST_SCENE == "tram":
+		teleport($olda, $tram_stop)
+	elif ESC_LAST_SCENE == "fit_inside":
+		teleport($olda, $exit_to_fit_inside)
+	elif ESC_LAST_SCENE == "stromovka_crossroads":
+		teleport($olda, $exit_to_stromovka)
+	else:
+		teleport($olda, $player_start)

@@ -7,14 +7,21 @@ extends Node
 #   Ctrl+T   zrychlení času x60 zapnout / vypnout
 #   Ctrl+K   denní úkol splněn (day_task_done = true), jde se spát
 #   Ctrl+1 až Ctrl+9   skok do místnosti ze seznamu ROOMS
+#   Ctrl+W   hodinky zapnout / vypnout (čas vidět i mimo pokoj)
 #
 # Funguje až po New Game (dokud neexistují globály, nic nedělá).
 
 ## Místnosti pro Ctrl+1 až Ctrl+9 (doplňuj podle potřeby).
 const ROOMS: Array = [
-	"res://rooms/oldas_room/oldas_room.tscn",      # Ctrl+1
-	"res://rooms/home_street/home_street.tscn",    # Ctrl+2
-	"res://rooms/laboratory/laboratory.tscn",      # Ctrl+3
+	"res://rooms/oldas_room/oldas_room.tscn",                # Ctrl+1
+	"res://rooms/home_street/home_street.tscn",              # Ctrl+2
+	"res://rooms/corner_shop/corner_shop.tscn",              # Ctrl+3
+	"res://rooms/tram/tram.tscn",                            # Ctrl+4
+	"res://rooms/fit_front/fit_front.tscn",                  # Ctrl+5
+	"res://rooms/fit_inside/fit_inside.tscn",                # Ctrl+6
+	"res://rooms/stromovka_crossroads/stromovka_crossroads.tscn",  # Ctrl+7
+	"res://rooms/stromovka_long/stromovka_long.tscn",        # Ctrl+8
+	"res://rooms/laboratory/laboratory.tscn",                # Ctrl+9
 ]
 
 const DAY_NAMES = ["pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota", "neděle"]
@@ -45,6 +52,8 @@ func _input(event: InputEvent) -> void:
 			_set_minute(_get_int("day_minute") + 60)
 		KEY_LEFT:
 			_set_minute(_get_int("day_minute") - 60)
+		KEY_W:
+			_toggle_watch()
 		KEY_T:
 			_toggle_speed()
 		KEY_K:
@@ -103,3 +112,11 @@ func _go_to_room(path: String) -> void:
 	escoria.event_manager.interrupt()
 	escoria.room_manager.change_scene_to_file(path, false)
 	print("[debug] místnost: %s" % path)
+
+# Hodinky zapnout/vypnout: v UI je pak vidět čas všude (casui.gd čte
+# watch_taken). Do inventáře se nepřidávají, jde jen o zobrazení času.
+func _toggle_watch() -> void:
+	var has_watch: bool = escoria.globals_manager.has("watch_taken") \
+			and bool(escoria.globals_manager.get_global("watch_taken"))
+	escoria.globals_manager.set_global("watch_taken", not has_watch)
+	print("[debug] hodinky: %s" % ("ano" if not has_watch else "ne"))

@@ -40,8 +40,18 @@ player_scene = ExtResource("2_4jyyl")
 metadata/_custom_type_script = "uid://c7fcpp72w3dnj"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=516059212]
-z_index = -1
+z_index = -2
+position = Vector2(-90, -370)
 texture = ExtResource("3_1rn2y")
+centered = false
+script = ExtResource("4_3o06i")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=519799522]
+z_index = -1
+position = Vector2(-3525.9998, 363.99988)
+rotation = -0.2617994
+texture = ExtResource("3_1rn2y")
+centered = false
 script = ExtResource("4_3o06i")
 
 [node name="escbackground" type="TextureRect" parent="." unique_id=1212681230]
@@ -55,7 +65,7 @@ metadata/_custom_type_script = "uid://fnwnfflaoeqp"
 [node name="ESCTerrain" type="Node2D" parent="." unique_id=1168787270]
 script = ExtResource("5_ag7vo")
 scales = SubResource("GradientTexture2D_ptrtu")
-scale_min = 3.0
+scale_min = 2.0
 scale_max = 10.0
 metadata/_custom_type_script = "uid://5pbcieq7gpdo"
 

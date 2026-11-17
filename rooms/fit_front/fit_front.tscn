@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://boiv4y0sf8v7e"]
+
+[ext_resource type="Script" uid="uid://c7fcpp72w3dnj" path="res://addons/escoria-core/game/core-scripts/esc_room.gd" id="1_i1l5q"]
+[ext_resource type="PackedScene" uid="uid://ihn2iq8wcqag" path="res://characters/olda/olda.tscn" id="2_veq8s"]
+[ext_resource type="Texture2D" uid="uid://d17s3fln4ksci" path="res://rooms/fit_front/fit_front.png" id="3_n3tph"]
+[ext_resource type="Script" uid="uid://fnwnfflaoeqp" path="res://addons/escoria-core/game/core-scripts/esc_background.gd" id="4_mr0a3"]
+[ext_resource type="Script" uid="uid://5pbcieq7gpdo" path="res://addons/escoria-core/game/core-scripts/esc_terrain.gd" id="5_ris2o"]
+[ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="6_dkhud"]
+[ext_resource type="Script" uid="uid://bg1sl307y6lbi" path="res://systems/room_lighting.gd" id="7_csjcf"]
+[ext_resource type="Script" uid="uid://btt4cprco53ec" path="res://addons/escoria-core/game/core-scripts/esc_exit.gd" id="8_odan4"]
+[ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="9_eacin"]
+[ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="10_gaohi"]
+
+[sub_resource type="Gradient" id="Gradient_6wxwk"]
+offsets = PackedFloat32Array(0, 0.38311687, 0.73376626, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.2987013, 0.2987013, 0.2987013, 1, 0.763773, 0.763773, 0.763773, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ptrtu"]
+gradient = SubResource("Gradient_6wxwk")
+width = 1920
+height = 1080
+fill_from = Vector2(1, 0.57383966)
+fill_to = Vector2(0.9908257, 1)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xffai"]
+vertices = PackedVector2Array(719.28125, 654, 719.27344, 653.9922, 1493.5703, 652.0078, 1514.4766, 697.78906, 8.8515625, 714.47656, 43.8125, 712.5703, 42.828125, 771, 3.15625, 1074.9531, 1909.9063, 1067.0391, 90.609375, 771, 353.1875, 768.2969, 352.1797, 713.8281, 528.3828, 710.9297, 91.609375, 745.90625, 298.42188, 744.0781, 299.40625, 766.71875, 578.40625, 657.8828, 1907.0703, 710.6719)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 7, 6, 9), PackedInt32Array(10, 11, 12, 8), PackedInt32Array(13, 14, 15, 9), PackedInt32Array(8, 9, 15, 10), PackedInt32Array(8, 12, 16, 0, 3), PackedInt32Array(3, 17, 8)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-7, 1085, -1, 705, 54, 702, 53, 761, 81, 761, 82, 736, 308, 734, 309, 757, 343, 758, 342, 704, 524, 701, 574, 648, 719, 644, 1500, 642, 1521, 688, 1917, 701, 1920, 1077)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqt0v"]
+size = Vector2(268, 216)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uchm2"]
+size = Vector2(298, 246)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xffai"]
+size = Vector2(806, 109)
+
+[node name="fit_front" type="Node2D" unique_id=1381403444]
+script = ExtResource("1_i1l5q")
+global_id = "fit_front"
+esc_script = "res://rooms/fit_front/fit_front.esc"
+player_scene = ExtResource("2_veq8s")
+metadata/_custom_type_script = "uid://c7fcpp72w3dnj"
+
+[node name="escbackground" type="TextureRect" parent="." unique_id=1212681230]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("3_n3tph")
+script = ExtResource("4_mr0a3")
+metadata/_custom_type_script = "uid://fnwnfflaoeqp"
+
+[node name="ESCTerrain" type="Node2D" parent="." unique_id=1168787270]
+script = ExtResource("5_ris2o")
+scales = SubResource("GradientTexture2D_ptrtu")
+scale_min = 1.0
+scale_max = 5.0
+metadata/_custom_type_script = "uid://5pbcieq7gpdo"
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="ESCTerrain" unique_id=400683327]
+navigation_polygon = SubResource("NavigationPolygon_xffai")
+
+[node name="player_start" type="Marker2D" parent="." unique_id=696703279]
+position = Vector2(239, 863)
+script = ExtResource("6_dkhud")
+global_id = "player_start"
+is_start_location = true
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1813585703]
+script = ExtResource("7_csjcf")
+
+[node name="exit_to_stromovka" type="Area2D" parent="." unique_id=1166144501]
+position = Vector2(1772, 773)
+script = ExtResource("8_odan4")
+target_scene = "uid://tx4ttaq0i75b"
+global_id = "exit_to_stromovka"
+tooltip_name = "Jít na Stromovku"
+metadata/_custom_type_script = "uid://btt4cprco53ec"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="exit_to_stromovka" unique_id=927965820]
+position = Vector2(12, 26)
+shape = SubResource("RectangleShape2D_vqt0v")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="exit_to_stromovka" unique_id=1839325239]
+position = Vector2(119, -50)
+script = ExtResource("6_dkhud")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="Aidam" parent="." unique_id=1389523226 instance=ExtResource("9_eacin")]
+
+[node name="tram_stop" type="Area2D" parent="." unique_id=228112183]
+process_mode = 1
+position = Vector2(182, 665)
+script = ExtResource("10_gaohi")
+global_id = "tram_stop"
+esc_script = "res://rooms/fit_front/tram_stop.esc"
+tooltip_name = "Zastávka"
+default_action = "look"
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tram_stop" unique_id=265171961]
+position = Vector2(5, -31)
+shape = SubResource("RectangleShape2D_uchm2")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="tram_stop" unique_id=566860929]
+position = Vector2(17, 119)
+script = ExtResource("6_dkhud")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="exit_to_school" type="Area2D" parent="." unique_id=875184439]
+position = Vector2(1021, 656)
+script = ExtResource("8_odan4")
+target_scene = "uid://bfhk1tumm6yxh"
+global_id = "exit_to_fit_inside"
+tooltip_name = "Jít do školy"
+metadata/_custom_type_script = "uid://btt4cprco53ec"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="exit_to_school" unique_id=1308740063]
+position = Vector2(88, -14.5)
+shape = SubResource("RectangleShape2D_xffai")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="exit_to_school" unique_id=1837182992]
+position = Vector2(-10, 8)
+script = ExtResource("6_dkhud")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"

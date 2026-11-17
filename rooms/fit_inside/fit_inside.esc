@@ -1,0 +1,9 @@
+:setup
+	teleport($olda, $exit_to_fit_front)
+
+:apply_time
+	# Koncert hraje celý večer (18:00 až 22:00), jinak prázdné atrium.
+	if day_phase == "evening":
+		set_active("concert", true)
+	else:
+		set_active("concert", false)

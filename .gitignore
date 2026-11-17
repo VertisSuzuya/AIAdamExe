@@ -27,7 +27,7 @@ mono_crash.*.json
 # Claude Code (lokální)
 CLAUDE.md
 .claude/settings.local.json
-docs/ai-log.md
+docs/
 
 # Text bakalářky (píše se v Overleafu, lokální kopie se necommituje)
 thesis/

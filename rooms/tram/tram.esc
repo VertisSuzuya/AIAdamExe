@@ -1,4 +1,5 @@
 :setup
+	teleport($olda, $player_start)
 	set_global("tram_map_open", false)
 
 :travel

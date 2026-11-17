@@ -91,7 +91,7 @@ global_id = "home_exit"
 metadata/_custom_type_script = "uid://chu4bvqgwxuts"
 
 [node name="player_start" type="Marker2D" parent="." unique_id=696703279]
-position = Vector2(3592, 885)
+position = Vector2(3752, 909)
 script = ExtResource("8_d0d1h")
 global_id = "player_start"
 is_start_location = true
@@ -187,20 +187,21 @@ metadata/_custom_type_script = "uid://chu4bvqgwxuts"
 z_index = 1
 position = Vector2(1062, 630)
 
-[node name="ESCItem" type="Area2D" parent="." unique_id=228112183]
+[node name="tram_stop" type="Area2D" parent="." unique_id=228112183]
 process_mode = 1
 script = ExtResource("10_p4vv1")
 global_id = "tram_stop"
+esc_script = "res://rooms/home_street/tram_stop.esc"
 tooltip_name = "Zastávka"
 default_action = "look"
 actions_requiring_target_object = PackedStringArray()
 metadata/_custom_type_script = "uid://dshelmw7y44qg"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ESCItem" unique_id=265171961]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tram_stop" unique_id=265171961]
 position = Vector2(3580, 678.25)
 shape = SubResource("RectangleShape2D_uchm2")
 
-[node name="ESCInteractionLocation" type="Marker2D" parent="ESCItem" unique_id=566860929]
-position = Vector2(3573, 838)
+[node name="ESCInteractionLocation" type="Marker2D" parent="tram_stop" unique_id=566860929]
+position = Vector2(3804, 866)
 script = ExtResource("8_d0d1h")
 metadata/_custom_type_script = "uid://chu4bvqgwxuts"

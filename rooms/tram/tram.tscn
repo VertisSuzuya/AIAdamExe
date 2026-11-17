@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c7fcpp72w3dnj" path="res://addons/escoria-core/game/core-scripts/esc_room.gd" id="1_r0061"]
 [ext_resource type="PackedScene" uid="uid://ihn2iq8wcqag" path="res://characters/olda/olda.tscn" id="2_4jyyl"]
 [ext_resource type="Texture2D" uid="uid://d0hnxde3i0wm3" path="res://rooms/tram/tram_outside.png" id="3_1rn2y"]
+[ext_resource type="Script" uid="uid://dtj0s5uk7r833" path="res://rooms/tram/tram_outside.gd" id="4_3o06i"]
 [ext_resource type="Script" uid="uid://fnwnfflaoeqp" path="res://addons/escoria-core/game/core-scripts/esc_background.gd" id="4_baffg"]
 [ext_resource type="Texture2D" uid="uid://gs8j0p7qadt" path="res://rooms/tram/tram.png" id="4_h0o5q"]
 [ext_resource type="Script" uid="uid://5pbcieq7gpdo" path="res://addons/escoria-core/game/core-scripts/esc_terrain.gd" id="5_ag7vo"]
@@ -18,15 +19,18 @@ colors = PackedColorArray(0, 0, 0, 1, 0.2987013, 0.2987013, 0.2987013, 1, 0.7637
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ptrtu"]
 gradient = SubResource("Gradient_6wxwk")
-width = 5760
+width = 1920
 height = 1080
-fill_from = Vector2(1, 0.5504587)
+fill_from = Vector2(1, 0.23628692)
 fill_to = Vector2(0.9908257, 1)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_xffai"]
 vertices = PackedVector2Array(1332.6797, 1082.7109, 499.1875, 1072.1172, 513.8125, 301, 647.46875, 301)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(489, 1082, 504, 291, 652, 291, 1355, 1093)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uchm2"]
+size = Vector2(357.5, 399)
 
 [node name="tram" type="Node2D" unique_id=1381403444]
 script = ExtResource("1_r0061")
@@ -36,9 +40,9 @@ player_scene = ExtResource("2_4jyyl")
 metadata/_custom_type_script = "uid://c7fcpp72w3dnj"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=516059212]
-position = Vector2(1680, 544)
-scale = Vector2(0.8677083, 1.0055555)
+z_index = -1
 texture = ExtResource("3_1rn2y")
+script = ExtResource("4_3o06i")
 
 [node name="escbackground" type="TextureRect" parent="." unique_id=1212681230]
 offset_right = 40.0
@@ -51,8 +55,8 @@ metadata/_custom_type_script = "uid://fnwnfflaoeqp"
 [node name="ESCTerrain" type="Node2D" parent="." unique_id=1168787270]
 script = ExtResource("5_ag7vo")
 scales = SubResource("GradientTexture2D_ptrtu")
-scale_min = 2.0
-scale_max = 5.0
+scale_min = 3.0
+scale_max = 10.0
 metadata/_custom_type_script = "uid://5pbcieq7gpdo"
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="ESCTerrain" unique_id=400683327]
@@ -75,18 +79,18 @@ process_mode = 1
 position = Vector2(1654, 267)
 script = ExtResource("12_mesou")
 global_id = "map"
-esc_script = "res://rooms/tram/tram.esc"
+esc_script = "res://rooms/tram/map.esc"
 tooltip_name = "Kam chci jet?"
 default_action = "look"
 actions_requiring_target_object = PackedStringArray()
 metadata/_custom_type_script = "uid://dshelmw7y44qg"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="map" unique_id=1484446362]
-position = Vector2(-1658, -267)
-polygon = PackedVector2Array(1527, 401, 1885, 504, 1881, 56, 1517, 73)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="map" unique_id=2018882348]
+position = Vector2(49.75, -7)
+shape = SubResource("RectangleShape2D_uchm2")
 
 [node name="ESCInteractionLocation" type="Marker2D" parent="map" unique_id=1691348701]
-position = Vector2(-583, 588)
+position = Vector2(-637, 562)
 script = ExtResource("8_1brlw")
 metadata/_custom_type_script = "uid://chu4bvqgwxuts"
 

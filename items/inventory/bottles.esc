@@ -1,5 +1,5 @@
 :pickup
-	if not drunk_gone:
+	if game_day == 1 and not drunk_gone:
 		say($drunk, "Na ty flašky mi nesahej, ty sou moje!")
 	else:
 		say($olda, "Vrátím je u Vietnamce. Pár korun se hodí.")

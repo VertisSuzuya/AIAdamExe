@@ -3,24 +3,38 @@
 
 :talk
 	set_global("shop_reward_now", false)
-	?!
-		- "Nemáte nějaké hodinky? Klidně levné... nebo zadarmo?" [not shop_deal]
-			say($shopkeeper, "Zadarmo nic není. Ale...")
-			say($shopkeeper, "Venku sedí opilý chlap a řve na zákazníky. Když ho odeženete, dám vám hodinky.")
-			set_global("shop_deal", true)
-		- "Vykoupíte ode mě zálohované lahve?" [(bottles_taken and not bottles_returned) or (bin_bottles_taken and not bin_bottles_returned)]
-			say($shopkeeper, "Lahve? Dobře, pár korun za ně dostanete.")
-			if bottles_taken and not bottles_returned:
-				inventory_remove("bottles")
-				set_global("bottles_returned", true)
-			if bin_bottles_taken and not bin_bottles_returned:
-				inventory_remove("trash_bottles")
-				set_global("bin_bottles_returned", true)
-		- "Opilec je pryč." [shop_deal and drunk_gone and not watch_taken]
-			set_global("shop_reward_now", true)
-			done
-		- "Nic, jen se dívám."
-			done
+	if game_day == 1:
+		?!
+			- "Nemáte nějaké hodinky? Klidně levné... nebo zadarmo?" [not shop_deal]
+				say($shopkeeper, "Zadarmo nic není. Ale...")
+				say($shopkeeper, "Venku sedí opilý chlap a řve na zákazníky. Když ho odeženete, dám vám hodinky.")
+				set_global("shop_deal", true)
+			- "Vykoupíte ode mě zálohované lahve?" [(bottles_taken and not bottles_returned) or (bin_bottles_taken and not bin_bottles_returned)]
+				say($shopkeeper, "Lahve? Dobře, pár korun za ně dostanete.")
+				if bottles_taken and not bottles_returned:
+					inventory_remove("bottles")
+					set_global("bottles_returned", true)
+				if bin_bottles_taken and not bin_bottles_returned:
+					inventory_remove("trash_bottles")
+					set_global("bin_bottles_returned", true)
+			- "Opilec je pryč." [shop_deal and drunk_gone and not watch_taken]
+				set_global("shop_reward_now", true)
+				done
+			- "Nic, jen se dívám."
+				done
+	else:
+		say($shopkeeper, "Dobrý den, co si dáte?")
+		?!
+			- "Vykoupíte ode mě zálohované lahve?" [(bottles_taken and not bottles_returned) or (bin_bottles_taken and not bin_bottles_returned)]
+				say($shopkeeper, "Lahve? Dobře, pár korun za ně dostanete.")
+				if bottles_taken and not bottles_returned:
+					inventory_remove("bottles")
+					set_global("bottles_returned", true)
+				if bin_bottles_taken and not bin_bottles_returned:
+					inventory_remove("trash_bottles")
+					set_global("bin_bottles_returned", true)
+			- "Nic, jen se dívám."
+				done
 
 	if shop_reward_now:
 		if booth_coins_taken and machine_coins_taken and bottles_returned and bin_bottles_returned:
@@ -40,11 +54,11 @@
 			say($shopkeeper, "Ale kdybyste měl pár korun navíc, dám vám hezčí a vyberete si barvu.")
 			# AIdam napoví, kde ještě jsou peníze.
 			if not booth_coins_taken:
-				say($aidam, "V telefonní budce jsme se ještě nedívali. vyber ruku a klikni na budku.", "", "avatar")
+				say($aidam, "V telefonní budce jsme se ještě nedívali. Vyber ruku a klikni na budku.", "", "avatar")
 			if not machine_coins_taken:
 				say($aidam, "A co vracení mincí v automatu na kafe?", "", "avatar")
 			if not bottles_taken or not bin_bottles_taken:
-				say($aidam, "Říkal jsem ti už, že jedna z mých nejoblíběnějších aktivit je vracet vratný lahve?", "", "avatar")
+				say($aidam, "Říkal jsem ti už, že jedna z mých nejoblíbenějších aktivit je vracet vratný lahve?", "", "avatar")
 			if (bottles_taken and not bottles_returned) or (bin_bottles_taken and not bin_bottles_returned):
 				say($aidam, "Lahve máš u sebe, tak mu je vrať.", "", "avatar")
 			?!

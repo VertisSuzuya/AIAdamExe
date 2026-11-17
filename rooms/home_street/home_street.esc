@@ -1,5 +1,5 @@
 :setup
-	# Příchod z pokoje: Olda stojí u vchodu do domu, jinak na startu.
+	# Příchod: Olda stojí u východu, ze kterého přišel.
 	if ESC_LAST_SCENE == "oldas_room":
 		teleport($olda, $exit_to_room)
 	elif ESC_LAST_SCENE == "corner_shop":
@@ -7,11 +7,24 @@
 	else:
 		teleport($olda, $player_start)
 		
-	if bottles_taken:
-		set_active("bottles", false)
-	if drunk_gone:
+:apply_time
+	# Co je na ulici vidět podle dne a příznaků.
+	# Spouští ho game_clock po :setup, po načtení hry a při změně času.
+
+	# Úterý: opilec u večerky, dokud ho Olda neodežene.
+	if game_day == 1 and not drunk_gone:
+		set_active("drunk", true)
+	else:
 		set_active("drunk", false)
-		
+
+	# Lahve u výlohy leží, dokud je Olda nesebere.
+	if not bottles_taken:
+		set_active("bottles", true)
+	else:
+		set_active("bottles", false)
+
 	# Kelímek je v automatu, jen když je kafe uvařené a ještě nesebrané.
-	if not coffee_made or coffee_taken:
+	if coffee_made and not coffee_taken:
+		set_active("coffee", true)
+	else:
 		set_active("coffee", false)

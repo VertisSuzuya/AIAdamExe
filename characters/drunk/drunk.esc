@@ -22,7 +22,6 @@
 		?!
 			- "Hele, jedou sem policajti!"
 				say($drunk, "Cože? Do prdele...")
-				set_global("shop_reward_now", false)
 				# Mrknutí jako při změně části dne, opilec zmizí ve tmě.
 				transition("fade_black", "out", 0.5)
 				set_active("drunk", false)

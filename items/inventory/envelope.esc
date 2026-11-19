@@ -1,0 +1,16 @@
+:look
+	say($olda, "Obálka s logem té firmy. Je v ní něco tlustýho.")
+
+:pickup
+	inventory_add("envelope")
+	set_active("envelope", false)
+	set_global("envelope_taken", true)
+
+:use
+	say($olda, "Peníze! Víc, než jsem čekal.")
+	say($aidam, "Výplata pro pokusnýho králíka. Gratuluju, jsi zaměstnanec měsíce.", "", "avatar")
+	say($olda, "Je tu i lísteček. Děkujeme za spolupráci, kontroly nejsou nutné.")
+	say($aidam, "Kontroly nejsou nutné. To zní tak uklidňujícně, až to neuklidňuje.", "", "avatar")
+	inventory_remove("envelope")
+	inventory_add("money")
+	set_global("money_taken", true)

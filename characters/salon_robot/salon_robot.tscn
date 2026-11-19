@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cw7m0eg4xfg6r"]
+
+[ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="1_6fh0a"]
+[ext_resource type="Texture2D" uid="uid://dy8kd5g1jadah" path="res://characters/drunk/drunk.png" id="2_n1m0f"]
+[ext_resource type="Script" uid="uid://85bledusisk1" path="res://addons/escoria-core/game/core-scripts/esc_dialog_location.gd" id="3_7l7ky"]
+[ext_resource type="Texture2D" uid="uid://c3d42cmlxd6pa" path="res://characters/salon_robot/salon_robot.png" id="4_iskay"]
+[ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="5_pt1ns"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vqt0v"]
+radius = 45.0
+height = 216.0
+
+[node name="salon_robot" type="Area2D" unique_id=294159516]
+process_mode = 1
+script = ExtResource("1_6fh0a")
+global_id = "salon_robot"
+esc_script = "res://characters/salon_robot/salon_robot.esc"
+default_action = "talk"
+actions_requiring_target_object = PackedStringArray()
+inventory_texture = ExtResource("2_n1m0f")
+inventory_texture_hovered = ExtResource("2_n1m0f")
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=608450851]
+position = Vector2(4, -1)
+shape = SubResource("CapsuleShape2D_vqt0v")
+
+[node name="ESCDialogLocation" type="Marker2D" parent="." unique_id=421600479]
+position = Vector2(0, -138)
+script = ExtResource("3_7l7ky")
+metadata/_custom_type_script = "uid://85bledusisk1"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1908910693]
+position = Vector2(0, 2)
+scale = Vector2(0.34549752, 0.4361772)
+texture = ExtResource("4_iskay")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="." unique_id=1667240957]
+position = Vector2(-2, 130)
+script = ExtResource("5_pt1ns")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"

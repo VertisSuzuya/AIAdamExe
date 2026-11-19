@@ -18,14 +18,36 @@
 		set_active("batteries", false)
 		
 :ready
+	#start questu v pondeli
 	if tutorial_step == 0:
 		say($aidam, "Vítej doma. Prvně tě naučím jak se pohybovat po scéně.", "", "avatar")
 		say($aidam, "Abys šel, musíš... zatnout pravou půlku mozku. Nebo klikat myší. Jedno z toho.", "", "avatar")
 		say($aidam, "Zkus dojít k oknu.", "", "avatar")
 		set_global("tutorial_step", 1)
+	# Úterý po hodinkách: rozhovor o rodině, AIdam odemkne Centrum.
+	################upravit aby to nebylo hned pri spusteni sceny...
+	if game_day == 1 and watch_taken and not home_talk_done:
+		set_global("home_talk_done", true)
+		say($olda, "Tak hodinky mám. Ale stejně...")
+		walk_block($olda, $oldas_family_picture)
+		turn_to($olda, $oldas_family_picture)
+		say($olda, "Pořád myslím na ně. Snad mi jednou dají ještě šanci.")
+		say($aidam, "Upřímně? Takhle, jak vypadáš, ti ji nedají.", "", "avatar")
+		say($aidam, "Vousy jak trosečník, vlasy jak po výbuchu. Musíš se sebou něco udělat.", "", "avatar")
+		say($olda, "A za co? Nemám ani korunu.")
+		say($aidam, "Podle smlouvy ti peníze přijdou zítra. Ale můžeme se aspoň jít podívat, kam pak zajdeš.", "", "avatar")
+		say($aidam, "V centru je salon, hned vedle policejní stanice. Přidal jsem ti Centrum na mapu linek.", "", "avatar")
+		set_global("stop_center", true)
+		set_global("diary_stop_center", true)
 	
 :morning
 	# Spouští game_clock po probuzení (po mrknutí). Repliky podle dne.
+	if game_day == 1:
+		say($olda, "Doma mám aspoň budík. Venku ale nebudu mít tušení, kolik je hodin.")
+		say($olda, "Měl bych si sehnat hodinky.")
+		say($aidam, "Já bych ti čas klidně hlásil. Kdybych ho ovšem věděl.", "", "avatar")
+		say($olda, "Je tu takový ticho... Chybí mi.")
+		say($aidam, "Smutnit můžeš i venku, pojďmě na to postupně, prvně seženeme nějaký ty hodinky, pak budeme řešit rodinu.", "", "avatar")
 	if game_day == 2:
 		say($olda, "Pořád mi vrtá hlavou, co mi to vlastně dali do hlavy.")
 		say($olda, "Rád bych se o umělý inteligenci dozvěděl víc. Ale kde?")

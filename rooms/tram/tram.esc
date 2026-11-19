@@ -13,5 +13,5 @@
 		change_scene("res://rooms/fit_front/fit_front.tscn")
 	elif tram_target == "in_laws_house":
 		change_scene("res://rooms/in_laws_house/in_laws_house.tscn")
-	elif tram_target == "police_station":
-		change_scene("res://rooms/police_station/police_station.tscn")
+	elif tram_target == "city_center":
+		change_scene("res://rooms/city_center/city_center.tscn")

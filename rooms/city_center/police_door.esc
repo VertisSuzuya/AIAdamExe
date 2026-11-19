@@ -1,0 +1,5 @@
+:look
+	say($olda, "Policejní stanice. Tam se radši dobrovolně nepodívám.")
+
+:use
+	say($aidam, "Tam nemáme co dělat. Věř mi.", "", "avatar")

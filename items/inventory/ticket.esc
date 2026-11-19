@@ -1,0 +1,8 @@
+:look
+	say($olda, "Lítačka. Tomu opilci musela vypadnout z kapsy.")
+
+:pickup
+	say($olda, "Aspoň nebudu jezdit načerno.")
+	inventory_add("ticket")
+	set_active("ticket", false)
+	set_global("ticket_taken", true)

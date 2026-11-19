@@ -72,5 +72,4 @@
 		inventory_add("watches")
 		set_global("watch_taken", true)
 		set_global("diary_watch_taken", true)
-		set_global("day_task_done", true)
-		say($aidam, "Konečně víme, kolik je hodin. Můžeš jít domů spát.", "", "avatar")
+		say($aidam, "Konečně víme, kolik je hodin. Teď můžeš jít domů a vyřešíme spolu co dál.", "", "avatar")

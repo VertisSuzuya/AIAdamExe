@@ -11,7 +11,7 @@ const ACCENT = Color(0.0, 0.79, 0.8)
 const STOPS = {
 	"home_street": ["Domov", "", Vector2(420, 560)],
 	"fit_front": ["Dejvice", "stop_dejvice", Vector2(980, 330)],
-	"police_station": ["Centrum", "stop_center", Vector2(700, 470)],
+	"city_center": ["Centrum", "stop_center", Vector2(700, 470)],
 	"in_laws_house": ["Konečná", "stop_in_laws", Vector2(1240, 690)],
 }
 

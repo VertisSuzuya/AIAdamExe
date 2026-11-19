@@ -1,0 +1,20 @@
+:look
+	say($olda, "Robot s pokladnou na břiše. Vypadá starší než já.")
+	say($aidam, "Čip AI verze jedna nula. To je jako mluvit s clanker kalkulačkou.", "", "avatar")
+
+:talk
+	if game_day == 1 and not salon_seen:
+		say($salon_robot, "VÍTEJTE V THAI PARADISE 2.0! VÁŠ NOVÝ VY ZA PATNÁCT MINUT!")
+		say($salon_robot, "ANALYZUJI ZÁKAZNÍKA... VÝSLEDEK: KRITICKÝ STAV. DOPORUČUJI KOMPLETNÍ BALÍČEK.")
+		say($olda, "Díky. Kolik to stojí?")
+		say($salon_robot, "KOMPLETNÍ BALÍČEK: DVA TISÍCE KORUN. PŘIJÍMÁME HOTOVOST, KARTY A LEDVINY.")
+		say($salon_robot, "ŽERTUJI. HA. HA. HA.")
+		say($aidam, "Ten humor mu nahrávali ještě z diskety.", "", "avatar")
+		say($olda, "Tolik u sebe nemám. Přijdu zítra.")
+		say($salon_robot, "BUDU ZDE. JSEM PŘIŠROUBOVÁN.")
+		say($aidam, "Tak a víš, kam zítra. Teď domů a spát, peníze by měly přijít ráno.", "", "avatar")
+		set_global("salon_seen", true)
+		set_global("diary_salon_seen", true)
+		set_global("day_task_done", true)
+	else:
+		say($salon_robot, "VRAŤTE SE S PENĚZI. VÁŠ NOVÝ VY NA VÁS ČEKÁ.")

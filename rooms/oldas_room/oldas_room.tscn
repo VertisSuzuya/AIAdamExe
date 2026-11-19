@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://e3s4youbhlry" path="res://items/inventory/oldas_family_picture.tscn" id="11_x0yt2"]
 [ext_resource type="Script" uid="uid://bg1sl307y6lbi" path="res://systems/room_lighting.gd" id="13_u3ias"]
 [ext_resource type="Script" uid="uid://btt4cprco53ec" path="res://addons/escoria-core/game/core-scripts/esc_exit.gd" id="14_go63i"]
+[ext_resource type="PackedScene" uid="uid://b6xwkv252w0aq" path="res://items/inventory/envelope.tscn" id="15_x4sef"]
 
 [sub_resource type="Gradient" id="Gradient_2800j"]
 
@@ -159,3 +160,6 @@ metadata/_custom_type_script = "uid://beh3ds4eapldu"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ESCExit" unique_id=1893104764]
 position = Vector2(0, -43)
 shape = SubResource("RectangleShape2D_xffai")
+
+[node name="envelope" parent="." unique_id=2006973478 instance=ExtResource("15_x4sef")]
+position = Vector2(435, 818)

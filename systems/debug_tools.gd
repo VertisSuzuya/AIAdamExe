@@ -8,6 +8,7 @@ extends Node
 #   Ctrl+K   denní úkol splněn (day_task_done = true), jde se spát
 #   Ctrl+1 až Ctrl+9   skok do místnosti ze seznamu ROOMS
 #   Ctrl+W   hodinky zapnout / vypnout (čas vidět i mimo pokoj)
+#   Ctrl+R   rychlá chůze Oldy zapnout / vypnout (doběhne skoro hned)
 #
 # Funguje až po New Game (dokud neexistují globály, nic nedělá).
 
@@ -28,11 +29,15 @@ const DAY_NAMES = ["pondělí", "úterý", "středa", "čtvrtek", "pátek", "sob
 
 var _normal_speed: float = 1.0
 var _fast: bool = false
+var _fast_walk: bool = false
+var _normal_walk_speed: int = 300
+const FAST_WALK_SPEED = 20000
 
 
 func _ready() -> void:
 	if not OS.is_debug_build():
 		set_process_input(false)
+		set_process(false)
 
 
 func _input(event: InputEvent) -> void:
@@ -66,6 +71,9 @@ func _input(event: InputEvent) -> void:
 				get_viewport().set_input_as_handled()
 				return
 			return
+		KEY_R:
+			_fast_walk = not _fast_walk
+			print("[debug] rychlá chůze: %s" % ("ano" if _fast_walk else "ne"))
 	get_viewport().set_input_as_handled()
 
 
@@ -120,3 +128,20 @@ func _toggle_watch() -> void:
 			and bool(escoria.globals_manager.get_global("watch_taken"))
 	escoria.globals_manager.set_global("watch_taken", not has_watch)
 	print("[debug] hodinky: %s" % ("ano" if not has_watch else "ne"))
+	
+
+
+# Rychlá chůze: Olda je v každé místnosti nová instance, proto se rychlost
+# nastavuje každý snímek (po změně místnosti by se vrátila na výchozí).
+func _process(_delta: float) -> void:
+	if escoria.object_manager == null or not escoria.object_manager.has("olda"):
+		return
+	var olda = escoria.object_manager.get_object("olda").node
+	if not is_instance_valid(olda):
+		return
+	if _fast_walk:
+		if olda.speed != FAST_WALK_SPEED:
+			_normal_walk_speed = olda.speed
+			olda.speed = FAST_WALK_SPEED
+	elif olda.speed == FAST_WALK_SPEED:
+		olda.speed = _normal_walk_speed

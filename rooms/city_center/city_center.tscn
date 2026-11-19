@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://crunh33bd432x"]
+
+[ext_resource type="Script" uid="uid://c7fcpp72w3dnj" path="res://addons/escoria-core/game/core-scripts/esc_room.gd" id="1_ud66v"]
+[ext_resource type="PackedScene" uid="uid://ihn2iq8wcqag" path="res://characters/olda/olda.tscn" id="2_g0bym"]
+[ext_resource type="Texture2D" uid="uid://ycjm0ino5spg" path="res://rooms/city_center/city_center.png" id="3_6h2oq"]
+[ext_resource type="Script" uid="uid://fnwnfflaoeqp" path="res://addons/escoria-core/game/core-scripts/esc_background.gd" id="4_lok4h"]
+[ext_resource type="Script" uid="uid://5pbcieq7gpdo" path="res://addons/escoria-core/game/core-scripts/esc_terrain.gd" id="5_37322"]
+[ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="8_rj8un"]
+[ext_resource type="Script" uid="uid://bg1sl307y6lbi" path="res://systems/room_lighting.gd" id="9_i337v"]
+[ext_resource type="PackedScene" uid="uid://cw7m0eg4xfg6r" path="res://characters/salon_robot/salon_robot.tscn" id="10_6o0rg"]
+[ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="13_x0xlu"]
+[ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="14_ipes3"]
+
+[sub_resource type="Gradient" id="Gradient_6wxwk"]
+offsets = PackedFloat32Array(0, 0.38311687, 0.73376626, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.2987013, 0.2987013, 0.2987013, 1, 0.763773, 0.763773, 0.763773, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ptrtu"]
+gradient = SubResource("Gradient_6wxwk")
+width = 2880
+height = 1080
+fill_from = Vector2(1, 0.5504587)
+fill_to = Vector2(0.9908257, 1)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xffai"]
+vertices = PackedVector2Array(2868.0313, 1070.0078, 3.1796875, 1074.9766, 7.828125, 813, 2868.961, 813)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(2879, 803, 2878, 1080, -7, 1085, -2, 803)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uchm2"]
+size = Vector2(376, 267)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kl1fi"]
+size = Vector2(163, 130)
+
+[node name="city_center" type="Node2D" unique_id=1381403444]
+script = ExtResource("1_ud66v")
+global_id = "city_center"
+esc_script = "res://rooms/city_center/city_center.esc"
+player_scene = ExtResource("2_g0bym")
+metadata/_custom_type_script = "uid://c7fcpp72w3dnj"
+
+[node name="escbackground" type="TextureRect" parent="." unique_id=1212681230]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("3_6h2oq")
+script = ExtResource("4_lok4h")
+metadata/_custom_type_script = "uid://fnwnfflaoeqp"
+
+[node name="ESCTerrain" type="Node2D" parent="." unique_id=1168787270]
+script = ExtResource("5_37322")
+scales = SubResource("GradientTexture2D_ptrtu")
+scale_min = 2.0
+scale_max = 5.0
+metadata/_custom_type_script = "uid://5pbcieq7gpdo"
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="ESCTerrain" unique_id=400683327]
+position = Vector2(2, -3)
+navigation_polygon = SubResource("NavigationPolygon_xffai")
+
+[node name="player_start" type="Marker2D" parent="." unique_id=696703279]
+position = Vector2(421, 824)
+script = ExtResource("8_rj8un")
+global_id = "player_start"
+is_start_location = true
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1813585703]
+script = ExtResource("9_i337v")
+
+[node name="Aidam" parent="." unique_id=1389523226 instance=ExtResource("14_ipes3")]
+
+[node name="tram_stop" type="Area2D" parent="." unique_id=228112183]
+process_mode = 1
+position = Vector2(345, 713)
+script = ExtResource("13_x0xlu")
+global_id = "tram_stop"
+esc_script = "res://rooms/city_center/tram_stop.esc"
+tooltip_name = "Zastávka"
+default_action = "look"
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tram_stop" unique_id=265171961]
+position = Vector2(26, -39.5)
+shape = SubResource("RectangleShape2D_uchm2")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="tram_stop" unique_id=566860929]
+position = Vector2(29, 111)
+script = ExtResource("8_rj8un")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="police_door" type="Area2D" parent="." unique_id=1989111343]
+process_mode = 1
+position = Vector2(1820, 738)
+script = ExtResource("13_x0xlu")
+global_id = "police_door"
+esc_script = "res://rooms/city_center/police_door.esc"
+tooltip_name = "Dveře na policii"
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="police_door" unique_id=1601280847]
+position = Vector2(0.5, -3)
+shape = SubResource("RectangleShape2D_kl1fi")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="police_door" unique_id=343953335]
+position = Vector2(1, 89)
+script = ExtResource("8_rj8un")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="salon_robot" parent="." unique_id=294159516 instance=ExtResource("10_6o0rg")]
+position = Vector2(2816, 733)
+tooltip_name = "Robot prodavač"

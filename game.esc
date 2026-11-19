@@ -1,6 +1,8 @@
 :init
 	show_menu("main")
 :newgame
+	#####################################MONDAY#####################################
+
 	set_global("brick_taken", false)
 	set_global("lab_flashbacks_done", false)
 	set_global("lab_intro_done", false)
@@ -32,8 +34,8 @@
 	# Příznaky z rozvrhu (:update_schedule je přepíše, tady jen výchozí hodnoty,
 	# aby byly definované dřív, než je přečte :setup místnosti)
 	set_global("shop_open", true)
-	
-	#tuasday home street
+	#####################################TUESDAY#####################################
+									#tuasday home street#
 	set_global("drunk_gone", false)
 	set_global("bottles_taken", false)
 	set_global("shop_deal", false)
@@ -52,6 +54,19 @@
 	set_global("drunk_talked", false)
 	set_global("coins_have", false)
 	set_global("coffee_made", false)
+	set_global("ticket_taken", false)
+	set_global("home_talk_done", false)
+											#centrum#
+	set_global("salon_seen", false)
+	set_global("diary_salon_seen", false)
+	
+		#####################################WEDNESDAY#####################################
+	set_global("envelope_taken", false)
+	set_global("money_taken", false)
+	set_global("salon_pay_now", false)
+	set_global("olda_groomed", false)
+	set_global("diary_olda_groomed", false)
+	
 	
 		# Tramvaj
 	set_global("tram_from", "home_street")

@@ -30,3 +30,9 @@
 		set_active("coffee", true)
 	else:
 		set_active("coffee", false)
+		
+	# Lítačka leží po opilci, dokud ji Olda nesebere.
+	if drunk_gone and not ticket_taken:
+		set_active("ticket", true)
+	else:
+		set_active("ticket", false)

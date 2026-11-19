@@ -1,0 +1,5 @@
+:setup
+	if ESC_LAST_SCENE == "tram":
+		teleport($olda, $tram_stop)
+	else:
+		teleport($olda, $player_start)

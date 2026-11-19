@@ -25,9 +25,11 @@
 				# Mrknutí jako při změně části dne, opilec zmizí ve tmě.
 				transition("fade_black", "out", 0.5)
 				set_active("drunk", false)
+				set_active("ticket", true)
 				set_global("drunk_gone", true)
 				set_global("diary_drunk_gone", true)
 				transition("fade_black", "in", 0.5)
+				say($aidam, "Utíkal tak rychle, že mu něco vypadlo. Mrkni na to.", "", "avatar")
 				done
 			- "Tak nic."
 				done

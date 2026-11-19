@@ -33,6 +33,9 @@ size = Vector2(376, 267)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kl1fi"]
 size = Vector2(163, 130)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqt0v"]
+size = Vector2(150.5, 172.5)
+
 [node name="city_center" type="Node2D" unique_id=1381403444]
 script = ExtResource("1_ud66v")
 global_id = "city_center"
@@ -113,3 +116,20 @@ metadata/_custom_type_script = "uid://chu4bvqgwxuts"
 [node name="salon_robot" parent="." unique_id=294159516 instance=ExtResource("10_6o0rg")]
 position = Vector2(2816, 733)
 tooltip_name = "Robot prodavač"
+
+[node name="salon_door" type="Area2D" parent="." unique_id=992203980]
+process_mode = 1
+position = Vector2(2685, 732)
+script = ExtResource("13_x0xlu")
+global_id = "salon_door"
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="salon_door" unique_id=1440741932]
+position = Vector2(4.75, -17.75)
+shape = SubResource("RectangleShape2D_vqt0v")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="salon_door" unique_id=1884238330]
+position = Vector2(7, 89)
+script = ExtResource("8_rj8un")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"

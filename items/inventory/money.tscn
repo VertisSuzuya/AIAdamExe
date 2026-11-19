@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://b0rcef77npi3e"]
+
+[ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="1_youea"]
+[ext_resource type="Texture2D" uid="uid://ctwfdllktwh1b" path="res://grafika/money.png" id="2_bee7u"]
+[ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="4_bydfu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqt0v"]
+size = Vector2(183.33333, 120)
+
+[node name="money" type="Area2D" unique_id=768690128]
+process_mode = 1
+script = ExtResource("1_youea")
+global_id = "money"
+esc_script = "res://items/inventory/money.esc"
+tooltip_name = "Peníze"
+default_action = "pickup"
+actions_requiring_target_object = PackedStringArray("use")
+inventory_texture = ExtResource("2_bee7u")
+inventory_texture_hovered = ExtResource("2_bee7u")
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1601864450]
+position = Vector2(0, 1)
+scale = Vector2(0.014251062, 0.011154021)
+texture = ExtResource("2_bee7u")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="." unique_id=704789273]
+position = Vector2(0, 19)
+script = ExtResource("4_bydfu")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1915667594]
+position = Vector2(-2.9802322e-08, 0)
+scale = Vector2(0.3, 0.3)
+shape = SubResource("RectangleShape2D_vqt0v")

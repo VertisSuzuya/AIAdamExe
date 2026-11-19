@@ -3,8 +3,9 @@
 	say($aidam, "Čip AI verze jedna nula. To je jako mluvit s clanker kalkulačkou.", "", "avatar")
 
 :talk
+	set_global("salon_pay_now", false)
 	if game_day == 1 and not salon_seen:
-		say($salon_robot, "VÍTEJTE V THAI PARADISE 2.0! VÁŠ NOVÝ VY ZA PATNÁCT MINUT!")
+		say($salon_robot, "VÍTEJTE V THAI PARADISE 2.0! VAŠE NOVÝ JÁ ZA PATNÁCT MINUT!")
 		say($salon_robot, "ANALYZUJI ZÁKAZNÍKA... VÝSLEDEK: KRITICKÝ STAV. DOPORUČUJI KOMPLETNÍ BALÍČEK.")
 		say($olda, "Díky. Kolik to stojí?")
 		say($salon_robot, "KOMPLETNÍ BALÍČEK: DVA TISÍCE KORUN. PŘIJÍMÁME HOTOVOST, KARTY A LEDVINY.")
@@ -16,5 +17,29 @@
 		set_global("salon_seen", true)
 		set_global("diary_salon_seen", true)
 		set_global("day_task_done", true)
+	elif olda_groomed:
+		say($salon_robot, "VYPADÁTE O DESET LET MLADŠÍ. NEBO O DESET MINUT. TĚŽKO ŘÍCI.")
+	elif money_taken:
+		say($salon_robot, "VÍTEJTE ZPĚT, KRITICKÝ ZÁKAZNÍKU! MÁTE PENÍZE?")
+		?!
+			- "Mám. Dejte mi ten kompletní balíček."
+				set_global("salon_pay_now", true)
+				done
+			- "Ještě se rozmyslím."
+				done
 	else:
-		say($salon_robot, "VRAŤTE SE S PENĚZI. VÁŠ NOVÝ VY NA VÁS ČEKÁ.")
+		say($salon_robot, "VRAŤTE SE S PENĚZI. VAŠE NOVÝ JÁ NA VÁS ČEKÁ.")
+
+	if salon_pay_now:
+		say($salon_robot, "PLATBA PŘIJATA. VSTUPTE DO KAPSLE ČÍSLO DVĚ.")
+		set_global("day_minute", day_minute + 30)
+		change_scene("res://rooms/salon_booth/salon_booth.tscn")
+
+:use money
+	if olda_groomed:
+		say($salon_robot, "JIŽ JSTE DOKONALÝ. DALŠÍ PLATBU ALE PŘIJMU RÁD.")
+	else:
+		say($olda, "Tady máte. Kompletní balíček.")
+		say($salon_robot, "PLATBA PŘIJATA. VSTUPTE DO KAPSLE ČÍSLO DVĚ.")
+		set_global("day_minute", day_minute + 30)
+		change_scene("res://rooms/salon_booth/salon_booth.tscn")

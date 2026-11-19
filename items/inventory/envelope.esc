@@ -1,5 +1,6 @@
 :look
-	say($olda, "Obálka s logem té firmy. Je v ní něco tlustýho.")
+	say($olda, "Obálka, není na ní ani napsaný od koho je.")
+	say($aidam, "je v ní něco tlustýho.", "", "avatar")
 
 :pickup
 	inventory_add("envelope")

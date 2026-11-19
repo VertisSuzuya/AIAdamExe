@@ -67,7 +67,16 @@ func _process(delta: float) -> void:
 		return
 
 	var room: ESCRoom = escoria.main.current_scene
-
+	
+	# Escoria vrací FORCE_LAST_SCENE_NULL na false až po úspěšném :ready
+	# (esc_room_manager.gd:557-574). Laboratoř a flashbacky mění scénu přímo
+	# v :ready, takže příznak zůstane true a další místnosti dostanou prázdné
+	# ESC_LAST_SCENE (Olda se objeví na startu místo u dveří). V klidu ho vrátíme.
+	var force_null = escoria.room_manager.GLOBAL_FORCE_LAST_SCENE_NULL
+	if escoria.globals_manager.get_global(force_null) and _front_channel_idle() \
+			and not escoria.event_manager._changing_scene:
+		escoria.globals_manager.set_global(force_null, false, true)
+	
 	# Místnost bez :setup nebo po načtení hry: :apply_time ještě neproběhla.
 	if room != _applied_room:
 		_applied_room = room

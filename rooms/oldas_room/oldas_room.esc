@@ -28,6 +28,7 @@
 	################upravit aby to nebylo hned pri spusteni sceny...
 	if game_day == 1 and watch_taken and not home_talk_done:
 		set_global("home_talk_done", true)
+		accept_input("SKIP")
 		say($olda, "Tak hodinky mám. Ale stejně...")
 		walk_block($olda, $oldas_family_picture)
 		turn_to($olda, $oldas_family_picture)
@@ -39,7 +40,8 @@
 		say($aidam, "V centru je salon, hned vedle policejní stanice. Přidal jsem ti Centrum na mapu linek.", "", "avatar")
 		set_global("stop_center", true)
 		set_global("diary_stop_center", true)
-	
+		accept_input("ALL")
+
 :morning
 	# Spouští game_clock po probuzení (po mrknutí). Repliky podle dne.
 	if game_day == 1:
@@ -48,10 +50,19 @@
 		say($aidam, "Já bych ti čas klidně hlásil. Kdybych ho ovšem věděl.", "", "avatar")
 		say($olda, "Je tu takový ticho... Chybí mi.")
 		say($aidam, "Smutnit můžeš i venku, pojďmě na to postupně, prvně seženeme nějaký ty hodinky, pak budeme řešit rodinu.", "", "avatar")
-	if game_day == 2:
+	elif game_day == 2:
 		say($olda, "Pořád mi vrtá hlavou, co mi to vlastně dali do hlavy.")
 		say($olda, "Rád bych se o umělý inteligenci dozvěděl víc. Ale kde?")
-		say($aidam, "Co třeba Dejvice? Na ČVUT FIT tohle studujou. Studenti o tom budou vědět víc než já. Skoro.", "", "avatar")
-		set_global("stop_dejvice", true)
-		set_global("diary_stop_dejvice", true)
-		say($aidam, "Přidal jsem ti Dejvice na mapu linek, pokud by jsi se tam chtěl podívat:)", "", "avatar")
+		say($aidam, "Jedno místo bych znal. Ale takhle tě tam nepustím, vyděsil bys je.", "", "avatar")
+		say($aidam, "Nejdřív salon. Až se dáš do pucu, přidám ti ho na mapu.", "", "avatar")
+		walk_block($olda, $envelope)
+		say($olda, "Hele, obálka. Ta tu včera nebyla.")
+		say($aidam, "Že by výplata? Vezmi ji a otevři.", "", "avatar")
+		
+
+:apply_time
+	# Obálka od firmy leží na stolku od středy, dokud ji Olda nesebere.
+	if game_day >= 2 and not envelope_taken:
+		set_active("envelope", true)
+	else:
+		set_active("envelope", false)

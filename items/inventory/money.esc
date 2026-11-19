@@ -1,0 +1,2 @@
+:look
+	say($olda, "Peníze od firmy. Chvíli s nima vydržím.")

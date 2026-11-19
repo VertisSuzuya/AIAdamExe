@@ -22,7 +22,7 @@ metadata/_snap_enabled = true
 gradient = SubResource("Gradient_outif")
 width = 1920
 height = 1080
-fill_from = Vector2(1, 0.5953109)
+fill_from = Vector2(1, 0.5288326)
 fill_to = Vector2(1, 1)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_xffai"]

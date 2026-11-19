@@ -92,7 +92,7 @@ global_id = "home_exit"
 metadata/_custom_type_script = "uid://chu4bvqgwxuts"
 
 [node name="player_start" type="Marker2D" parent="." unique_id=696703279]
-position = Vector2(3752, 909)
+position = Vector2(1971, 792)
 script = ExtResource("8_d0d1h")
 global_id = "player_start"
 is_start_location = true

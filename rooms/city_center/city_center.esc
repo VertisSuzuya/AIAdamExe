@@ -1,5 +1,17 @@
 :setup
 	if ESC_LAST_SCENE == "tram":
 		teleport($olda, $tram_stop)
+	elif ESC_LAST_SCENE == "salon_booth":
+		teleport($olda, $salon_door)
 	else:
 		teleport($olda, $player_start)
+
+:ready
+	if ESC_LAST_SCENE == "salon_booth" and not stop_dejvice:
+		say($olda, "No teda. To jsem já?")
+		say($aidam, "Konečně vypadáš trochu víc k světu. Teď se tě nebudou bát ani studenti.", "", "avatar")
+		say($olda, "A chtěl bych zavolat ženě. Jenže číslo jsem měl jen v mobilu a ten je pryč.")
+		say($aidam, "S číslem ti pomůžu. Ale něco za něco, ještě nevím co.", "", "avatar")
+		say($aidam, "O umělý inteligenci ti víc řeknou na ČVUT FIT v Dejvicích. Přidal jsem ti je na mapu, zastávka je hned tady.", "", "avatar")
+		set_global("stop_dejvice", true)
+		set_global("diary_stop_dejvice", true)

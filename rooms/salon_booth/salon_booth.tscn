@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cnq0idoil118x"]
+
+[ext_resource type="Script" uid="uid://c7fcpp72w3dnj" path="res://addons/escoria-core/game/core-scripts/esc_room.gd" id="1_u60wl"]
+[ext_resource type="PackedScene" uid="uid://ihn2iq8wcqag" path="res://characters/olda/olda.tscn" id="2_guaiv"]
+[ext_resource type="Texture2D" uid="uid://3v5k0ciud10a" path="res://rooms/salon_booth/salon_booth.png" id="3_x4jjd"]
+[ext_resource type="Script" uid="uid://fnwnfflaoeqp" path="res://addons/escoria-core/game/core-scripts/esc_background.gd" id="4_us1ei"]
+[ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="5_pdqq8"]
+
+[node name="salon_booth" type="Node2D" unique_id=2014788545]
+script = ExtResource("1_u60wl")
+global_id = "salon_booth"
+esc_script = "res://rooms/salon_booth/salon_booth.esc"
+player_scene = ExtResource("2_guaiv")
+metadata/_custom_type_script = "uid://c7fcpp72w3dnj"
+
+[node name="escbackground" type="TextureRect" parent="." unique_id=2004343302]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("3_x4jjd")
+script = ExtResource("4_us1ei")
+metadata/_custom_type_script = "uid://fnwnfflaoeqp"
+
+[node name="Aidam" parent="." unique_id=1389523226 instance=ExtResource("5_pdqq8")]

@@ -58,6 +58,12 @@ func _exit_tree() -> void:
 		escoria.globals_manager.global_changed.disconnect(_on_global_changed)
 
 
+
+# Při otevření pauzového menu (Esc) se mapa zavře, jinak by ležela přes menu.
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PAUSED and visible:
+		escoria.globals_manager.set_global("tram_map_open", false)
+
 # Escoria posílá signál před uložením hodnoty, proto new_value.
 func _on_global_changed(global: String, _old, new_value) -> void:
 	if global == "tram_map_open":

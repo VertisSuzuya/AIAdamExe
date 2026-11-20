@@ -1,0 +1,23 @@
+:look
+	say($olda, "Malá kavárna. Vypadá útulně.")
+
+:use
+	if cafe_reserved:
+		say($olda, "Rezervaci na zítra už mám.")
+	else:
+		accept_input("SKIP")
+		say($olda, "Tady to vypadá hezky. Sem bych je mohl vzít.")
+		say($aidam, "Útulný, ne moc drahý a dcera tu dostane horkou čokoládu. Schvaluju.", "", "avatar")
+		say($aidam, "Zarezervuj stůl na zítřek odpoledne. Kdyby žena souhlasila, už ho budeš mít.", "", "avatar")
+		say($olda, "A když nebude chtít?")
+		say($aidam, "Tak sníš dva dorty sám. Výhra na obou stranách.", "", "avatar")
+		transition("fade_black", "out", 0.5)
+		set_global("day_minute", day_minute + 15)
+		teleport($olda, $cafe_door)
+		set_angle($olda, 180)
+		set_global("cafe_reserved", true)
+		set_global("diary_cafe_reserved", true)
+		transition("fade_black", "in", 0.5)
+		say($olda, "Stůl pro tři, zítra odpoledne. Mám to.")
+		say($aidam, "Výborně. A teď to nejdůležitější: Mutanti! V šest v atriu. Ani o minutu později.", "", "avatar")
+		accept_input("ALL")

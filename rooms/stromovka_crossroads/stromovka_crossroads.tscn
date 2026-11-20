@@ -12,6 +12,10 @@
 [ext_resource type="Script" uid="uid://btt4cprco53ec" path="res://addons/escoria-core/game/core-scripts/esc_exit.gd" id="11_6x1vv"]
 [ext_resource type="Script" uid="uid://bg1sl307y6lbi" path="res://systems/room_lighting.gd" id="12_e1v8y"]
 [ext_resource type="AudioStream" uid="uid://yqk2bk32pivx" path="res://sound/efekt.mp3" id="12_ptrtu"]
+[ext_resource type="Texture2D" uid="uid://ta7gejr0jsyx" path="res://rooms/stromovka_crossroads/cafe_front.png" id="13_hkpp0"]
+[ext_resource type="Texture2D" uid="uid://dffv72s1x51ft" path="res://rooms/stromovka_crossroads/construction.png" id="14_qjtn2"]
+[ext_resource type="Script" uid="uid://beh3ds4eapldu" path="res://addons/escoria-core/game/core-scripts/esc_location.gd" id="15_abw7k"]
+[ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="16_njnkt"]
 
 [sub_resource type="Gradient" id="Gradient_outif"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -32,6 +36,12 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-1, 1077, 1923, 1080, 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vqt0v"]
 size = Vector2(123, 61)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xffai"]
+size = Vector2(384, 244)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rlnn4"]
+size = Vector2(650, 332)
 
 [node name="Stromovka_crossroads" type="Node2D" unique_id=1186611560]
 script = ExtResource("1_ow0mg")
@@ -109,21 +119,21 @@ texture = ExtResource("9_l0jc4")
 [node name="brick" parent="." unique_id=2085353597 instance=ExtResource("10_l0jc4")]
 position = Vector2(177, 812)
 
-[node name="ESCExit" type="Area2D" parent="." unique_id=2143521335]
+[node name="exit_to_long" type="Area2D" parent="." unique_id=2143521335]
 position = Vector2(43, 1007)
 script = ExtResource("11_6x1vv")
 target_scene = "uid://ctx1svesdmltj"
 switch_sound = ExtResource("12_ptrtu")
 global_id = "exit_to_long"
-tooltip_name = "cesta k laboratoři"
+tooltip_name = "Cesta na Stromovku"
 default_action = "use"
 metadata/_custom_type_script = "uid://btt4cprco53ec"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ESCExit" unique_id=151977351]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="exit_to_long" unique_id=151977351]
 position = Vector2(7, -4)
-polygon = PackedVector2Array(-56, 81, -56, -165, 264, -157, 595, -36, 673, 79)
+polygon = PackedVector2Array(-56, 81, -56, -165, 264, -157, 384, -113, 487, -36, 577, 74)
 
-[node name="ESCInteractionLocation" type="Marker2D" parent="ESCExit" unique_id=218800660]
+[node name="ESCInteractionLocation" type="Marker2D" parent="exit_to_long" unique_id=218800660]
 position = Vector2(-9, 31)
 script = ExtResource("8_v7vqg")
 metadata/_custom_type_script = "uid://chu4bvqgwxuts"
@@ -139,6 +149,7 @@ metadata/_custom_type_script = "uid://chu4bvqgwxuts"
 script = ExtResource("11_6x1vv")
 target_scene = "uid://boiv4y0sf8v7e"
 global_id = "exit_to_fit_front"
+tooltip_name = "Cesta zpět ke škole"
 metadata/_custom_type_script = "uid://btt4cprco53ec"
 
 [node name="ESCInteractionLocation" type="Marker2D" parent="exit_to_fit" unique_id=170317201]
@@ -152,3 +163,56 @@ shape = SubResource("RectangleShape2D_vqt0v")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1003792598]
 script = ExtResource("12_e1v8y")
+
+[node name="cafe_front" type="Area2D" parent="." unique_id=808145947]
+process_mode = 1
+script = ExtResource("7_a54ss")
+global_id = "cafe_front"
+esc_script = "res://rooms/stromovka_crossroads/cafe_front.esc"
+tooltip_name = "Kavárna"
+actions_requiring_target_object = PackedStringArray()
+inventory_texture = ExtResource("13_hkpp0")
+inventory_texture_hovered = ExtResource("13_hkpp0")
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="Sprite2D" type="Sprite2D" parent="cafe_front" unique_id=1477400878]
+position = Vector2(929, 514)
+texture = ExtResource("13_hkpp0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cafe_front" unique_id=1163382433]
+position = Vector2(829, 599)
+shape = SubResource("RectangleShape2D_xffai")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="cafe_front" unique_id=1141693733]
+position = Vector2(683, 739)
+script = ExtResource("8_v7vqg")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="construction" type="Area2D" parent="." unique_id=36083463]
+process_mode = 1
+position = Vector2(234, 939)
+script = ExtResource("7_a54ss")
+global_id = "construction"
+esc_script = "res://rooms/stromovka_crossroads/construction.esc"
+actions_requiring_target_object = PackedStringArray()
+inventory_texture = ExtResource("14_qjtn2")
+inventory_texture_hovered = ExtResource("14_qjtn2")
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="Sprite2D" type="Sprite2D" parent="construction" unique_id=532790253]
+position = Vector2(25, -47.5)
+scale = Vector2(1, 1.0633334)
+texture = ExtResource("14_qjtn2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="construction" unique_id=599552630]
+z_index = 2
+position = Vector2(74, -20)
+shape = SubResource("RectangleShape2D_rlnn4")
+
+[node name="cafe_door" type="Marker2D" parent="." unique_id=1375303314]
+position = Vector2(697, 727)
+script = ExtResource("15_abw7k")
+global_id = "cafe_door"
+metadata/_custom_type_script = "uid://beh3ds4eapldu"
+
+[node name="Aidam" parent="." unique_id=1389523226 instance=ExtResource("16_njnkt")]

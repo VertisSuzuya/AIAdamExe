@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://btt4cprco53ec" path="res://addons/escoria-core/game/core-scripts/esc_exit.gd" id="8_odan4"]
 [ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="9_eacin"]
 [ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="10_gaohi"]
+[ext_resource type="PackedScene" uid="uid://q8tbobebdlog" path="res://characters/students/student1.tscn" id="11_fnu72"]
+[ext_resource type="PackedScene" uid="uid://b8nwdnck6baiv" path="res://characters/students/student2.tscn" id="12_wjufx"]
 
 [sub_resource type="Gradient" id="Gradient_6wxwk"]
 offsets = PackedFloat32Array(0, 0.38311687, 0.73376626, 1)
@@ -76,6 +78,7 @@ position = Vector2(1772, 773)
 script = ExtResource("8_odan4")
 target_scene = "uid://tx4ttaq0i75b"
 global_id = "exit_to_stromovka"
+esc_script = "res://rooms/fit_front/exit_to_stromovka.esc"
 tooltip_name = "Jít na Stromovku"
 metadata/_custom_type_script = "uid://btt4cprco53ec"
 
@@ -126,3 +129,11 @@ shape = SubResource("RectangleShape2D_xffai")
 position = Vector2(-10, 8)
 script = ExtResource("6_dkhud")
 metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="student1" parent="." unique_id=294159516 instance=ExtResource("11_fnu72")]
+position = Vector2(641, 646)
+global_id = "student_1"
+
+[node name="student2" parent="." unique_id=418273567 instance=ExtResource("12_wjufx")]
+position = Vector2(569, 649)
+global_id = "student_2"

@@ -1,15 +1,18 @@
 :setup
-	print("test setup")
 	play_snd("res://sound/music/sneakySong.mp3", _music)
 	if ESC_LAST_SCENE == "stromovka_long":
 		teleport($olda, $exit_to_long)
 		set_angle($olda, 60)
-	if ESC_LAST_SCENE == "fit_front":
+	elif ESC_LAST_SCENE == "fit_front":
 		teleport($olda, $exit_to_fit_front)
 	else:
 		teleport($olda, $player_start)
 	if brick_taken:
 		set_active("brick", false)
-:ready
-	print("testuju ready")
-	say($olda, "Testuju hudbu")
+
+:apply_time
+	# Ve středu je cesta do dlouhého parku zavřená stavbou (ve čtvrtek hotovo).
+	if game_day == 2:
+		set_active("construction", true)
+	else:
+		set_active("construction", false)

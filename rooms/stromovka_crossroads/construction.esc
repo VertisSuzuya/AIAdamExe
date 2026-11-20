@@ -1,0 +1,3 @@
+:look
+	say($olda, "Stavba. Prý zítra hotovo.")
+	say($aidam, "To říkají vždycky.", "", "avatar")

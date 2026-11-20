@@ -61,11 +61,20 @@
 	set_global("diary_salon_seen", false)
 	
 		#####################################WEDNESDAY#####################################
+											#center city groom
 	set_global("envelope_taken", false)
 	set_global("money_taken", false)
 	set_global("salon_pay_now", false)
 	set_global("olda_groomed", false)
 	set_global("diary_olda_groomed", false)
+										#fit + cafe#
+	set_global("students_talked", false)
+	set_global("diary_students_talked", false)
+	set_global("cafe_reserved", false)
+	set_global("diary_cafe_reserved", false)
+	set_global("concert_seen", false)
+	set_global("wife_number_known", false)
+	set_global("diary_wife_number", false)
 	
 	
 		# Tramvaj
@@ -95,10 +104,13 @@
 	# Mrknutí při změně části dne (spouští game_clock), pak se mění vzhled místnosti.
 	# Třetí parametr je ve skutečnosti délka přechodu v sekundách
 	# (esc_transition_player.gd), ne zpoždění, jak píše dokumentace.
+	# Během mrknutí nejde klikat (klik by přerušil přechod a zůstala by tma).
+	accept_input("NONE")
 	transition("fade_black", "out", 0.5)
 
 :time_fade_in
 	transition("fade_black", "in", 0.5)
+	accept_input("ALL")
 
 :new_day
 	# Spouští game_clock (ve tmě po :time_fade_out), když postel nastaví

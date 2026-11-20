@@ -21,6 +21,7 @@
 		say($aidam, "Řekni mu, že sem jede policie. Na tyhle to platí vždycky.", "", "avatar")
 		?!
 			- "Hele, jedou sem policajti!"
+				accept_input("SKIP")
 				say($drunk, "Cože? Do prdele...")
 				# Mrknutí jako při změně části dne, opilec zmizí ve tmě.
 				transition("fade_black", "out", 0.5)
@@ -30,6 +31,7 @@
 				set_global("diary_drunk_gone", true)
 				transition("fade_black", "in", 0.5)
 				say($aidam, "Utíkal tak rychle, že mu něco vypadlo. Mrkni na to.", "", "avatar")
+				accept_input("ALL")
 				done
 			- "Tak nic."
 				done

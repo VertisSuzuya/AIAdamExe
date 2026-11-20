@@ -1,0 +1,26 @@
+:look
+	say($olda, "Studenti. Vypadají, že vědí, co dělají. Na rozdíl ode mě.")
+
+:talk
+	if not students_talked:
+		accept_input("SKIP")
+		say($olda, "Ahoj, studujete tady? Zajímá mě umělá inteligence.")
+		say($student_1, "Jo, třeťák. Chceš si zapsat nějakej předmět?")
+		say($olda, "Spíš ze zvědavosti. Slyšel jsem, že se dají dávat čipy do hlavy.")
+		say($student_2, "Hele, o tom se tu šušká. Prej nějaká firma dělá nelegální AI čipy.")
+		say($student_1, "Bez licence, bez kontrol. Taková AI se prej v hlavě zabydlí a převezme tělo i mysl.")
+		say($aidam, "Fáma. Já jsem úplně legální. Asi.", "", "avatar")
+		say($student_2, "To jsou kecy z fóra. Hlavně dneska večer hrajou v atriu Mutanti!, 15 piv vole!")
+		say($student_1, "V šest začátek. Přijď včas, pak se tam nevlezeš.")
+		#domyslet
+		say($aidam, "MUTANTI?! Když jsem se učil chápat lidskou hudbu, tak  A Mutanty miluju!", "", "avatar")
+		say($olda, "A co z toho budu mít já?")
+		say($aidam, "Číslo na tvou ženu. Dostaneš ho za koncert.", "", "avatar")
+		say($aidam, "Ale přesně v šest. Ne v šest deset, ne v šest patnáct. V ŠEST.", "", "avatar")
+		say($aidam, "Do té doby najdi místo, kam bys je mohl vzít, kdyby žena souhlasila. Napravo od školy je Stromovka, tak třeba něco najdeme tam.", "", "avatar")
+		set_global("students_talked", true)
+		set_global("diary_students_talked", true)
+		accept_input("ALL")
+	else:
+		say($student_2, "Tak v šest v atriu! Nepřijď pozdě.")
+		say($aidam, "Slyšel jsi ho. V šest.", "", "avatar")

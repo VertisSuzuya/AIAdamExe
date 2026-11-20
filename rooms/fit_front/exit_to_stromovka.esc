@@ -1,0 +1,6 @@
+:exit_scene
+	# Ve středu do parku až po rozhovoru se studenty (AIdam ho tam pošle).
+	if game_day == 2 and not students_talked:
+		say($olda, "Do parku teď nemám proč chodit.")
+	else:
+		change_scene("res://rooms/stromovka_crossroads/stromovka_crossroads.tscn")

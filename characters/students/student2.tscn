@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://b8nwdnck6baiv"]
+
+[ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="1_gawbh"]
+[ext_resource type="Texture2D" uid="uid://bwqauuu6td73p" path="res://characters/students/student_2.png" id="2_5tlod"]
+[ext_resource type="Script" uid="uid://85bledusisk1" path="res://addons/escoria-core/game/core-scripts/esc_dialog_location.gd" id="3_ypln5"]
+[ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="5_6gi0l"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vqt0v"]
+radius = 28.0
+height = 186.0
+
+[node name="student2" type="Area2D" unique_id=294159516]
+process_mode = 1
+script = ExtResource("1_gawbh")
+global_id = "student2"
+esc_script = "res://characters/students/students.esc"
+tooltip_name = "Student"
+default_action = "talk"
+actions_requiring_target_object = PackedStringArray()
+inventory_texture = ExtResource("2_5tlod")
+inventory_texture_hovered = ExtResource("2_5tlod")
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=608450851]
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_vqt0v")
+
+[node name="ESCDialogLocation" type="Marker2D" parent="." unique_id=421600479]
+position = Vector2(0, -161)
+script = ExtResource("3_ypln5")
+metadata/_custom_type_script = "uid://85bledusisk1"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1908910693]
+position = Vector2(0, 0.9999981)
+scale = Vector2(0.28921703, 0.3754356)
+texture = ExtResource("2_5tlod")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="." unique_id=1667240957]
+position = Vector2(-42, 115)
+script = ExtResource("5_6gi0l")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"

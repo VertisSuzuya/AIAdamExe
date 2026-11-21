@@ -1,0 +1,23 @@
+:setup
+	# Během koncertu čas stojí (písničky hrají celou svou délku).
+	set_global("clock_enabled", false)
+	set_global("concert_play", false)
+	# Hudba na pozadí (_music) hraje přes všechny místnosti, na koncertě ji vypneme.
+	stop_snd("_music")
+
+:ready
+	say($aidam, "TO JSOU ONI! Mutanti hledaj východisko! Živě!", "", "avatar")
+	say($aidam, "Tleskej se mnou do rytmu! Najeď na kolečko a klikni, až se k němu stáhne kruh.", "", "avatar")
+	set_global("concert_play", true)
+
+:concert_end
+	# Spouští concert_show.gd, když písničky dohrají (nebo je hráč přeskočí).
+	# Část dne se nastaví hned (jinak by hodiny v atriu spustily mrknutí
+	# z odpoledne na večer). Rozvrh ručně: večer je večerka zavřená.
+	set_global("day_minute", 1290)
+	set_global("day_phase", "evening")
+	set_global("shop_open", false)
+	set_global("concert_seen", true)
+	set_global("clock_enabled", true)
+	play_snd("res://sound/music/sneakySong.mp3", "_music")
+	change_scene("res://rooms/fit_inside/fit_inside.tscn")

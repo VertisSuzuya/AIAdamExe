@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dfky4pmb5bl21"]
+
+[ext_resource type="Script" uid="uid://c7fcpp72w3dnj" path="res://addons/escoria-core/game/core-scripts/esc_room.gd" id="1_fuw74"]
+[ext_resource type="PackedScene" uid="uid://ihn2iq8wcqag" path="res://characters/olda/olda.tscn" id="2_r6xku"]
+[ext_resource type="Texture2D" uid="uid://yct2pehjlksh" path="res://rooms/fit_inside/fit_inside_concert.png" id="3_hm5qc"]
+[ext_resource type="Script" uid="uid://fnwnfflaoeqp" path="res://addons/escoria-core/game/core-scripts/esc_background.gd" id="4_r3d35"]
+[ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="5_hgiku"]
+[ext_resource type="Script" uid="uid://7e7o7t72bd2" path="res://systems/concert_show.gd" id="6_csvxp"]
+[ext_resource type="AudioStream" uid="uid://dvyq3v2oc5pp" path="res://sound/music/Mutanti_sidliste.mp3" id="7_s0sk0"]
+[ext_resource type="AudioStream" uid="uid://b1225ofiym5nn" path="res://sound/music/Mutanti_posledni_ctvrtina.mp3" id="8_2lo2j"]
+[ext_resource type="Texture2D" uid="uid://cbwou4uqgratp" path="res://rooms/concert/crowd_1.png" id="9_531ma"]
+[ext_resource type="Texture2D" uid="uid://biu2knie2rh2r" path="res://rooms/concert/crowd_2.png" id="10_cfnoq"]
+[ext_resource type="Texture2D" uid="uid://mp7uaedfjn2n" path="res://rooms/concert/crowd_3.png" id="11_47yo8"]
+[ext_resource type="Texture2D" uid="uid://cod14roiufalq" path="res://rooms/concert/crowd_4.png" id="12_bg8so"]
+[ext_resource type="Texture2D" uid="uid://dosi017pgmy10" path="res://rooms/concert/crowd_5.png" id="13_31xyt"]
+[ext_resource type="Texture2D" uid="uid://bbcrk7npl5cwl" path="res://rooms/concert/crowd_6.png" id="14_hwnvx"]
+[ext_resource type="Texture2D" uid="uid://cyv5myeys5wvx" path="res://characters/students/student_1.png" id="15_nfjgw"]
+[ext_resource type="Texture2D" uid="uid://bwqauuu6td73p" path="res://characters/students/student_2.png" id="16_st6a0"]
+
+[node name="concert" type="Node2D" unique_id=2014788545]
+script = ExtResource("1_fuw74")
+global_id = "concert"
+esc_script = "res://rooms/concert/concert.esc"
+player_scene = ExtResource("2_r6xku")
+metadata/_custom_type_script = "uid://c7fcpp72w3dnj"
+
+[node name="escbackground" type="TextureRect" parent="." unique_id=2004343302]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("3_hm5qc")
+script = ExtResource("4_r3d35")
+metadata/_custom_type_script = "uid://fnwnfflaoeqp"
+
+[node name="Aidam" parent="." unique_id=1389523226 instance=ExtResource("5_hgiku")]
+
+[node name="Node2D" type="Node2D" parent="." unique_id=529007563]
+script = ExtResource("6_csvxp")
+songs = Array[AudioStream]([ExtResource("8_2lo2j"), ExtResource("7_s0sk0")])
+note_files = Array[String](["res://rooms/concert/beats_posledni_ctvrtina.json", "res://rooms/concert/beats_sidliste.json"])
+crowd_textures = Array[Texture2D]([ExtResource("9_531ma"), ExtResource("10_cfnoq"), ExtResource("11_47yo8"), ExtResource("12_bg8so"), ExtResource("13_31xyt"), ExtResource("14_hwnvx"), ExtResource("16_st6a0"), ExtResource("15_nfjgw")])

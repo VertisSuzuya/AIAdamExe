@@ -1,5 +1,6 @@
 :setup
 	teleport($olda, $start_in_lab)
+	play_snd("res://sound/music/sneakySong.mp3", "_music")
 
 :ready
 	if not lab_intro_done:

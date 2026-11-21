@@ -9,6 +9,7 @@ extends Node
 #   Ctrl+1 až Ctrl+9   skok do místnosti ze seznamu ROOMS
 #   Ctrl+W   hodinky zapnout / vypnout (čas vidět i mimo pokoj)
 #   Ctrl+R   rychlá chůze Oldy zapnout / vypnout (doběhne skoro hned)
+#   Ctrl+C   rovnou na koncert (středa, studenti a kavárna hotové)
 #
 # Funguje až po New Game (dokud neexistují globály, nic nedělá).
 
@@ -26,12 +27,12 @@ const ROOMS: Array = [
 ]
 
 const DAY_NAMES = ["pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota", "neděle"]
+const FAST_WALK_SPEED = 20000
 
 var _normal_speed: float = 1.0
 var _fast: bool = false
 var _fast_walk: bool = false
 var _normal_walk_speed: int = 300
-const FAST_WALK_SPEED = 20000
 
 
 func _ready() -> void:
@@ -64,6 +65,11 @@ func _input(event: InputEvent) -> void:
 		KEY_K:
 			escoria.globals_manager.set_global("day_task_done", true)
 			print("[debug] úkol dne splněn")
+		KEY_R:
+			_fast_walk = not _fast_walk
+			print("[debug] rychlá chůze: %s" % ("ano" if _fast_walk else "ne"))
+		KEY_C:
+			_start_concert()
 		_:
 			var index: int = event.keycode - KEY_1
 			if index >= 0 and index < ROOMS.size():
@@ -71,9 +77,6 @@ func _input(event: InputEvent) -> void:
 				get_viewport().set_input_as_handled()
 				return
 			return
-		KEY_R:
-			_fast_walk = not _fast_walk
-			print("[debug] rychlá chůze: %s" % ("ano" if _fast_walk else "ne"))
 	get_viewport().set_input_as_handled()
 
 
@@ -121,6 +124,7 @@ func _go_to_room(path: String) -> void:
 	escoria.room_manager.change_scene_to_file(path, false)
 	print("[debug] místnost: %s" % path)
 
+
 # Hodinky zapnout/vypnout: v UI je pak vidět čas všude (casui.gd čte
 # watch_taken). Do inventáře se nepřidávají, jde jen o zobrazení času.
 func _toggle_watch() -> void:
@@ -128,7 +132,6 @@ func _toggle_watch() -> void:
 			and bool(escoria.globals_manager.get_global("watch_taken"))
 	escoria.globals_manager.set_global("watch_taken", not has_watch)
 	print("[debug] hodinky: %s" % ("ano" if not has_watch else "ne"))
-	
 
 
 # Rychlá chůze: Olda je v každé místnosti nová instance, proto se rychlost
@@ -145,3 +148,16 @@ func _process(_delta: float) -> void:
 			olda.speed = FAST_WALK_SPEED
 	elif olda.speed == FAST_WALK_SPEED:
 		olda.speed = _normal_walk_speed
+
+
+# Rovnou na koncert: středa, po studentech i kavárně, těsně před 18:00.
+func _start_concert() -> void:
+	var g = escoria.globals_manager
+	g.set_global("game_day", 2)
+	g.set_global("clock_enabled", true)
+	g.set_global("students_talked", true)
+	g.set_global("cafe_reserved", true)
+	g.set_global("concert_seen", false)
+	g.set_global("day_minute", 1075)
+	_go_to_room("res://rooms/concert/concert.tscn")
+	print("[debug] koncert")

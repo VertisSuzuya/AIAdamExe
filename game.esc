@@ -76,6 +76,8 @@
 	set_global("wife_number_known", false)
 	set_global("diary_wife_number", false)
 	
+	set_global("concert_play", false)
+	set_global("concert_score", 0)
 	
 		# Tramvaj
 	set_global("tram_from", "home_street")
@@ -142,3 +144,13 @@
 	# esc_room_manager.gd _check_and_prepare_managers_for_room), proto jen mimo pokoj.
 	if ESC_CURRENT_SCENE != "oldas_room":
 		change_scene("res://rooms/oldas_room/oldas_room.tscn")
+		
+
+:half_hour
+	# Spouští game_clock každou celou půlhodinu. Připomínky podle dne a času.
+	# Středa: koncert v 18:00 (připomínka v 17:00 a 17:30, mimo atrium).
+	if game_day == 2 and students_talked and not concert_seen and ESC_CURRENT_SCENE != "fit_inside":
+		if day_minute >= 1020 and day_minute < 1050:
+			say($aidam, "Je pět. Za hodinu Mutanti! Ať jsme v atriu včas.", "", "avatar")
+		elif day_minute >= 1050 and day_minute < 1080:
+			say($aidam, "Půl šestý! Mutanti za půl hodiny. Rychle do atria na FIT!", "", "avatar")

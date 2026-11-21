@@ -209,6 +209,11 @@ z_index = 2
 position = Vector2(74, -20)
 shape = SubResource("RectangleShape2D_rlnn4")
 
+[node name="ESCInteractionLocation" type="Marker2D" parent="construction" unique_id=1321314638]
+position = Vector2(303, 80)
+script = ExtResource("8_v7vqg")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
 [node name="cafe_door" type="Marker2D" parent="." unique_id=1375303314]
 position = Vector2(697, 727)
 script = ExtResource("15_abw7k")

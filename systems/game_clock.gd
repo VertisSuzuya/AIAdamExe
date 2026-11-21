@@ -153,7 +153,14 @@ func _process(delta: float) -> void:
 	if _minute_accumulator >= 1.0:
 		var whole: int = int(_minute_accumulator)
 		_minute_accumulator -= whole
-		escoria.globals_manager.set_global("day_minute", mini(minute + whole, DAY_END))
+		var new_minute: int = mini(minute + whole, DAY_END)
+		escoria.globals_manager.set_global("day_minute", new_minute)
+		# Každou celou půlhodinu :half_hour v game.esc (připomínky podle času).
+		if new_minute / 30 != minute / 30 \
+				and escoria.start_script.has_event_with_target("half_hour"):
+			_run_steps([[escoria.start_script, "half_hour"]])
+
+
 
 
 # Klíč rozvrhu pro aktuální den a část dne podle času ("den_cast").

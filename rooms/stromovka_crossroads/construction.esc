@@ -1,3 +1,4 @@
 :look
+	set_angle($olda, 270)
 	say($olda, "Stavba. Prý zítra hotovo.")
 	say($aidam, "To říkají vždycky.", "", "avatar")

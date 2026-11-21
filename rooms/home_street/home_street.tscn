@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://o0gpf22u82v7" path="res://items/inventory/coffee.tscn" id="14_uwva0"]
 [ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="14_wpulp"]
 [ext_resource type="PackedScene" uid="uid://1j4f070o0ioi" path="res://items/inventory/ticket.tscn" id="15_uwva0"]
+[ext_resource type="Script" uid="uid://85bledusisk1" path="res://addons/escoria-core/game/core-scripts/esc_dialog_location.gd" id="16_5mkgi"]
 
 [sub_resource type="Gradient" id="Gradient_6wxwk"]
 offsets = PackedFloat32Array(0, 0.38311687, 0.73376626, 1)
@@ -211,3 +212,18 @@ shape = SubResource("RectangleShape2D_uchm2")
 position = Vector2(27, 132)
 script = ExtResource("8_d0d1h")
 metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="wife_voice" type="Area2D" parent="." unique_id=1422917627]
+process_mode = 1
+position = Vector2(1452, 534)
+script = ExtResource("10_p4vv1")
+global_id = "phone_voice"
+dialog_color = Color(1, 0.5647059, 1, 1)
+actions_requiring_target_object = PackedStringArray()
+is_interactive = false
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="ESCDialogLocation" type="Marker2D" parent="wife_voice" unique_id=219123998]
+position = Vector2(10, 2)
+script = ExtResource("16_5mkgi")
+metadata/_custom_type_script = "uid://85bledusisk1"

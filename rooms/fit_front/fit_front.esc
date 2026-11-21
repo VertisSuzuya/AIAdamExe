@@ -1,16 +1,34 @@
 :setup
 	if ESC_LAST_SCENE == "tram":
 		teleport($olda, $tram_stop)
-	elif ESC_LAST_SCENE == "fit_inside":
+	elif ESC_LAST_SCENE == "fit_inside" or ESC_LAST_SCENE == "concert":
 		teleport($olda, $exit_to_fit_inside)
 	elif ESC_LAST_SCENE == "stromovka_crossroads":
 		teleport($olda, $exit_to_stromovka)
 	else:
 		teleport($olda, $player_start)
 
+:ready
+	# Po koncertu: Olda vyšel ze školy, AIdam je šťastný a slíbí číslo.
+	if ESC_LAST_SCENE == "concert":
+		accept_input("SKIP")
+		say($aidam, "To bylo... To bylo nejlepší, co jsem kdy slyšel. A to jsem slyšel celej internet.", "", "avatar")
+		if concert_score >= 85:
+			say($aidam, "A ten rytmus! Splynul jsi s kapelou. Skoro jsem tě nepoznal.", "", "avatar")
+		elif concert_score >= 50:
+			say($aidam, "Tleskal jsi docela do rytmu. Na tvůj věk slušný.", "", "avatar")
+		else:
+			say($aidam, "Tvůj rytmus... no. Hlavně že ses bavil.", "", "avatar")
+		say($olda, "Tak co, slíbil jsi mi číslo.")
+		say($aidam, "Slíbil. A slib dodržím. Jenže vzpomínky jdou nejlíp vyvolat ve spánku.", "", "avatar")
+		say($aidam, "Jdi domů a vyspi se. Ráno ho budeš znát. O všechno se postarám.", "", "avatar")
+		say($olda, "...Dobře.")
+		set_global("day_task_done", true)
+		set_global("diary_wife_number", true)
+		accept_input("ALL")
 
 :apply_time
-#mozna pridat jeste v noci po koncertu
+	# Studenti jsou venku ve středu do 18:00 (pak jdou na koncert).
 	if game_day == 2 and (day_phase == "morning" or day_phase == "afternoon"):
 		set_active("student_1", true)
 		set_active("student_2", true)

@@ -1,8 +1,41 @@
 :look
-	say($olda, "Malá kavárna. Vypadá útulně.")
+	if game_day >= 4:
+		say($olda, "Kavárna. Tady jsme seděli všichni tři nedávno.")
+	else:
+		say($olda, "Malá kavárna. Vypadá útulně.")
 
 :use
-	if cafe_reserved:
+	# Čtvrtek: setkání s Janou a Klárkou ve 14:00 (do 14:15, pak odejdou).
+	if game_day == 3 and wife_called and not family_met:
+		if day_minute > 855:
+			accept_input("SKIP")
+			say($olda, "Jsou pryč...")
+			say($aidam, "Čtvrt na tři. Čekaly. A pak odešly.", "", "avatar")
+			say($olda, "Zase jsem to podělal. Přesně jak to Jana čekala.")
+			say($aidam, "Zkusíme to znovu. Od rána.", "", "avatar")
+			accept_input("ALL")
+			set_global("checkpoint_load_requested", true)
+		else:
+			if day_minute < 840:
+				say($aidam, "Je brzo, sraz je ve dvě. Počkáme uvnitř?", "", "avatar")
+				?!
+					- "Počkáme."
+						say($olda, "Radši budu první.")
+						set_global("day_minute", 840)
+						done
+					- "Ještě se projdu."
+						say($aidam, "Hlavně ať jsi tu ve dvě!", "", "avatar")
+						done
+			if day_minute >= 840:
+				say($aidam, "Jsou tam. U okna. Tak jdeme.", "", "avatar")
+				change_scene("res://rooms/cafe_meeting/cafe_meeting.tscn")
+	elif game_day == 3 and family_met:
+		say($olda, "Krásný odpoledne. Teď domů.")
+	elif game_day == 3:
+		say($olda, "Stůl mám zamluvenej na dnešek. Ale nejdřív bych měl zavolat Janě.")
+	elif game_day >= 4:
+		say($olda, "Tady jsme nedávno seděli všichni tři.")
+	elif cafe_reserved:
 		say($olda, "Rezervaci na zítra už mám.")
 	else:
 		accept_input("SKIP")

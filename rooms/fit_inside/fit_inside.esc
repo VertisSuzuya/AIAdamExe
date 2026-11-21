@@ -2,25 +2,8 @@
 	teleport($olda, $exit_to_fit_front)
 
 :ready
-	# Po koncertu: AIdam je šťastný a slíbí číslo.
-	if ESC_LAST_SCENE == "concert":
-		accept_input("SKIP")
-		say($aidam, "To bylo... To bylo nejlepší, co jsem kdy slyšel. A to jsem slyšel celej internet.", "", "avatar")
-		if concert_score >= 85:
-			say($aidam, "A ten rytmus! Splynul jsi s kapelou. Skoro jsem tě nepoznal.", "", "avatar")
-		elif concert_score >= 50:
-			say($aidam, "Tleskal jsi docela do rytmu. Na tvůj věk slušný.", "", "avatar")
-		else:
-			say($aidam, "Tvůj rytmus... no. Hlavně že ses bavil.", "", "avatar")
-		say($olda, "Tak co, slíbil jsi mi číslo.")
-		say($aidam, "Slíbil. A slib dodržím. Jenže vzpomínky jdou nejlíp vyvolat ve spánku.", "", "avatar")
-		say($aidam, "Jdi domů a vyspi se. Ráno ho budeš znát. O všechno se postarám.", "", "avatar")
-		say($olda, "...Dobře.")
-		set_global("day_task_done", true)
-		set_global("diary_wife_number", true)
-		accept_input("ALL")
 	# Středa po studentech: koncert v 18:00, okno 17:45 až 18:15.
-	elif game_day == 2 and students_talked and not concert_seen:
+	if game_day == 2 and students_talked and not concert_seen:
 		if day_minute > 1095:
 			accept_input("SKIP")
 			say($aidam, "Šest patnáct. Začali bez nás.", "", "avatar")

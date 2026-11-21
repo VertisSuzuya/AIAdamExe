@@ -7,17 +7,17 @@
 
 :ready
 	say($aidam, "TO JSOU ONI! Mutanti hledaj východisko! Živě!", "", "avatar")
-	say($aidam, "Tleskej se mnou do rytmu! Najeď na kolečko a klikni, až se k němu stáhne kruh.", "", "avatar")
+	say($aidam, "Pomoz mi držet rytmus! Mačkej šipky, až dopadnou na terčíky.", "", "avatar")
 	set_global("concert_play", true)
 
 :concert_end
 	# Spouští concert_show.gd, když písničky dohrají (nebo je hráč přeskočí).
-	# Část dne se nastaví hned (jinak by hodiny v atriu spustily mrknutí
-	# z odpoledne na večer). Rozvrh ručně: večer je večerka zavřená.
-	set_global("day_minute", 1290)
-	set_global("day_phase", "evening")
+	# Po koncertu je 22:00 (noc). Část dne se nastaví hned, jinak by hodiny
+	# spustily mrknutí. Rozvrh ručně: v noci je večerka zavřená.
+	set_global("day_minute", 1320)
+	set_global("day_phase", "night")
 	set_global("shop_open", false)
 	set_global("concert_seen", true)
 	set_global("clock_enabled", true)
 	play_snd("res://sound/music/sneakySong.mp3", "_music")
-	change_scene("res://rooms/fit_inside/fit_inside.tscn")
+	change_scene("res://rooms/fit_front/fit_front.tscn")

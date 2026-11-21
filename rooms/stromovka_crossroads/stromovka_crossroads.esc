@@ -4,6 +4,8 @@
 		set_angle($olda, 60)
 	elif ESC_LAST_SCENE == "fit_front":
 		teleport($olda, $exit_to_fit_front)
+	elif ESC_LAST_SCENE == "cafe_meeting":
+		teleport($olda, $cafe_door)
 	else:
 		teleport($olda, $player_start)
 	if brick_taken:
@@ -15,3 +17,12 @@
 		set_active("construction", true)
 	else:
 		set_active("construction", false)
+
+
+:ready
+	# Čtvrtek večer: Olda vyšel z kavárny po setkání s rodinou.
+	if ESC_LAST_SCENE == "cafe_meeting":
+		say($olda, "Pět hodin u jednoho stolu. Dlouho jsem se takhle necítil.")
+		say($olda, "Jako by to zase mohlo být dobrý.")
+		say($aidam, "Jo. Krásný odpoledne. Teď domů a vyspat se, zítra je velkej den.", "", "avatar")
+		say($aidam, "Já se o všechno postarám.", "", "avatar")

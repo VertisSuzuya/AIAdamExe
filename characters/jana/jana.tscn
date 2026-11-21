@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cutjead7o7u4j"]
+
+[ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="1_g8md5"]
+[ext_resource type="Texture2D" uid="uid://dy8kd5g1jadah" path="res://characters/drunk/drunk.png" id="2_hqhtl"]
+[ext_resource type="Script" uid="uid://85bledusisk1" path="res://addons/escoria-core/game/core-scripts/esc_dialog_location.gd" id="3_vtg7n"]
+[ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="4_kqqv0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vqt0v"]
+radius = 51.0
+height = 140.0
+
+[node name="jana" type="Area2D" unique_id=294159516]
+process_mode = 1
+script = ExtResource("1_g8md5")
+global_id = "jana"
+esc_script = "res://characters/klarka/klarka.esc"
+dialog_color = Color(0.9569058, 0.32409963, 0.6978947, 1)
+default_action = "say"
+actions_requiring_target_object = PackedStringArray()
+inventory_texture = ExtResource("2_hqhtl")
+inventory_texture_hovered = ExtResource("2_hqhtl")
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=608450851]
+position = Vector2(5, 1)
+shape = SubResource("CapsuleShape2D_vqt0v")
+
+[node name="ESCDialogLocation" type="Marker2D" parent="." unique_id=421600479]
+position = Vector2(1, -82)
+script = ExtResource("3_vtg7n")
+metadata/_custom_type_script = "uid://85bledusisk1"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1908910693]
+position = Vector2(6, 1)
+scale = Vector2(0.27522254, 0.3850932)
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="." unique_id=1667240957]
+position = Vector2(20, 59)
+script = ExtResource("4_kqqv0")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"

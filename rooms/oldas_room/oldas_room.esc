@@ -58,7 +58,13 @@
 		walk_block($olda, $envelope)
 		say($olda, "Hele, obálka. Ta tu včera nebyla.")
 		say($aidam, "Že by výplata? Vezmi ji a otevři.", "", "avatar")
-		
+	elif game_day == 3:
+		say($olda, "Tak. Vypadám zase jako člověk. Peníze na pár dní mám. Práci si najdu.")
+		say($olda, "A... počkej.")
+		say($olda, "Já si to číslo pamatuju! Celý, číslo po čísle.")
+		say($aidam, "Říkal jsem, že ve spánku to jde líp. Nemusíš děkovat. Ale můžeš.", "", "avatar")
+		say($aidam, "Telefonní budka je hned před domem. Tak co, zavoláš jim?", "", "avatar")
+		set_global("wife_number_known", true)
 
 :apply_time
 	# Obálka od firmy leží na stolku od středy, dokud ji Olda nesebere.

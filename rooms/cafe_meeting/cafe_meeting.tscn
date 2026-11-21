@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://dy4827ngo3mgu"]
+
+[ext_resource type="Script" uid="uid://c7fcpp72w3dnj" path="res://addons/escoria-core/game/core-scripts/esc_room.gd" id="1_sxo6d"]
+[ext_resource type="PackedScene" uid="uid://ihn2iq8wcqag" path="res://characters/olda/olda.tscn" id="2_41led"]
+[ext_resource type="Texture2D" uid="uid://dtwu701i3o84n" path="res://rooms/cafe_meeting/cafe_meeting.png" id="3_sxaa3"]
+[ext_resource type="Script" uid="uid://fnwnfflaoeqp" path="res://addons/escoria-core/game/core-scripts/esc_background.gd" id="4_fy35v"]
+[ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="5_u6w5r"]
+[ext_resource type="PackedScene" uid="uid://cutjead7o7u4j" path="res://characters/jana/jana.tscn" id="6_thkyx"]
+[ext_resource type="PackedScene" uid="uid://c4w6od26ywibf" path="res://characters/klarka/klarka.tscn" id="7_8nhxx"]
+[ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="8_8nhxx"]
+[ext_resource type="Script" uid="uid://85bledusisk1" path="res://addons/escoria-core/game/core-scripts/esc_dialog_location.gd" id="9_kpwdh"]
+
+[node name="cafe_meeting" type="Node2D" unique_id=2014788545]
+script = ExtResource("1_sxo6d")
+global_id = "cafe_meeting"
+esc_script = "res://rooms/cafe_meeting/cafe_meeting.esc"
+player_scene = ExtResource("2_41led")
+metadata/_custom_type_script = "uid://c7fcpp72w3dnj"
+
+[node name="escbackground" type="TextureRect" parent="." unique_id=2004343302]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("3_sxaa3")
+script = ExtResource("4_fy35v")
+metadata/_custom_type_script = "uid://fnwnfflaoeqp"
+
+[node name="Aidam" parent="." unique_id=1389523226 instance=ExtResource("5_u6w5r")]
+
+[node name="jana" parent="." unique_id=294159516 instance=ExtResource("6_thkyx")]
+position = Vector2(1382, 679)
+esc_script = "res://characters/jana/jana.esc"
+
+[node name="klarka" parent="." unique_id=1984885114 instance=ExtResource("7_8nhxx")]
+position = Vector2(902, 364)
+
+[node name="olda" type="Area2D" parent="." unique_id=1886642208]
+process_mode = 1
+position = Vector2(226, 838)
+script = ExtResource("8_8nhxx")
+global_id = "olda_cafe"
+dialog_color = Color(0.84887064, 0.7483791, 1, 1)
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="ESCDialogLocation" type="Marker2D" parent="olda" unique_id=1087021609]
+position = Vector2(54, -527)
+script = ExtResource("9_kpwdh")
+metadata/_custom_type_script = "uid://85bledusisk1"

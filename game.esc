@@ -79,6 +79,13 @@
 	set_global("concert_play", false)
 	set_global("concert_score", 0)
 	
+	#########################################THURSDAY############################################
+	
+	set_global("wife_called", false)
+	set_global("diary_wife_called", false)
+	set_global("family_met", false)
+	set_global("diary_family_met", false)
+	
 		# Tramvaj
 	set_global("tram_from", "home_street")
 	set_global("tram_moving", false)

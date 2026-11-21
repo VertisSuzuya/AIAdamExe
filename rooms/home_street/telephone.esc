@@ -12,4 +12,35 @@
 		say($olda, "Už tam nic není.")
 
 :use
-	say($olda, "Zatím nemám komu volat.")
+	# Čtvrtek: Olda zná číslo a volá Janě.
+	if game_day == 3 and wife_number_known and not wife_called:
+		accept_input("SKIP")
+		say($olda, "Tak jo. Teď, nebo nikdy.")
+		say($phone_voice, "...Prosím?")
+		say($olda, "Jano? To jsem já. Olda.")
+		say($phone_voice, "...")
+		say($phone_voice, "Co chceš? Jestli zase peníze, tak ne.")
+		say($olda, "Nic nechci. Jen... chtěl bych vás vidět. Tebe a Klárku.")
+		say($phone_voice, "Klárka se na tebe ptá každej den. Víš, jak je to pro ni těžký?")
+		say($olda, "Já vím. Přestal jsem hrát. Chci to dát do pořádku, Jano. Doopravdy.")
+		say($phone_voice, "To jsem už jednou slyšela.")
+		say($phone_voice, "A kde bychom se jako viděli? To zase budu muset všechno vymyslet já, jako vždycky.")
+		say($aidam, "Teď! Kavárna. Proto jsme tu rezervaci včera dělali.", "", "avatar")
+		say($olda, "Nemusíš nic vymýšlet. Mám zamluvenej stůl v kavárně ve Stromovce. Dneska ve dvě, pro tři.")
+		say($phone_voice, "...Ty máš rezervaci?")
+		say($phone_voice, "Ty jsi něco naplánoval? Dopředu?")
+		say($olda, "Jo. Chtěl jsem, aby to bylo pořádně.")
+		say($phone_voice, "...")
+		say($phone_voice, "Tak dobře. Kvůli Klárce. Ve dvě.")
+		say($phone_voice, "A jestli přijdeš pozdě, odejdeme. Už na tebe čekat nebudu.")
+		say($olda, "Budu tam. Slibuju.")
+		say($phone_voice, "Uvidíme.")
+		set_global("wife_called", true)
+		set_global("diary_wife_called", true)
+		say($aidam, "Říkal jsem ti, že se to povede.", "", "avatar")
+		say($aidam, "Ve dvě v kavárně. Tentokrát to nepokaz.", "", "avatar")
+		accept_input("ALL")
+	elif game_day == 3 and wife_called:
+		say($olda, "Už jsem volal. Ve dvě v kavárně ve Stromovce.")
+	else:
+		say($olda, "Zatím nemám komu volat.")

@@ -1,0 +1,51 @@
+:ready
+	# Čtvrtek: setkání s Janou a Klárkou. Rozhovor nejde pokazit.
+	accept_input("SKIP")
+	say($klarka, "Tati! Ty máš jinej účes!")
+	say($olda_cafe, "Líbí se ti?")
+	say($klarka, "Vypadáš jako táta z reklamy na jogurt.")
+	say($aidam, "Beru to jako kompliment. Za salon jsem hlasoval já.", "", "avatar")
+	say($jana, "Ahoj, Oldo. Vypadáš... líp. To ti musím nechat.")
+	say($jana, "Říkal jsi, že nic nechceš. Ale na kavárnu a salon peníze máš. Odkud?")
+	?!
+		- "Mám teď brigádu."
+			say($jana, "Brigádu. Dobře. To je začátek.")
+			done
+		- "Účastním se jednoho výzkumu, dobře platí."
+			say($aidam, "Opatrně. Mlčenlivost ve smlouvě, pamatuješ? Žádný podrobnosti.", "", "avatar")
+			say($jana, "Výzkumu? No... hlavně ať to není další z tvých jistejch věcí.")
+			done
+	say($jana, "Oldo, já ti chci věřit. Ale potřebuju vidět, že to myslíš vážně.")
+	say($jana, "Normální práci. Ráno do práce, večer domů. Žádný herny, žádný noci venku.")
+	say($aidam, "Žádný noci venku...", "", "avatar")
+	say($jana, "A chci, abys byl s Klárkou. Každej víkend. Pořádně.")
+	say($olda_cafe, "Udělám to. Najdu si práci, přes den budu makat a večery budu s vámi.")
+	say($aidam, "Hm. Práce přes den, rodina večer. A kdy budu mít čas já?", "", "avatar")
+	say($aidam, "...Dělám si legraci. Výborně, jen tak dál.", "", "avatar")
+	say($klarka, "Tati, budeš zase bydlet s námi?")
+	?!
+		- "Jednou určitě. Až si to zasloužím."
+			say($jana, "Uvidíme.")
+			done
+		- "To záleží na mámě."
+			say($jana, "Nesvaluj to na mě. ...Ale jestli to vydržíš, tak možná.")
+			done
+	say($jana, "Teď bydlíme u našich, na konečné. Táta na tebe pořád nadává, tak tam radši zatím nejezdi.")
+	say($aidam, "Na konečné. U rodičů. Dobře vědět.", "", "avatar")
+	say($klarka, "Tati, půjdeme zítra do parku? Na procházku? Prosím!")
+	say($jana, "Zítra ve dvanáct. Ve Stromovce, u první lavičky v dlouhé aleji.")
+	say($jana, "A buď tam včas. Klárka se bude těšit.")
+	say($olda_cafe, "Ve dvanáct u první lavičky. Budu tam dřív než vy.")
+	say($klarka, "Slibuješ?")
+	say($olda_cafe, "Slibuju.")
+	say($aidam, "Slibuje. Já to slyšel.", "", "avatar")
+	# Sedí spolu dlouho, ven vyjdou až v 19:00. Část dne se nastaví hned
+	# (jinak by hodiny spustily mrknutí), rozvrh ručně: večer je večerka zavřená.
+	set_global("day_minute", 1140)
+	set_global("day_phase", "evening")
+	set_global("shop_open", false)
+	set_global("family_met", true)
+	set_global("diary_family_met", true)
+	set_global("day_task_done", true)
+	accept_input("ALL")
+	change_scene("res://rooms/stromovka_crossroads/stromovka_crossroads.tscn")

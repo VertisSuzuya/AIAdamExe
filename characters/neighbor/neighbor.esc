@@ -1,0 +1,54 @@
+:look
+	say($olda, "Starej pán na schodech. Kouká sem, jako by čekal, že něco provedu.")
+
+:talk
+	if not neighbor_talked:
+		say($neighbor, "Jestli jste novinář, tak táhněte. Už tu byli tři.")
+		say($olda, "Nejsem novinář. Jsem Olda. Janin manžel.")
+		say($neighbor, "Aha. Tak vy jste ten Oldřich.")
+		say($neighbor, "Ráno tu bylo policajtů jak much. Dveře dokořán, prej byly otevřený celou noc.")
+		say($neighbor, "Vaše žena a malá jsou pryč. Nikdo neví kam.")
+		say($olda, "Pryč? Jak pryč?")
+		say($neighbor, "Tak, jak říkám. Pryč.")
+		?!
+			- "Kde jsou Janini rodiče?" [not neighbor_asked_parents]
+				set_global("neighbor_asked_parents", true)
+				say($neighbor, "Odvezli je na stanici. Vypovídat. Prej se vrátěj večer.")
+				say($neighbor, "Chudáci staří. Celej den sedí s policajtama a stejně nic nevěděj.")
+			- "Neviděl jste v noci něco?" [not neighbor_asked_night]
+				set_global("neighbor_asked_night", true)
+				say($neighbor, "Já v noci spím. Na rozdíl od některejch.")
+				say($neighbor, "Akorát pes štěkal. Někdy po půlnoci. A pak lilo jak z konve.")
+				say($neighbor, "A vy? Kde jste byl v noci vy, Oldřichu?")
+				say($olda, "Doma. Spal jsem.")
+				say($neighbor, "No jistě.")
+			- "Co o mně říkal Janin táta?" [not neighbor_asked_father]
+				set_global("neighbor_asked_father", true)
+				say($neighbor, "Nic hezkýho. Herny, dluhy, prodanej byt.")
+				say($neighbor, "Prej jste jednou slíbil, že přestanete. A pak ještě jednou. A ještě jednou.")
+				say($aidam, "Milej pán. Fakt milej.", "", "avatar")
+			- "Musím jít."
+				done
+		# Olda odpoví AIdamovi nahlas, soused to slyší.
+		say($aidam, "Dědek si hraje na detektiva. Pojď, tady nic nezjistíš.", "", "avatar")
+		say($olda, "Počkej, nech mě přemýšlet.")
+		say($neighbor, "S kým to mluvíte?")
+		say($neighbor, "No jo. Mluvíte sám se sebou. To je dneska normální. Lidi mluvěj s telefonama, s autama, s ledničkou.")
+		say($neighbor, "Všude ta umělá inteligence. V bance, u doktora, v televizi. Už ani nevíte, jestli mluvíte s člověkem.")
+		say($neighbor, "Vnuk říkal, že to brzo bude řídit tramvaje, soudit lidi a hlídat děti.")
+		say($neighbor, "A až si to jednou řekne, že jsme mu k ničemu? Kdo to vypne, když to bude všude?")
+		say($neighbor, "Takovej stroj nemá svědomí. Udělá, co chce, a nikdo mu nic nedokáže.")
+		say($aidam, "Svědomí. Řekl ten, kdo celý dny špehuje sousedy.", "", "avatar")
+		say($olda, "Asi máte pravdu.")
+		say($neighbor, "Já mám vždycky pravdu. Akorát mě nikdo neposlouchá.")
+		# AIdam svede podezření na souseda.
+		say($aidam, "Všimnul sis, jak se ptal, kde jsi byl v noci? Kdo se takhle ptá?", "", "avatar")
+		say($aidam, "Ten, kdo má sám co skrývat. Sedí celej den na schodech a kouká na jejich dveře.", "", "avatar")
+		say($olda, "Myslíš, že on...?")
+		say($aidam, "Já nic netvrdím. Jen říkám, že tenhle by měl mluvit míň. Mnohem míň.", "", "avatar")
+		say($aidam, "Dneska už nic nezjistíme. Jeď domů a vyspi se. Ráno to bude lepší. Postarám se o to.", "", "avatar")
+		set_global("neighbor_talked", true)
+		set_global("diary_in_laws", true)
+		set_global("day_task_done", true)
+	else:
+		say($neighbor, "Už jsem vám řek všechno. Jděte domů, Oldřichu.")

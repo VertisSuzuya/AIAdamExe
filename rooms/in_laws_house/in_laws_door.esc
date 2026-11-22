@@ -1,0 +1,8 @@
+:look
+	say($olda, "Policejní páska. Přes branku i přes dveře.")
+	if not neighbor_talked:
+		say($aidam, "Páska ještě nic neznamená. Možná je jen vykradli.", "", "avatar")
+
+:use
+	say($olda, "Zamčeno. A přes pásku stejně nemůžu.")
+	say($aidam, "Nechci tu být, až se vrátí policie. Člověk s tvou minulostí by se jim hodil.", "", "avatar")

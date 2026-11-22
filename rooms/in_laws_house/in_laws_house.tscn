@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://c4xhqmsqalvnb"]
+
+[ext_resource type="Script" uid="uid://c7fcpp72w3dnj" path="res://addons/escoria-core/game/core-scripts/esc_room.gd" id="1_sr8c3"]
+[ext_resource type="PackedScene" uid="uid://ihn2iq8wcqag" path="res://characters/olda/olda.tscn" id="2_wh85f"]
+[ext_resource type="Texture2D" uid="uid://1k568xjdjd8r" path="res://rooms/in_laws_house/in_laws_house.png" id="3_ur6ca"]
+[ext_resource type="Script" uid="uid://fnwnfflaoeqp" path="res://addons/escoria-core/game/core-scripts/esc_background.gd" id="4_kwrcv"]
+[ext_resource type="Script" uid="uid://5pbcieq7gpdo" path="res://addons/escoria-core/game/core-scripts/esc_terrain.gd" id="5_ghrva"]
+[ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="6_kp83i"]
+[ext_resource type="Script" uid="uid://bg1sl307y6lbi" path="res://systems/room_lighting.gd" id="7_0j0y6"]
+[ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="8_apv0d"]
+[ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="9_od3y5"]
+[ext_resource type="PackedScene" uid="uid://dk24210hp7xp0" path="res://characters/neighbor/neighbor.tscn" id="10_vn3ef"]
+
+[sub_resource type="Gradient" id="Gradient_6wxwk"]
+offsets = PackedFloat32Array(0, 0.38311687, 0.73376626, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.2987013, 0.2987013, 0.2987013, 1, 0.763773, 0.763773, 0.763773, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ptrtu"]
+gradient = SubResource("Gradient_6wxwk")
+width = 1920
+height = 1080
+fill_from = Vector2(1, 0.57198066)
+fill_to = Vector2(0.9908257, 1)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xffai"]
+vertices = PackedVector2Array(3.1328125, 1074.9766, 5.8515625, 865.28906, 175, 886.3203, 1231.6094, 1046.2891, 175, 743.5625, 744.0781, 774.9531, 744.0781, 774.96094, 1415.75, 837.1797, 1420.3281, 890.64844, 1225.5313, 946.60156, 1744.6484, 1073.1563, 1469.5938, 1039.0234)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 4, 5, 6), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(6, 9, 3, 2), PackedInt32Array(10, 0, 3), PackedInt32Array(10, 3, 11)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1470, 1029, 1905, 1083, -7, 1085, -4, 854, 165, 875, 165, 733, 745, 765, 1425, 828, 1431, 898, 1236, 954, 1241, 1036)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uchm2"]
+size = Vector2(179, 256)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xffai"]
+size = Vector2(136, 187)
+
+[node name="in_laws_house" type="Node2D" unique_id=1381403444]
+script = ExtResource("1_sr8c3")
+global_id = "in_laws_house"
+esc_script = "res://rooms/in_laws_house/in_laws_house.esc"
+player_scene = ExtResource("2_wh85f")
+metadata/_custom_type_script = "uid://c7fcpp72w3dnj"
+
+[node name="escbackground" type="TextureRect" parent="." unique_id=1212681230]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("3_ur6ca")
+script = ExtResource("4_kwrcv")
+metadata/_custom_type_script = "uid://fnwnfflaoeqp"
+
+[node name="ESCTerrain" type="Node2D" parent="." unique_id=1168787270]
+script = ExtResource("5_ghrva")
+scales = SubResource("GradientTexture2D_ptrtu")
+scale_min = 2.0
+scale_max = 5.0
+metadata/_custom_type_script = "uid://5pbcieq7gpdo"
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="ESCTerrain" unique_id=400683327]
+position = Vector2(2, -3)
+navigation_polygon = SubResource("NavigationPolygon_xffai")
+
+[node name="player_start" type="Marker2D" parent="." unique_id=696703279]
+position = Vector2(191, 962)
+script = ExtResource("6_kp83i")
+global_id = "player_start"
+is_start_location = true
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1813585703]
+script = ExtResource("7_0j0y6")
+
+[node name="Aidam" parent="." unique_id=1389523226 instance=ExtResource("8_apv0d")]
+
+[node name="tram_stop" type="Area2D" parent="." unique_id=228112183]
+process_mode = 1
+position = Vector2(345, 713)
+script = ExtResource("9_od3y5")
+global_id = "tram_stop"
+esc_script = "res://rooms/in_laws_house/tram_stop.esc"
+tooltip_name = "Zastávka"
+default_action = "look"
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tram_stop" unique_id=265171961]
+position = Vector2(-256.5, 29)
+shape = SubResource("RectangleShape2D_uchm2")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="tram_stop" unique_id=13240081]
+position = Vector2(-282, 161)
+script = ExtResource("6_kp83i")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="in_laws_door" type="Area2D" parent="." unique_id=1349958309]
+process_mode = 1
+position = Vector2(571, 615)
+script = ExtResource("9_od3y5")
+global_id = "in_laws_door"
+esc_script = "res://rooms/in_laws_house/in_laws_door.esc"
+tooltip_name = "Dveře dovnitř"
+default_action = "look"
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="in_laws_door" unique_id=549167606]
+position = Vector2(6, -8.5)
+shape = SubResource("RectangleShape2D_xffai")
+
+[node name="neighbor" parent="." unique_id=294159516 instance=ExtResource("10_vn3ef")]
+position = Vector2(1717, 743)

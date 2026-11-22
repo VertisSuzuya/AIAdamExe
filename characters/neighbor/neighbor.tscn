@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://dk24210hp7xp0"]
+
+[ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="1_ctvip"]
+[ext_resource type="Texture2D" uid="uid://dy8kd5g1jadah" path="res://characters/drunk/drunk.png" id="2_gqy5m"]
+[ext_resource type="Script" uid="uid://85bledusisk1" path="res://addons/escoria-core/game/core-scripts/esc_dialog_location.gd" id="3_i03l4"]
+[ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="4_6uiia"]
+[ext_resource type="Texture2D" uid="uid://dy8hs443tafbu" path="res://characters/neighbor/neighbor.png" id="4_iuqtr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vqt0v"]
+radius = 45.0
+height = 162.0
+
+[node name="neighbor" type="Area2D" unique_id=294159516]
+process_mode = 1
+scale = Vector2(3, 3)
+script = ExtResource("1_ctvip")
+global_id = "neighbor"
+esc_script = "res://characters/neighbor/neighbor.esc"
+tooltip_name = "Soused"
+dialog_color = Color(0.46229059, 0.46229059, 0.46229059, 1)
+default_action = "talk"
+actions_requiring_target_object = PackedStringArray()
+inventory_texture = ExtResource("2_gqy5m")
+inventory_texture_hovered = ExtResource("2_gqy5m")
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=608450851]
+position = Vector2(5, 1)
+shape = SubResource("CapsuleShape2D_vqt0v")
+
+[node name="ESCDialogLocation" type="Marker2D" parent="." unique_id=421600479]
+position = Vector2(12, -75)
+script = ExtResource("3_i03l4")
+metadata/_custom_type_script = "uid://85bledusisk1"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1908910693]
+position = Vector2(6, 1)
+scale = Vector2(0.27522254, 0.3850932)
+texture = ExtResource("4_iuqtr")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="." unique_id=1667240957]
+position = Vector2(-169, 86.666664)
+script = ExtResource("4_6uiia")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"

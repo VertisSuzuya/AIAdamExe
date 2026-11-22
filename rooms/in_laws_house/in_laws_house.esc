@@ -1,0 +1,23 @@
+:setup
+	if ESC_LAST_SCENE == "tram":
+		teleport($olda, $tram_stop)
+	else:
+		teleport($olda, $player_start)
+
+:ready
+	# První příchod: páska na domě.
+	if not in_laws_visited:
+		set_global("in_laws_visited", true)
+		accept_input("SKIP")
+		say($olda, "Tady to je. Dům Janinejch rodičů.")
+		say($olda, "...Co to je? Policejní páska?")
+		say($aidam, "Nepanikař. Může to být cokoliv. Vloupání, prasklá trubka...", "", "avatar")
+		say($aidam, "Támhle na schodech sedí soused. Zeptej se ho.", "", "avatar")
+		accept_input("ALL")
+
+:apply_time
+	# Soused sedí na verandě jen v pátek.
+	if game_day == 4:
+		set_active("neighbor", true)
+	else:
+		set_active("neighbor", false)

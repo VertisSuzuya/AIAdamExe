@@ -92,7 +92,13 @@
 	set_global("park_late", false)
 	set_global("phone_no_answer", false)
 	set_global("diary_park_empty", false)
-	
+								#po poledni
+	set_global("in_laws_visited", false)
+	set_global("neighbor_talked", false)
+	set_global("neighbor_asked_parents", false)
+	set_global("neighbor_asked_night", false)
+	set_global("neighbor_asked_father", false)
+	set_global("diary_in_laws", false)
 	
 		# Tramvaj
 	set_global("tram_from", "home_street")

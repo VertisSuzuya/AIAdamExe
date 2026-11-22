@@ -1,0 +1,13 @@
+:setup
+	teleport($olda, $tv_news_start)
+
+:ready
+	accept_input("SKIP")
+	say($news_voice, "Dobrý den, začínáme zprávami z Prahy.")
+	say($news_voice, "Policie pátrá po ženě a její osmileté dceři. Naposledy byly viděny ve čtvrtek večer v domě jejích rodičů na kraji Prahy.")
+	say($news_voice, "Do stejné ulice se policie vrátila dnes ráno. V noci tam byl zavražděn sedmdesátiletý muž, soused rodiny.")
+	say($news_voice, "Pouliční kamera zachytila ve tři hodiny ráno postavu v kapuci.")
+	say($news_voice, "Podle policie mohou případy souviset. Rodina pohřešované už policii sdělila jméno možného podezřelého.")
+	say($aidam, "Vypni to. Tohle ti nepomůže.", "", "avatar")
+	accept_input("ALL")
+	change_scene("res://rooms/oldas_room/oldas_room.tscn")

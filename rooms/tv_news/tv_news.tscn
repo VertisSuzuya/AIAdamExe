@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://ku2js158iopf"]
+
+[ext_resource type="Script" uid="uid://c7fcpp72w3dnj" path="res://addons/escoria-core/game/core-scripts/esc_room.gd" id="1_qablv"]
+[ext_resource type="PackedScene" uid="uid://ihn2iq8wcqag" path="res://characters/olda/olda.tscn" id="2_as4vw"]
+[ext_resource type="Texture2D" uid="uid://se7ql673gm40" path="res://rooms/tv_news/tv_news.png" id="3_wlh6n"]
+[ext_resource type="Script" uid="uid://fnwnfflaoeqp" path="res://addons/escoria-core/game/core-scripts/esc_background.gd" id="4_pww87"]
+[ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="5_wg3uc"]
+[ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="8_8a1a3"]
+[ext_resource type="Script" uid="uid://beh3ds4eapldu" path="res://addons/escoria-core/game/core-scripts/esc_location.gd" id="8_gv0ve"]
+[ext_resource type="Script" uid="uid://85bledusisk1" path="res://addons/escoria-core/game/core-scripts/esc_dialog_location.gd" id="9_jv55x"]
+
+[node name="tv_news" type="Node2D" unique_id=2014788545]
+script = ExtResource("1_qablv")
+global_id = "tv_news"
+esc_script = "res://rooms/tv_news/tv_news.esc"
+player_scene = ExtResource("2_as4vw")
+metadata/_custom_type_script = "uid://c7fcpp72w3dnj"
+
+[node name="escbackground" type="TextureRect" parent="." unique_id=2004343302]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("3_wlh6n")
+script = ExtResource("4_pww87")
+metadata/_custom_type_script = "uid://fnwnfflaoeqp"
+
+[node name="Aidam" parent="." unique_id=1389523226 instance=ExtResource("5_wg3uc")]
+
+[node name="olda" type="Area2D" parent="." unique_id=1886642208]
+process_mode = 1
+position = Vector2(226, 838)
+script = ExtResource("8_8a1a3")
+global_id = "olda_tw_news"
+dialog_color = Color(0.84887064, 0.7483791, 1, 1)
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="ESCDialogLocation" type="Marker2D" parent="olda" unique_id=1087021609]
+position = Vector2(1358, -48)
+script = ExtResource("9_jv55x")
+metadata/_custom_type_script = "uid://85bledusisk1"
+
+[node name="start_location" type="Marker2D" parent="." unique_id=127025836]
+position = Vector2(-210, 448)
+script = ExtResource("8_gv0ve")
+global_id = "tv_news_start"
+is_start_location = true
+metadata/_custom_type_script = "uid://beh3ds4eapldu"
+
+[node name="news_voice" type="Area2D" parent="." unique_id=301962558]
+process_mode = 1
+script = ExtResource("8_8a1a3")
+global_id = "news_voice"
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="ESCDialogLocation" type="Marker2D" parent="news_voice" unique_id=331687581]
+position = Vector2(361, 775)
+script = ExtResource("9_jv55x")
+metadata/_custom_type_script = "uid://85bledusisk1"

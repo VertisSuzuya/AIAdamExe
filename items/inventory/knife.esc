@@ -1,0 +1,3 @@
+:look
+	say($olda, "Nůž od krve. Cenovka z večerky, sto osmdesát devět korun.")
+	say($olda, "Tenhle nůž jsem si nekoupil. ...Nebo jo?")

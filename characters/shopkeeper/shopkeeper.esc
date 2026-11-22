@@ -33,6 +33,12 @@
 				if bin_bottles_taken and not bin_bottles_returned:
 					inventory_remove("trash_bottles")
 					set_global("bin_bottles_returned", true)
+			- "Prodáváte i kamery?" [game_day == 4 and neighbor_talked and not camera_bought]
+				say($shopkeeper, "Kamery? Mám. Malá, na baterku, nahrává celou noc. Pět stovek.")
+				say($olda, "Beru.")
+				inventory_add("camera")
+				set_global("camera_bought", true)
+				say($shopkeeper, "Kdyby něco, přineste mi ji. Záznam vám přetáhnu do počítače.")
 			- "Nic, jen se dívám."
 				done
 

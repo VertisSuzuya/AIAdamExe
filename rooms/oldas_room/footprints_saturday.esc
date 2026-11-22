@@ -1,0 +1,4 @@
+:look
+	say($olda, "Stopy vedou k nočnímu stolku. A pak zpátky do postele.")
+	if not knife_found:
+		say($olda, "Co jsem tam v noci dělal?")

@@ -118,7 +118,7 @@ func _process(delta: float) -> void:
 
 	var minute: int = int(escoria.globals_manager.get_global("day_minute"))
 
-	if minute >= DAY_END:
+	if minute >= DAY_END and not _flag("no_day_limit"):
 		if not _timed_out:
 			_timed_out = true
 			_run_steps([[escoria.start_script, "day_timeout"]])
@@ -153,7 +153,9 @@ func _process(delta: float) -> void:
 	if _minute_accumulator >= 1.0:
 		var whole: int = int(_minute_accumulator)
 		_minute_accumulator -= whole
-		var new_minute: int = mini(minute + whole, DAY_END)
+		var new_minute: int = minute + whole
+		if not _flag("no_day_limit"):
+			new_minute = mini(new_minute, DAY_END)
 		escoria.globals_manager.set_global("day_minute", new_minute)
 		# Každou celou půlhodinu :half_hour v game.esc (připomínky podle času).
 		if new_minute / 30 != minute / 30 \

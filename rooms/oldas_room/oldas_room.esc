@@ -2,6 +2,8 @@
 	# Příchod z ulice: Olda stojí u dveří, jinak (laboratoř, nový den) na startu.
 	if ESC_LAST_SCENE == "home_street":
 		teleport($olda, $exit_to_street)
+	elif ESC_LAST_SCENE == "tv_news":
+		teleport($olda, $tv)
 	else:
 		teleport($olda, $oldas_room_start_location)
 	# Pondělí: Olda se z laboratoře dostane domů ve 22:00, teprve teď
@@ -41,6 +43,26 @@
 		set_global("stop_center", true)
 		set_global("diary_stop_center", true)
 		accept_input("ALL")
+		# Sobota po zprávách: Olda začíná tušit, AIdam zapírá.
+	if ESC_LAST_SCENE == "tv_news":
+		accept_input("SKIP")
+		say($olda, "Ve tři ráno. Mokrý stopy. Peníze pryč.")
+		if knife_found:
+			say($olda, "A nůž v šuplíku.")
+		say($olda, "Byl jsem to já?")
+		say($aidam, "Ne. Poslouchej mě, Oldo. Jsi vyčerpanej. Mozek si spojuje věci, který spolu nesouvisí.", "", "avatar")
+		say($aidam, "Lehni si. Vyspi se. Až se probudíš, bude všechno dávat smysl.", "", "avatar")
+		say($olda, "Pokaždý, když usnu, se něco stane.")
+		say($olda, "Ne. Dneska spát nebudu. Potřebuju vědět, co jsem dělal. A potřebuju to dokázat.")
+		if camera_placed:
+			say($olda, "Kamera! Je pořád v keři na Konečné. Musela natočit, co se tam v noci dělo.")
+		if knife_found:
+			say($olda, "A ten nůž je z večerky. Vietnamec si bude pamatovat, kdo ho kupoval.")
+		else:
+			say($olda, "Ty stopy vedou k nočnímu stolku. Co tam je?")
+		say($aidam, "Děláš velkou chybu, Oldo. Já ti jen chci pomoct.", "", "avatar")
+		set_global("diary_news_seen", true)
+		accept_input("ALL")
 
 :morning
 	# Spouští game_clock po probuzení (po mrknutí). Repliky podle dne.
@@ -72,6 +94,18 @@
 		say($aidam, "V noci pršelo. Možná jsi byl náměsíčnej. Nebo jsi šel vynést koš a zapomněl na to. Lidi zapomínaj spoustu věcí.", "", "avatar")
 		say($aidam, "Hlavně se nestresuj. Dneska je velkej den. Dvanáct hodin, první lavička, pamatuješ?", "", "avatar")
 		accept_input("ALL")
+	elif game_day == 5:
+		accept_input("SKIP")
+		inventory_remove("money")
+		say($olda, "Zase stopy. Mokrý. Od dveří až k nočnímu stolku... a pak do postele.")
+		say($olda, "To zase pršelo? A já byl zase venku?")
+		say($aidam, "Měl jsi neklidnou noc, to je celý. Nic se neděje.", "", "avatar")
+		say($olda, "Počkej. Kde mám peníze? Celá obálka. Byla tady.")
+		say($aidam, "Možná jsi je někde nechal. Včera jsi byl dost rozhozenej.", "", "avatar")
+		say($olda, "Něco je špatně. Pustím si zprávy.")
+		# Od soboty čas běží přes 2:00 až do konce hry.
+		set_global("no_day_limit", true)
+		accept_input("ALL")
 
 :apply_time
 	# Obálka od firmy leží na stolku od středy, dokud ji Olda nesebere.
@@ -85,3 +119,9 @@
 		set_active("footprints_friday", true)
 	else:
 		set_active("footprints_friday", false)
+		
+	# Sobota: stopy k nočnímu stolku.
+	if game_day == 5:
+		set_active("footprints_saturday", true)
+	else:
+		set_active("footprints_saturday", false)

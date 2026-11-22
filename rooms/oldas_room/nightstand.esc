@@ -1,3 +1,31 @@
+:look
+	if game_day == 5 and not knife_found:
+		say($olda, "Stopy vedou až sem. Šuplík je pootevřenej.")
+	else:
+		say($olda, "Noční stolek.")
+
+:use
+	if game_day == 5 and not knife_taken:
+		accept_input("SKIP")
+		if not knife_found:
+			say($olda, "Šuplík je pootevřenej...")
+			say($olda, "...Nůž. Od krve.")
+			say($olda, "Na rukojeti je cenovka. Večerka, sto osmdesát devět korun.")
+			say($olda, "Tenhle nůž jsem si nekoupil. ...Nebo jo?")
+			say($aidam, "Někdo ti ho podstrčil. Nebo je to od rajčat. Hlavně nepanikař.", "", "avatar")
+			set_global("knife_found", true)
+			set_global("diary_knife_found", true)
+		accept_input("ALL")
+		?!
+			- "Vezmu ho s sebou."
+				inventory_add("knife")
+				set_global("knife_taken", true)
+				done
+			- "Nechám ho v šuplíku."
+				done
+	else:
+		say($olda, "Šuplík. Nic, co bych potřeboval.")
+
 :use alarm
 	if tutorial_step == 6:
 		say($olda, "Nastavím tedy budík, ať nezaspím.")

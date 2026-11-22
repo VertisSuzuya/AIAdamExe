@@ -4,8 +4,10 @@
 [ext_resource type="Script" uid="uid://bxc3dll30x8tl" path="res://addons/escoria-core/game/core-scripts/resources/esc_directionangle.gd" id="2_t0mv1"]
 [ext_resource type="Script" uid="uid://clixil1u5exq7" path="res://addons/escoria-core/game/core-scripts/resources/esc_animationname.gd" id="3_o8wjg"]
 [ext_resource type="Script" uid="uid://sksvt0n8gle2" path="res://addons/escoria-core/game/core-scripts/resources/esc_animationresource.gd" id="4_672yv"]
+[ext_resource type="Texture2D" uid="uid://cwladbxuihs6b" path="res://grafika/Olda_čistej_zadní.png" id="5_672yv"]
 [ext_resource type="Texture2D" uid="uid://c8o8hetrskbgm" path="res://characters/olda/mark-spritesheet.png" id="5_u5yjo"]
 [ext_resource type="Script" uid="uid://85bledusisk1" path="res://addons/escoria-core/game/core-scripts/esc_dialog_location.gd" id="6_t0mv1"]
+[ext_resource type="Texture2D" uid="uid://cchvtaah1gxar" path="res://grafika/Olda_čistej_přední.png" id="6_u5yjo"]
 
 [sub_resource type="Resource" id="Resource_6l7ny"]
 script = ExtResource("2_t0mv1")
@@ -192,14 +194,6 @@ idles = Array[ExtResource("3_o8wjg")]([SubResource("Resource_e6k5y"), SubResourc
 speaks = Array[ExtResource("3_o8wjg")]([SubResource("Resource_dpmr3"), SubResource("Resource_yi8pr"), SubResource("Resource_sju6k"), SubResource("Resource_cxaom"), SubResource("Resource_sc5qe"), SubResource("Resource_2yahn"), SubResource("Resource_padie"), SubResource("Resource_ogcvw")])
 metadata/_custom_type_script = "uid://sksvt0n8gle2"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t2fw0"]
-atlas = ExtResource("5_u5yjo")
-region = Rect2(72, 0, 24, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4cmkl"]
-atlas = ExtResource("5_u5yjo")
-region = Rect2(0, 0, 24, 70)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_lwkst"]
 atlas = ExtResource("5_u5yjo")
 region = Rect2(24, 0, 24, 70)
@@ -263,8 +257,8 @@ region = Rect2(72, 280, 24, 70)
 [sub_resource type="SpriteFrames" id="SpriteFrames_vqt0v"]
 animations = [{
 "frames": [{
-"duration": 2.0,
-"texture": SubResource("AtlasTexture_t2fw0")
+"duration": 1.0,
+"texture": ExtResource("5_672yv")
 }],
 "loop": 1,
 "name": &"idle_back",
@@ -272,7 +266,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4cmkl")
+"texture": ExtResource("6_u5yjo")
 }],
 "loop": 1,
 "name": &"idle_front",
@@ -366,9 +360,10 @@ animations = SubResource("Resource_xffai")
 metadata/_custom_type_script = "uid://btrr8e33hu0i4"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=854245408]
-position = Vector2(0, -32)
+position = Vector2(-0.9999999, -35)
+scale = Vector2(0.13385415, 0.13671874)
 sprite_frames = SubResource("SpriteFrames_vqt0v")
-animation = &"idle_front"
+animation = &"idle_back"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2115226570]
 position = Vector2(0, -32)

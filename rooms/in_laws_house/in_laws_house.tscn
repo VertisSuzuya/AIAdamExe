@@ -108,3 +108,23 @@ shape = SubResource("RectangleShape2D_xffai")
 
 [node name="neighbor" parent="." unique_id=294159516 instance=ExtResource("10_vn3ef")]
 position = Vector2(1717, 743)
+
+[node name="hedge" type="Area2D" parent="." unique_id=2018165092]
+process_mode = 1
+position = Vector2(349, 717)
+script = ExtResource("9_od3y5")
+global_id = "hedge"
+esc_script = "res://rooms/in_laws_house/hedge.esc"
+tooltip_name = "Keře u plotu"
+default_action = "look"
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="hedge" unique_id=1436808566]
+position = Vector2(-355.9, -714.4)
+polygon = PackedVector2Array(208, 636, 496, 647, 503, 768, 206, 744)
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="hedge" unique_id=1736860585]
+position = Vector2(-8.899994, 51.599976)
+script = ExtResource("6_kp83i")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"

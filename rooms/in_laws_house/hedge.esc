@@ -1,0 +1,17 @@
+:look
+	if camera_placed:
+		say($olda, "Kamera je pořád mezi větvemi. Kouká přímo na verandu.")
+	else:
+		say($olda, "Keře u plotu. Je odsud vidět přímo na verandu souseda.")
+
+:use camera
+	if game_day == 4:
+		accept_input("SKIP")
+		say($olda, "Soused se zrovna dívá jinam. Tady... mezi větve, objektivem na verandu.")
+		inventory_remove("camera")
+		set_global("camera_placed", true)
+		set_global("diary_camera_placed", true)
+		say($aidam, "Hraješ si na detektiva. Dobře. Zítra uvidíme, kdo měl pravdu.", "", "avatar")
+		accept_input("ALL")
+	else:
+		say($olda, "Teď ne.")

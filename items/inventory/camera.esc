@@ -1,0 +1,8 @@
+:look
+	say($olda, "Kafe z automatu. Horký.")
+
+:pickup
+	say($olda, "Opatrně, pálí.")
+	inventory_add("coffee")
+	set_active("coffee", false)
+	set_global("coffee_taken", true)

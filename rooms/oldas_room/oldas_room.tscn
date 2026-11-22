@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://b6xwkv252w0aq" path="res://items/inventory/envelope.tscn" id="15_x4sef"]
 [ext_resource type="Texture2D" uid="uid://bletg7y43dk32" path="res://rooms/oldas_room/oldas_room_lightning3.png" id="16_1oyo6"]
 [ext_resource type="Texture2D" uid="uid://cah80dxenec18" path="res://rooms/oldas_room/footprints_friday.png" id="17_5wg5v"]
+[ext_resource type="Texture2D" uid="uid://dclvjshn86nn4" path="res://rooms/oldas_room/footprints_saturday.png" id="18_87atj"]
+[ext_resource type="PackedScene" uid="uid://dpb3b3afj2hbl" path="res://items/inventory/knife.tscn" id="19_xwqog"]
 
 [sub_resource type="Gradient" id="Gradient_2800j"]
 
@@ -71,6 +73,12 @@ script = ExtResource("6_0xtuq")
 global_id = "oldas_room_start_location"
 is_start_location = true
 metadata/_custom_type_script = "uid://beh3ds4eapldu"
+
+[node name="night_light" type="PointLight2D" parent="." unique_id=1652464971]
+position = Vector2(960, 540)
+color = Color(0.5637706, 0.55562586, 0.9499636, 1)
+energy = 2.04
+texture = ExtResource("16_1oyo6")
 
 [node name="window" type="Area2D" parent="." unique_id=234054817]
 process_mode = 1
@@ -162,17 +170,11 @@ script = ExtResource("6_0xtuq")
 metadata/_custom_type_script = "uid://beh3ds4eapldu"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ESCExit" unique_id=1893104764]
-position = Vector2(0, -43)
+position = Vector2(28, -32)
 shape = SubResource("RectangleShape2D_xffai")
 
 [node name="envelope" parent="." unique_id=2006973478 instance=ExtResource("15_x4sef")]
 position = Vector2(435, 818)
-
-[node name="night_light" type="PointLight2D" parent="." unique_id=1652464971]
-position = Vector2(960, 540)
-color = Color(0.5637706, 0.55562586, 0.9499636, 1)
-energy = 2.04
-texture = ExtResource("16_1oyo6")
 
 [node name="footprints_friday" type="Area2D" parent="." unique_id=341615070]
 process_mode = 1
@@ -195,5 +197,53 @@ polygon = PackedVector2Array(-149, 468, -732, 282, -782, 339, -222, 557)
 
 [node name="ESCInteractionLocation" type="Marker2D" parent="footprints_friday" unique_id=1274772067]
 position = Vector2(-478, 370)
+script = ExtResource("9_ultcx")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="footprints_saturday" type="Area2D" parent="." unique_id=1244183812]
+process_mode = 1
+position = Vector2(1006, 594)
+rotation = 0.2617994
+script = ExtResource("8_0xtuq")
+global_id = "footprints_saturday"
+esc_script = "res://rooms/oldas_room/footprints_saturday.esc"
+tooltip_name = "Mokrý stopy..."
+default_action = "look"
+actions_requiring_target_object = PackedStringArray()
+inventory_texture = ExtResource("18_87atj")
+inventory_texture_hovered = ExtResource("18_87atj")
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="Sprite2D" type="Sprite2D" parent="footprints_saturday" unique_id=1297965626]
+position = Vector2(-27.1846, -0.9981079)
+rotation = -0.2617994
+texture = ExtResource("18_87atj")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="footprints_saturday" unique_id=38870854]
+polygon = PackedVector2Array(-722.96814, 512.58386, -388.34534, 606.1659, 2.9154053, 605.89075, 399.63354, 483.02597, 710.2728, 290.05118, 799.85876, 222.5651, 571.0123, 187.6036, 497.91138, 196.83817, 523.7562, 262.38242, 325.261, 344.5568, 208.14868, 448.40628, -110.59326, 491.3666, -479.24524, 436.92575)
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="footprints_saturday" unique_id=227295537]
+position = Vector2(618.0565, 258.85547)
+script = ExtResource("9_ultcx")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="knife" parent="." unique_id=560477882 instance=ExtResource("19_xwqog")]
+position = Vector2(1680, 868)
+
+[node name="tv" type="Area2D" parent="." unique_id=332128744]
+process_mode = 1
+position = Vector2(109, 472)
+script = ExtResource("8_0xtuq")
+global_id = "tv"
+esc_script = "res://rooms/oldas_room/tv.esc"
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tv" unique_id=1653858127]
+position = Vector2(-114, -472)
+polygon = PackedVector2Array(15, 287, 16, 741, 63, 739, 192, 644, 192, 406, 61, 273)
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="tv" unique_id=1826308650]
+position = Vector2(288, 482)
 script = ExtResource("9_ultcx")
 metadata/_custom_type_script = "uid://chu4bvqgwxuts"

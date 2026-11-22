@@ -1,0 +1,13 @@
+:look
+	set_angle($olda, 270)
+	say($olda, "Televize.")
+
+:use
+	set_angle($olda, 270)
+	if game_day < 5:
+		say($olda, "Teď ne. Mám lepší věci na práci.")
+	elif not news_seen:
+		set_global("news_seen", true)
+		change_scene("res://rooms/tv_news/tv_news.tscn")
+	else:
+		say($olda, "Už to nechci vidět znovu.")

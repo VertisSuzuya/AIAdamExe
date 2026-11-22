@@ -46,6 +46,11 @@
 		say($aidam, "Ten, kdo má sám co skrývat. Sedí celej den na schodech a kouká na jejich dveře.", "", "avatar")
 		say($olda, "Myslíš, že on...?")
 		say($aidam, "Já nic netvrdím. Jen říkám, že tenhle by měl mluvit míň. Mnohem míň.", "", "avatar")
+		
+		say($olda, "Kdybych ho tak mohl hlídat... Třeba bych na něco přišel.")
+		say($olda, "Vietnamec u nás prodává všechno. Možná i kameru.")
+		say($aidam, "Kamera na dědka? No proč ne. Aspoň uvidíš, že mám pravdu.", "", "avatar")
+	
 		say($aidam, "Dneska už nic nezjistíme. Jeď domů a vyspi se. Ráno to bude lepší. Postarám se o to.", "", "avatar")
 		set_global("neighbor_talked", true)
 		set_global("diary_in_laws", true)

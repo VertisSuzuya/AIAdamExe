@@ -100,6 +100,18 @@
 	set_global("neighbor_asked_father", false)
 	set_global("diary_in_laws", false)
 	
+	set_global("camera_bought", false)
+	set_global("camera_placed", false)
+	set_global("diary_camera_placed", false)
+	
+	#####################################SATURDAY####################################
+	set_global("no_day_limit", false)
+	set_global("knife_found", false)
+	set_global("knife_taken", false)
+	set_global("news_seen", false)
+	set_global("diary_knife_found", false)
+	set_global("diary_news_seen", false)
+	
 		# Tramvaj
 	set_global("tram_from", "home_street")
 	set_global("tram_moving", false)
@@ -121,7 +133,8 @@
 	# Z game_day (0 = pondělí ... 6 = neděle) a day_phase ("morning",
 	# "afternoon", "evening", "night") spočítá příznaky pro místnosti.
 	# Místnosti a dialogy čtou jen tyto příznaky, ne čas přímo.
-	set_global("shop_open", (day_phase == "morning" or day_phase == "afternoon") and game_day != 6)
+	# Z pátku na sobotu má večerka otevřeno celou noc (AIdam tam kupuje nůž).
+	set_global("shop_open", ((day_phase == "morning" or day_phase == "afternoon") and game_day != 6) or game_day == 4)
 
 :time_fade_out
 	# Mrknutí při změně části dne (spouští game_clock), pak se mění vzhled místnosti.

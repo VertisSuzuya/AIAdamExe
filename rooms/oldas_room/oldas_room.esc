@@ -65,6 +65,13 @@
 		say($aidam, "Říkal jsem, že ve spánku to jde líp. Nemusíš děkovat. Ale můžeš.", "", "avatar")
 		say($aidam, "Telefonní budka je hned před domem. Tak co, zavoláš jim?", "", "avatar")
 		set_global("wife_number_known", true)
+	elif game_day == 4:
+		accept_input("SKIP")
+		say($olda, "Co to je? Stopy... mokrý. Od dveří až k posteli.")
+		say($olda, "Já byl v noci venku?")
+		say($aidam, "V noci pršelo. Možná jsi byl náměsíčnej. Nebo jsi šel vynést koš a zapomněl na to. Lidi zapomínaj spoustu věcí.", "", "avatar")
+		say($aidam, "Hlavně se nestresuj. Dneska je velkej den. Dvanáct hodin, první lavička, pamatuješ?", "", "avatar")
+		accept_input("ALL")
 
 :apply_time
 	# Obálka od firmy leží na stolku od středy, dokud ji Olda nesebere.
@@ -72,3 +79,9 @@
 		set_active("envelope", true)
 	else:
 		set_active("envelope", false)
+		
+	# Pátek ráno: mokré stopy od dveří k posteli.
+	if game_day == 4:
+		set_active("footprints_friday", true)
+	else:
+		set_active("footprints_friday", false)

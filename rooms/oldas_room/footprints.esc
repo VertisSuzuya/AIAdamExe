@@ -1,0 +1,4 @@
+:look
+	set_angle($olda, 220)
+	say($olda, "Mokrý stopy. Od dveří až k posteli.")
+	say($aidam, "Klid. V noci pršelo, nic víc.", "", "avatar")

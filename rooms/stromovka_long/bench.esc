@@ -1,0 +1,56 @@
+:look
+	say($olda, "Lavička. První v dlouhé aleji. Tady jsme měli sraz.")
+
+:use
+	# Pátek: sraz ve 12:00. Nikdo nepřijde.
+	if game_day == 4 and not park_waited:
+		if day_minute < 720:
+			say($olda, "Ještě není dvanáct.")
+			?!
+				- "Počkám tu do dvanácti."
+					queue_event("bench", "park_wait")
+					done
+				- "Ještě se půjdu projít."
+					done
+		else:
+			# Přišel po dvanácté.
+			if day_minute > 735:
+				set_global("park_late", true)
+			queue_event("bench", "park_wait")
+	elif game_day == 4 and not phone_no_answer:
+		say($olda, "Nemá cenu tu dál sedět. Zkusím jí zavolat.")
+	elif game_day == 4:
+		say($olda, "Musím je najít.")
+	else:
+		say($olda, "Lavička. Teď si nesednu, nemám čas.")
+
+:park_wait
+	# Čekání na lavičce, nejde přerušit.
+	accept_input("SKIP")
+	if day_minute < 720:
+		transition("fade_black", "out", 0.5)
+		set_global("day_minute", 720)
+		# Ručně, jinak by hodiny ve 12:00 ještě jednou mrkly.
+		set_global("day_phase", "afternoon")
+		transition("fade_black", "in", 0.5)
+	# 12:00 (nebo později): pořád nikdo.
+	say($olda, "Dvanáct. Nikde nikdo.")
+	if park_late:
+		say($aidam, "No... přišel jsi pozdě. Ale Jana by počkala. Ne?", "", "avatar")
+	else:
+		say($aidam, "Pár minut. Malý děti, víš jak to chodí. Někde zapomněly bačkoru.", "", "avatar")
+	say($olda, "Počkám.")
+	# Hodina čekání.
+	transition("fade_black", "out", 0.5)
+	set_global("day_minute", day_minute + 60)
+	transition("fade_black", "in", 0.5)
+	say($olda, "Hodina. Pořád nic.")
+	say($olda, "Klárka by tu byla první. Celou cestu by mámu tahala za ruku.")
+	say($olda, "A Jana nikdy nechodí pozdě. To já chodím pozdě. Ona ne.")
+	say($olda, "Tohle by neudělala. Ne Klárce.")
+	say($aidam, "Možná se něco stalo. Nebo si to rozmyslela. Lidi si věci rozmýšlej.", "", "avatar")
+	say($olda, "Ne. Něco je špatně.")
+	say($aidam, "Tak jí zavolej. Budka je před domem.", "", "avatar")
+	set_global("park_waited", true)
+	set_global("diary_park_empty", true)
+	accept_input("ALL")

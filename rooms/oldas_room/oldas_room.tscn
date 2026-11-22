@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://btt4cprco53ec" path="res://addons/escoria-core/game/core-scripts/esc_exit.gd" id="14_go63i"]
 [ext_resource type="PackedScene" uid="uid://b6xwkv252w0aq" path="res://items/inventory/envelope.tscn" id="15_x4sef"]
 [ext_resource type="Texture2D" uid="uid://bletg7y43dk32" path="res://rooms/oldas_room/oldas_room_lightning3.png" id="16_1oyo6"]
+[ext_resource type="Texture2D" uid="uid://cah80dxenec18" path="res://rooms/oldas_room/footprints_friday.png" id="17_5wg5v"]
 
 [sub_resource type="Gradient" id="Gradient_2800j"]
 
@@ -172,3 +173,27 @@ position = Vector2(960, 540)
 color = Color(0.5637706, 0.55562586, 0.9499636, 1)
 energy = 2.04
 texture = ExtResource("16_1oyo6")
+
+[node name="footprints_friday" type="Area2D" parent="." unique_id=341615070]
+process_mode = 1
+position = Vector2(1000, 498)
+script = ExtResource("8_0xtuq")
+global_id = "footprints_friday"
+esc_script = "res://rooms/oldas_room/footprints.esc"
+tooltip_name = "Stopy..."
+default_action = "look"
+actions_requiring_target_object = PackedStringArray()
+inventory_texture = ExtResource("17_5wg5v")
+inventory_texture_hovered = ExtResource("17_5wg5v")
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="Sprite2D" type="Sprite2D" parent="footprints_friday" unique_id=1654613794]
+texture = ExtResource("17_5wg5v")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="footprints_friday" unique_id=1838678488]
+polygon = PackedVector2Array(-149, 468, -732, 282, -782, 339, -222, 557)
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="footprints_friday" unique_id=1274772067]
+position = Vector2(-478, 370)
+script = ExtResource("9_ultcx")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"

@@ -42,5 +42,19 @@
 		accept_input("ALL")
 	elif game_day == 3 and wife_called:
 		say($olda, "Už jsem volal. Ve dvě v kavárně ve Stromovce.")
+	elif game_day == 4 and not park_waited:
+		say($olda, "Ve dvanáct je uvidím v parku. Není proč volat.")
+	elif game_day == 4 and not phone_no_answer:
+		accept_input("SKIP")
+		say($olda, "Vyzvání...")
+		say($olda, "Nic.")
+		say($olda, "Ona to vždycky bere. I když mě nechce slyšet, aspoň to zvedne.")
+		say($olda, "Nezbývá mi nic jiného, než se jet za Janou a Klárkou podívat sám.")
+		set_global("phone_no_answer", true)
+		set_global("stop_in_laws", true)
+		set_global("diary_stop_in_laws", true)
+		accept_input("ALL")
+	elif game_day == 4:
+		say($olda, "Pořád to nikdo nebere.")
 	else:
 		say($olda, "Zatím nemám komu volat.")

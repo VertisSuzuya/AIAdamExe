@@ -86,6 +86,14 @@
 	set_global("family_met", false)
 	set_global("diary_family_met", false)
 	
+	#####################################FRIDAY####################################
+	set_global("park_waits", 0)
+	set_global("park_waited", false)
+	set_global("park_late", false)
+	set_global("phone_no_answer", false)
+	set_global("diary_park_empty", false)
+	
+	
 		# Tramvaj
 	set_global("tram_from", "home_street")
 	set_global("tram_moving", false)
@@ -161,3 +169,9 @@
 			say($aidam, "Je pět. Za hodinu Mutanti! Ať jsme v atriu včas.", "", "avatar")
 		elif day_minute >= 1050 and day_minute < 1080:
 			say($aidam, "Půl šestý! Mutanti za půl hodiny. Rychle do atria na FIT!", "", "avatar")
+		# Pátek: sraz ve 12:00 u první lavičky v dlouhé aleji.
+	if game_day == 4 and not park_waited and ESC_CURRENT_SCENE != "stromovka_long":
+		if day_minute >= 660 and day_minute < 690:
+			say($aidam, "Je jedenáct. Ve dvanáct u lavičky v dlouhé aleji.", "", "avatar")
+		elif day_minute >= 690 and day_minute < 720:
+			say($aidam, "Půl dvanáctý! Za půl hodiny sraz v parku.", "", "avatar")

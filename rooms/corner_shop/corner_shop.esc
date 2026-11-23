@@ -1,2 +1,25 @@
 :setup
-	teleport($olda, $exit_to_home_street)
+	if ESC_LAST_SCENE == "footage":
+		teleport($olda, $shopkeeper)
+	else:
+		teleport($olda, $exit_to_home_street)
+
+:ready
+	# Po přehrání záznamu: Vietnamec nahraje záznamy na flashku.
+	if ESC_LAST_SCENE == "footage":
+		accept_input("SKIP")
+		if not usb_taken:
+			say($shopkeeper, "Nahraju vám to na flashku. Všechno, co mám.")
+			say($shopkeeper, "Za toho opilce a za ty lahve. Jsem vám dlužnej.")
+			inventory_add("usb_drive")
+			set_global("usb_taken", true)
+			set_global("diary_usb", true)
+		else:
+			say($shopkeeper, "Přidal jsem to na tu samou flashku.")
+		if shop_testimony:
+			say($shopkeeper, "A kdyby to bylo potřeba, řeknu to i na policii.")
+		say($olda, "Děkuju.")
+		if shop_footage_seen and camera_footage_seen and knife_taken:
+			say($olda, "Záznam z obchodu, z kamery a nůž. S tímhle mi na policii musí uvěřit.")
+			say($aidam, "Oldo. Prosím. Ještě není pozdě si lehnout a na všechno zapomenout.", "", "avatar")
+		accept_input("ALL")

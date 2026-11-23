@@ -1,7 +1,23 @@
 :setup
-	if ESC_LAST_SCENE == "stromovka_crossroads":
+	if blackout_park:
+		teleport($olda, $bench)
+	elif ESC_LAST_SCENE == "stromovka_crossroads":
 		teleport($olda, $exit_to_crossroads)
 		set_angle($olda, 60)
 	else:
 		teleport($olda, $player_start)
 	play_snd("res://sound/music/rainOverRamen.mp3", _music)
+
+:ready
+	# Sobota ve 14:00: výpadek, Olda se probere u lavičky (game.esc :half_hour).
+	if blackout_park:
+		queue_event("stromovka_long", "wake_park")
+
+:wake_park
+	accept_input("SKIP")
+	set_global("blackout_park", false)
+	say($olda, "...Kde to jsem?")
+	say($olda, "Stromovka. Ta lavička. Tady jsme měli sraz.")
+	say($olda, "Půl hodiny. Chybí mi půl hodiny.")
+	say($aidam, "Chtěl jsem ti ukázat, kde to všechno začalo. Sedni si. Odpočiň si.", "", "avatar")
+	accept_input("ALL")

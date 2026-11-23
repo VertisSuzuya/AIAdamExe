@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dk24210hp7xp0" path="res://characters/neighbor/neighbor.tscn" id="10_vn3ef"]
 [ext_resource type="Texture2D" uid="uid://cl4s483ggoo2y" path="res://rooms/in_laws_house/police_car.png" id="11_p7omc"]
 [ext_resource type="PackedScene" uid="uid://b17k0ge47qx0b" path="res://characters/police_officer/police_officer.tscn" id="12_o766k"]
+[ext_resource type="Texture2D" uid="uid://c4t8iltwqe0bp" path="res://characters/police_officer/police_officer.png" id="13_jdyqk"]
 [ext_resource type="Texture2D" uid="uid://5je7xkejvpqu" path="res://rooms/in_laws_house/neighbor_tape.png" id="13_pjk35"]
 
 [sub_resource type="Gradient" id="Gradient_6wxwk"]
@@ -149,6 +150,8 @@ texture = ExtResource("11_p7omc")
 
 [node name="police_officer" parent="." unique_id=1977448637 instance=ExtResource("12_o766k")]
 position = Vector2(622, 741)
+inventory_texture = ExtResource("13_jdyqk")
+inventory_texture_hovered = ExtResource("13_jdyqk")
 
 [node name="neighbor_tape" type="Area2D" parent="." unique_id=1271771907]
 process_mode = 1

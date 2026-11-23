@@ -1,0 +1,6 @@
+:look
+	say($olda, "Flashka od Vietnamce.")
+	if shop_footage_seen:
+		say($olda, "Záznam z obchodu: kupuju nůž a mluvím cizím hlasem.")
+	if camera_footage_seen:
+		say($olda, "Záznam z mý kamery: otáčím ji pryč a vracím se s krví na ruce.")

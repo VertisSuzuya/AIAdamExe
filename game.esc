@@ -136,6 +136,17 @@
 	set_global("in_laws_sat_seen", false)
 	set_global("police_left", false)
 	
+	set_global("shop_testimony", false)
+	set_global("shop_footage_seen", false)
+	set_global("camera_footage_seen", false)
+	set_global("footage_kind", "")
+	set_global("footage_now", false)
+	set_global("usb_taken", false)
+	set_global("diary_shop_testimony", false)
+	set_global("diary_camera_footage", false)
+	set_global("diary_usb", false)
+	
+	
 	#change_scene("res://rooms/oldas_room/oldas_room.tscn")
 	change_scene("res://rooms/laboratory/laboratory.tscn")
 

@@ -39,8 +39,32 @@
 				inventory_add("camera")
 				set_global("camera_bought", true)
 				say($shopkeeper, "Kdyby něco, přineste mi ji. Záznam vám přetáhnu do počítače.")
+			- "Byl jsem tu dnes v noci?" [game_day == 5 and news_seen and not shop_testimony]
+				set_global("shop_testimony", true)
+				set_global("diary_shop_testimony", true)
+				say($shopkeeper, "Vy si to nepamatujete? Tři čtvrtě na dvě. Klepal jste na okýnko.")
+				say($shopkeeper, "Koupil jste nůž. Ten velkej kuchyňskej. Ani jste nesmlouval.")
+				say($shopkeeper, "A mluvil jste sám se sebou. Jiným hlasem. Jako by vás tam bylo víc.")
+				say($shopkeeper, "Říkal jsem si, že jste opilej. Ale nebyl. Usmíval jste se.")
+				say($aidam, "Unavenej prodavač ve dvě ráno. Výbornej svědek.", "", "avatar")
+				say($olda, "Máte to na kameře?")
+				say($shopkeeper, "Mám. Pojďte sem za pult.")
+				set_global("footage_kind", "shop")
+				set_global("footage_now", true)
+				done
+			- "Přehrajete mi záznam z téhle kamery?" [game_day == 5 and camera_taken and not camera_footage_seen]
+				say($shopkeeper, "Ta, co jsem vám prodal? Ukažte.")
+				say($shopkeeper, "Přetáhnu to do počítače. Moment.")
+				set_global("footage_kind", "camera")
+				set_global("footage_now", true)
+				done
 			- "Nic, jen se dívám."
 				done
+	
+	# Sobota: přehrání záznamu (scéna footage).
+	if footage_now:
+		set_global("footage_now", false)
+		change_scene("res://rooms/footage/footage.tscn")
 
 	if shop_reward_now:
 		if booth_coins_taken and machine_coins_taken and bottles_returned and bin_bottles_returned:

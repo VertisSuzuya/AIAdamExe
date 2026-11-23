@@ -1,0 +1,35 @@
+:setup
+	teleport($olda, $footage_start)
+	set_active("footage_cam_1", false)
+	set_active("footage_cam_2", false)
+	set_active("footage_cam_3", false)
+	if footage_kind == "camera":
+		set_active("footage_cam_1", true)
+
+:ready
+	accept_input("SKIP")
+	if footage_kind == "shop":
+		say($shop_voice, "Tady. Tři čtvrtě na dvě, dnes v noci.")
+		say($olda_viewer, "To jsem já. V kapuci.")
+		say($shop_voice, "Teď poslouchejte, co říkáte.")
+		say($olda_viewer, "„Nůž. Ten velkej. A pospěš si, dneska toho máme hodně.“")
+		say($olda_viewer, "Máme... Ten hlas. To není můj hlas.")
+		say($aidam, "Šum. Levnej mikrofon. Zkreslí každýho.", "", "avatar")
+		set_global("shop_footage_seen", true)
+	else:
+		say($shop_voice, "Noc z pátku na sobotu. Míří to na verandu toho starýho pána.")
+		say($olda_viewer, "Dvě padesát osm... Někdo jde ke kameře.")
+		say($olda_viewer, "To jsem já. Kouká přímo do ní.")
+		set_active("footage_cam_1", false)
+		set_active("footage_cam_2", true)
+		say($shop_voice, "A teď ji otočil k nebi. Dvacet minut jen déšť.")
+		say($olda_viewer, "O tý kameře nevěděl nikdo jinej. Jen já.")
+		set_active("footage_cam_2", false)
+		set_active("footage_cam_3", true)
+		say($shop_voice, "Tři dvacet. Zase vy. Rovnáte ji zpátky.")
+		say($olda_viewer, "Ta ruka... je od krve.")
+		say($aidam, "Deepfake. Dneska se dá zfalšovat úplně cokoliv. Neříkal ten dědek, že AI je všude?", "", "avatar")
+		set_global("camera_footage_seen", true)
+		set_global("diary_camera_footage", true)
+	accept_input("ALL")
+	change_scene("res://rooms/corner_shop/corner_shop.tscn")

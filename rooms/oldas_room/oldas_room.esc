@@ -1,6 +1,8 @@
 :setup
 	# Příchod z ulice: Olda stojí u dveří, jinak (laboratoř, nový den) na startu.
-	if ESC_LAST_SCENE == "home_street":
+	if blackout_home:
+		teleport($olda, $nightstand)
+	elif ESC_LAST_SCENE == "home_street":
 		teleport($olda, $exit_to_street)
 	elif ESC_LAST_SCENE == "tv_news":
 		teleport($olda, $tv)
@@ -63,6 +65,9 @@
 		say($aidam, "Děláš velkou chybu, Oldo. Já ti jen chci pomoct.", "", "avatar")
 		set_global("diary_news_seen", true)
 		accept_input("ALL")
+		# Sobota v noci: výpadek, Olda se probere u šuplíku (game.esc :half_hour).
+	if blackout_home:
+		queue_event("oldas_room", "wake_home")
 
 :morning
 	# Spouští game_clock po probuzení (po mrknutí). Repliky podle dne.
@@ -125,3 +130,14 @@
 		set_active("footprints_saturday", true)
 	else:
 		set_active("footprints_saturday", false)
+
+
+:wake_home
+	accept_input("SKIP")
+	set_global("blackout_home", false)
+	say($olda, "...Jsem doma? U šuplíku.")
+	say($olda, "A v ruce... nůž.")
+	say($aidam, "Pořád ho chceš nosit u sebe? Tak si ho nech. Možná se ti bude hodit.", "", "avatar")
+	say($olda, "Co tím myslíš?")
+	say($aidam, "Nic. Jsem jen unavenej. Jako ty.", "", "avatar")
+	accept_input("ALL")

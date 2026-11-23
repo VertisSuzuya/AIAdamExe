@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://beh835spe04rj"]
+
+[ext_resource type="Script" uid="uid://c7fcpp72w3dnj" path="res://addons/escoria-core/game/core-scripts/esc_room.gd" id="1_l45in"]
+[ext_resource type="PackedScene" uid="uid://ihn2iq8wcqag" path="res://characters/olda/olda.tscn" id="2_x1moi"]
+[ext_resource type="Texture2D" uid="uid://dxb54xlcuj7au" path="res://rooms/footage/footage_shop.png" id="3_6xvku"]
+[ext_resource type="Script" uid="uid://fnwnfflaoeqp" path="res://addons/escoria-core/game/core-scripts/esc_background.gd" id="4_o6ylg"]
+[ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="5_n4m5u"]
+[ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="6_gqduc"]
+[ext_resource type="Script" uid="uid://85bledusisk1" path="res://addons/escoria-core/game/core-scripts/esc_dialog_location.gd" id="7_cn34i"]
+[ext_resource type="Script" uid="uid://beh3ds4eapldu" path="res://addons/escoria-core/game/core-scripts/esc_location.gd" id="8_nx3fw"]
+[ext_resource type="Texture2D" uid="uid://cejqi050s2w1w" path="res://rooms/footage/footage_cam_1.png" id="9_fq6g3"]
+[ext_resource type="Texture2D" uid="uid://4tewnv7ruwm0" path="res://rooms/footage/footage_cam_2.png" id="10_70hyc"]
+[ext_resource type="Texture2D" uid="uid://b2xi0v0kdkes1" path="res://rooms/footage/footage_cam_3.png" id="11_6jar2"]
+
+[node name="footage" type="Node2D" unique_id=2014788545]
+script = ExtResource("1_l45in")
+global_id = "footage"
+esc_script = "res://rooms/footage/footage.esc"
+player_scene = ExtResource("2_x1moi")
+metadata/_custom_type_script = "uid://c7fcpp72w3dnj"
+
+[node name="escbackground" type="TextureRect" parent="." unique_id=2004343302]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("3_6xvku")
+script = ExtResource("4_o6ylg")
+metadata/_custom_type_script = "uid://fnwnfflaoeqp"
+
+[node name="Aidam" parent="." unique_id=1389523226 instance=ExtResource("5_n4m5u")]
+
+
+[node name="start_location" type="Marker2D" parent="." unique_id=127025836]
+position = Vector2(-210, 448)
+script = ExtResource("8_nx3fw")
+global_id = "footage_start"
+is_start_location = true
+metadata/_custom_type_script = "uid://beh3ds4eapldu"
+
+[node name="shop_voice" type="Area2D" parent="." unique_id=301962558]
+process_mode = 1
+script = ExtResource("6_gqduc")
+global_id = "shop_voice"
+dialog_color = Color(1, 0.92, 0.6, 1)
+is_interactive = false
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="ESCDialogLocation" type="Marker2D" parent="shop_voice" unique_id=331687581]
+position = Vector2(960, 880)
+script = ExtResource("7_cn34i")
+metadata/_custom_type_script = "uid://85bledusisk1"
+
+[node name="footage_cam_1" type="Area2D" parent="." unique_id=1671680784]
+process_mode = 1
+position = Vector2(960, 540)
+script = ExtResource("6_gqduc")
+global_id = "footage_cam_1"
+actions_requiring_target_object = PackedStringArray()
+is_interactive = false
+inventory_texture = ExtResource("9_fq6g3")
+inventory_texture_hovered = ExtResource("9_fq6g3")
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="Sprite2D" type="Sprite2D" parent="footage_cam_1" unique_id=1553637009]
+texture = ExtResource("9_fq6g3")
+
+[node name="footage_cam_2" type="Area2D" parent="." unique_id=1671432497]
+process_mode = 1
+position = Vector2(960, 540)
+script = ExtResource("6_gqduc")
+global_id = "footage_cam_2"
+actions_requiring_target_object = PackedStringArray()
+is_interactive = false
+inventory_texture = ExtResource("10_70hyc")
+inventory_texture_hovered = ExtResource("10_70hyc")
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="Sprite2D" type="Sprite2D" parent="footage_cam_2" unique_id=771656175]
+texture = ExtResource("10_70hyc")
+
+[node name="footage_cam_3" type="Area2D" parent="." unique_id=751906439]
+process_mode = 1
+position = Vector2(960, 540)
+script = ExtResource("6_gqduc")
+global_id = "footage_cam_3"
+actions_requiring_target_object = PackedStringArray()
+is_interactive = false
+inventory_texture = ExtResource("11_6jar2")
+inventory_texture_hovered = ExtResource("11_6jar2")
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="Sprite2D" type="Sprite2D" parent="footage_cam_3" unique_id=623944835]
+texture = ExtResource("11_6jar2")
+
+[node name="olda_viewer" type="Area2D" parent="." unique_id=175484287]
+process_mode = 1
+script = ExtResource("6_gqduc")
+global_id = "olda_viewer"
+dialog_color = Color(0.69411767, 0.5176471, 1, 1)
+is_interactive = false
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="ESCDialogLocation" type="Marker2D" parent="olda_viewer" unique_id=1039557869]
+position = Vector2(960, 960)
+script = ExtResource("7_cn34i")
+metadata/_custom_type_script = "uid://85bledusisk1"

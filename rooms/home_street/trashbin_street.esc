@@ -2,7 +2,12 @@
 	say($olda, "Popelnice. Smrdí to tu.")
 
 :pickup
-	if not bin_bottles_taken:
+	if game_day == 5 and not find_sat_street:
+		set_global("find_sat_street", true)
+		set_global("bag_points", bag_points + 1)
+		inventory_add("collected_bag")
+		say($olda, "Zase pár lahví. Někdo tu včera slavil.")
+	elif not bin_bottles_taken:
 		say($olda, "Pár zálohovaných lahví. Ty se hoděj.")
 		inventory_add("trash_bottles")
 		set_global("bin_bottles_taken", true)

@@ -16,7 +16,8 @@
 		set_global("clock_enabled", true)
 		# Začátek pondělí: game_clock uloží checkpoint (v 1:00 se sem hráč vrátí).
 		set_global("checkpoint_pending", true)
-	if alarm_taken:
+	# Budík zmizí, když ho Olda sebral, a vrátí se, až ho nastaví na stolku.
+	if alarm_taken and not alarm_set:
 		set_active("alarm", false)
 	if battery_taken:
 		set_active("batteries", false)

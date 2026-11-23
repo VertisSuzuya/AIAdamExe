@@ -1,0 +1,11 @@
+:look
+	say($olda, "Koš na Václaváku.")
+
+:pickup
+	if game_day == 5 and not find_sat_center:
+		set_global("find_sat_center", true)
+		set_global("bag_points", bag_points + 1)
+		inventory_add("collected_bag")
+		say($olda, "Plechovka a lahev. Turisti vyhazujou peníze.")
+	else:
+		say($olda, "Nic.")

@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b17k0ge47qx0b" path="res://characters/police_officer/police_officer.tscn" id="12_o766k"]
 [ext_resource type="Texture2D" uid="uid://c4t8iltwqe0bp" path="res://characters/police_officer/police_officer.png" id="13_jdyqk"]
 [ext_resource type="Texture2D" uid="uid://5je7xkejvpqu" path="res://rooms/in_laws_house/neighbor_tape.png" id="13_pjk35"]
+[ext_resource type="Texture2D" uid="uid://dmosdxj63fgv6" path="res://grafika/trash_bin_street.png" id="20_trashbin"]
 
 [sub_resource type="Gradient" id="Gradient_6wxwk"]
 offsets = PackedFloat32Array(0, 0.38311687, 0.73376626, 1)
@@ -36,6 +37,9 @@ size = Vector2(179, 256)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xffai"]
 size = Vector2(136, 187)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trash_bin_end"]
+size = Vector2(80, 170)
 
 [node name="in_laws_house" type="Node2D" unique_id=1381403444]
 script = ExtResource("1_sr8c3")
@@ -166,3 +170,28 @@ metadata/_custom_type_script = "uid://dshelmw7y44qg"
 
 [node name="Sprite2D" type="Sprite2D" parent="neighbor_tape" unique_id=781987296]
 texture = ExtResource("13_pjk35")
+
+[node name="trash_bin_end" type="Area2D" parent="." unique_id=468202186]
+process_mode = 1
+position = Vector2(240, 845)
+script = ExtResource("9_od3y5")
+global_id = "trash_bin_end"
+esc_script = "res://rooms/in_laws_house/trash_bin_end.esc"
+tooltip_name = "Koš"
+default_action = "pickup"
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="Sprite2D" type="Sprite2D" parent="trash_bin_end" unique_id=1296339139]
+position = Vector2(0, -86)
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("20_trashbin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="trash_bin_end" unique_id=1864701210]
+position = Vector2(0, -86)
+shape = SubResource("RectangleShape2D_trash_bin_end")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="trash_bin_end" unique_id=1333380551]
+position = Vector2(60, 65)
+script = ExtResource("6_kp83i")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"

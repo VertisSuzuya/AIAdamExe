@@ -1,0 +1,11 @@
+:look
+	say($olda, "Koš na konečné.")
+
+:pickup
+	if game_day == 4 and not find_fri:
+		set_global("find_fri", true)
+		set_global("bag_points", bag_points + 1)
+		inventory_add("collected_bag")
+		say($olda, "Lahev od piva. Zálohovaná.")
+	else:
+		say($olda, "Prázdno.")

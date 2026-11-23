@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://cw7m0eg4xfg6r" path="res://characters/salon_robot/salon_robot.tscn" id="10_6o0rg"]
 [ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="13_x0xlu"]
 [ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="14_ipes3"]
+[ext_resource type="Texture2D" uid="uid://dmosdxj63fgv6" path="res://grafika/trash_bin_street.png" id="20_trashbin"]
+[ext_resource type="Texture2D" path="res://rooms/city_center/ai_terminal.png" id="21_terminal"]
 
 [sub_resource type="Gradient" id="Gradient_6wxwk"]
 offsets = PackedFloat32Array(0, 0.38311687, 0.73376626, 1)
@@ -35,6 +37,12 @@ size = Vector2(163, 130)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vqt0v"]
 size = Vector2(150.5, 172.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trash_bin_center"]
+size = Vector2(80, 170)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_terminal"]
+size = Vector2(90, 180)
 
 [node name="city_center" type="Node2D" unique_id=1381403444]
 script = ExtResource("1_ud66v")
@@ -131,5 +139,55 @@ shape = SubResource("RectangleShape2D_vqt0v")
 
 [node name="ESCInteractionLocation" type="Marker2D" parent="salon_door" unique_id=1884238330]
 position = Vector2(7, 89)
+script = ExtResource("8_rj8un")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="trash_bin_center" type="Area2D" parent="." unique_id=1226896662]
+process_mode = 1
+position = Vector2(1290, 812)
+script = ExtResource("13_x0xlu")
+global_id = "trash_bin_center"
+esc_script = "res://rooms/city_center/trash_bin_center.esc"
+tooltip_name = "Koš"
+default_action = "pickup"
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="Sprite2D" type="Sprite2D" parent="trash_bin_center" unique_id=909980777]
+position = Vector2(0, -86)
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("20_trashbin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="trash_bin_center" unique_id=437786637]
+position = Vector2(0, -86)
+shape = SubResource("RectangleShape2D_trash_bin_center")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="trash_bin_center" unique_id=1109709365]
+position = Vector2(0, 70)
+script = ExtResource("8_rj8un")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="ai_terminal" type="Area2D" parent="." unique_id=1606614697]
+process_mode = 1
+position = Vector2(1640, 812)
+script = ExtResource("13_x0xlu")
+global_id = "ai_terminal"
+esc_script = "res://rooms/city_center/ai_terminal.esc"
+tooltip_name = "Terminál policie"
+default_action = "use"
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="Sprite2D" type="Sprite2D" parent="ai_terminal" unique_id=965055524]
+position = Vector2(0, -95)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("21_terminal")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ai_terminal" unique_id=215470750]
+position = Vector2(0, -95)
+shape = SubResource("RectangleShape2D_terminal")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="ai_terminal" unique_id=430482895]
+position = Vector2(0, 60)
 script = ExtResource("8_rj8un")
 metadata/_custom_type_script = "uid://chu4bvqgwxuts"

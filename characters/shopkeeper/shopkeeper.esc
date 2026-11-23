@@ -39,7 +39,7 @@
 				inventory_add("camera")
 				set_global("camera_bought", true)
 				say($shopkeeper, "Kdyby něco, přineste mi ji. Záznam vám přetáhnu do počítače.")
-			- "Byl jsem tu dnes v noci?" [game_day == 5 and news_seen and not shop_testimony]
+			- "Byl jsem tu dnes v noci?" [game_day == 5 and not shop_testimony]
 				set_global("shop_testimony", true)
 				set_global("diary_shop_testimony", true)
 				say($shopkeeper, "Vy si to nepamatujete? Tři čtvrtě na dvě. Klepal jste na okýnko.")
@@ -58,6 +58,22 @@
 				set_global("footage_kind", "camera")
 				set_global("footage_now", true)
 				done
+			- "Vezmete lahve a drobný na účet?" [bag_points > 0]
+				if not shop_credit_explained:
+					set_global("shop_credit_explained", true)
+					say($shopkeeper, "Napíšu vám to na účet. Až budete něco potřebovat, odečtu.")
+				else:
+					say($shopkeeper, "Připíšu.")
+				set_global("shop_credit", shop_credit + bag_points)
+				set_global("bag_points", 0)
+				inventory_remove("collected_bag")
+			- "Dejte mi energetik. Na účet." [game_day == 5 and shop_credit >= 2]
+				set_global("shop_credit", shop_credit - 2)
+				set_global("energy_drinks", energy_drinks + 1)
+				inventory_add("energy_drink")
+				say($shopkeeper, "Tady. Nepijte jich moc najednou.")
+			- "Dejte mi energetik." [game_day == 5 and shop_credit < 2]
+				say($shopkeeper, "Bez peněz nic. Leda byste přinesl lahve.")
 			- "Nic, jen se dívám."
 				done
 	

@@ -25,6 +25,7 @@ escoria="*uid://dcskv8vx80gov"
 game_clock="*uid://c3ff6eyjvat8r"
 diary="*uid://44xq54qf750s"
 DebugTools="*uid://sk6wkjvxg1n"
+fatigue_ui="*res://systems/fatigue_ui.gd"
 
 [display]
 

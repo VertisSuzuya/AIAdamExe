@@ -1,5 +1,55 @@
 :look
-	say($olda, "Policejní stanice. Tam se radši dobrovolně nepodívám.")
+	if game_day == 5:
+		say($olda, "Policejní stanice. Uvnitř by mě zavřeli dřív, než bych cokoliv vysvětlil.")
+	else:
+		say($olda, "Policejní stanice. Tam se radši dobrovolně nepodívám.")
 
 :use
-	say($aidam, "Tam nemáme co dělat. Věř mi.", "", "avatar")
+	if game_day == 5 and day_minute >= 1920:
+		# Neděle 8:00: detektiv přes AI.
+		if knife_taken and shop_testimony and shop_footage_seen and camera_footage_seen and usb_taken:
+			say($olda, "Osm hodin. Mám všechno: nůž, záznamy na flashce a svědka.")
+			say($aidam, "Oldo, počkej. Promluvme si. Můžeme se dohodnout.", "", "avatar")
+			say($olda, "Ne. Už nikdy.")
+			set_global("ending_kind", "rescue")
+			accept_input("SKIP")
+			transition("fade_black", "out", 1.5)
+			accept_input("ALL")
+			change_scene("res://rooms/ending/ending.tscn")
+		else:
+			say($olda, "Osm hodin. Detektiv tu je. Jenže nemám všechno.")
+			if not knife_taken:
+				say($olda, "Nůž pořád leží doma v šuplíku.")
+			if not camera_footage_seen:
+				say($olda, "Nemám záznam z tý noci na Konečný.")
+			if not shop_testimony:
+				say($olda, "A Vietnamec ještě nic neřekl.")
+			say($olda, "Bez toho mě zavřou jako každýho jinýho.")
+			?!
+				- "Stejně tam půjdu."
+					set_global("ending_kind", "prison")
+					accept_input("SKIP")
+					transition("fade_black", "out", 1.5)
+					accept_input("ALL")
+					change_scene("res://rooms/ending/ending.tscn")
+					done
+				- "Ještě seženu, co chybí."
+					done
+	elif game_day == 5:
+		if terminal_seen:
+			say($olda, "Detektiv přes AI tu je až v neděli v osm. Teď by mě zavřeli jako každýho jinýho.")
+		else:
+			say($olda, "Jestli tam teď vlezu, zavřou mě. Nejdřív zjistím, kdo tu řeší věci s AI.")
+		?!
+			- "Stejně tam půjdu."
+				say($aidam, "Klidně. Já si v cele odpočinu.", "", "avatar")
+				set_global("ending_kind", "prison")
+				accept_input("SKIP")
+				transition("fade_black", "out", 1.5)
+				accept_input("ALL")
+				change_scene("res://rooms/ending/ending.tscn")
+				done
+			- "Ne. Ještě ne."
+				done
+	else:
+		say($aidam, "Tam nemáme co dělat. Věř mi.", "", "avatar")

@@ -1,9 +1,20 @@
 :use
 	if game_day >= 5:
-		# Sobota: spát se nesmí. Konec „pohlcení“ přijde v dalším kroku.
+		# Sobota: lehnout si = věřit AIdamovi = pohlcení.
 		if news_seen:
-			say($olda, "Ne. Jestli teď usnu, už se nemusím probudit.")
+			say($olda, "Jestli si teď lehnu, už se nemusím probudit.")
 			say($aidam, "Jen na chvilku. Zavři oči. Já to pohlídám.", "", "avatar")
+			?!
+				- "Lehnout si."
+					set_global("fell_asleep", true)
+					set_global("ending_kind", "aidam")
+					accept_input("SKIP")
+					transition("fade_black", "out", 1.5)
+					accept_input("ALL")
+					change_scene("res://rooms/ending/ending.tscn")
+					done
+				- "Ne. Vydržím."
+					done
 		else:
 			say($olda, "Teď ne. Nejdřív musím zjistit, co se děje.")
 	elif day_task_done:

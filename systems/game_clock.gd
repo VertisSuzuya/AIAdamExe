@@ -38,6 +38,9 @@ const PHASES: Array = [
 
 const EVENT_APPLY_TIME: String = "apply_time"
 
+## Únava (sobota): o kolik vzroste za herní minutu (8 za hodinu).
+const FATIGUE_PER_MINUTE: float = 8.0 / 60.0
+
 # Checkpoint dne (uloží se při začátku dne, načte v 1:00).
 const CHECKPOINT_PATH: String = "user://checkpoint/day.tres"
 const CHECKPOINT_SLOT: int = 900
@@ -56,6 +59,9 @@ var _pending_key: String = ""
 var _timed_out: bool = false
 # Místnost, pro kterou už proběhla :apply_time (aby se nespouštěla znovu).
 var _applied_room: Node = null
+# Zlomky únavy (globál fatigue je celé číslo, set_global v ASHES desetinná
+# čísla nebere), přičtou se, až dají celý bod.
+var _fatigue_fraction: float = 0.0
 
 
 func _process(delta: float) -> void:
@@ -163,6 +169,18 @@ func _process(delta: float) -> void:
 		if not _flag("no_day_limit"):
 			new_minute = mini(new_minute, DAY_END)
 		escoria.globals_manager.set_global("day_minute", new_minute)
+		# Únava (od sobotního výpadku v tramvaji). Při 100 Olda usne.
+		if _flag("fatigue_on") and not _flag("fell_asleep"):
+			_fatigue_fraction += whole * FATIGUE_PER_MINUTE
+			var add: int = int(_fatigue_fraction)
+			_fatigue_fraction -= add
+			var fatigue: int = int(escoria.globals_manager.get_global("fatigue")) + add
+			if add > 0:
+				escoria.globals_manager.set_global("fatigue", mini(fatigue, 100))
+			if fatigue >= 100:
+				escoria.globals_manager.set_global("fell_asleep", true)
+				_run_steps([[escoria.start_script, "fall_asleep"]])
+				return
 		# Každou celou půlhodinu :half_hour v game.esc (připomínky podle času).
 		if new_minute / 30 != minute / 30 \
 				and escoria.start_script.has_event_with_target("half_hour"):

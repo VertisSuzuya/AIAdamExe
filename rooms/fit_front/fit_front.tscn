@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="10_gaohi"]
 [ext_resource type="PackedScene" uid="uid://q8tbobebdlog" path="res://characters/students/student1.tscn" id="11_fnu72"]
 [ext_resource type="PackedScene" uid="uid://b8nwdnck6baiv" path="res://characters/students/student2.tscn" id="12_wjufx"]
+[ext_resource type="Texture2D" uid="uid://dmosdxj63fgv6" path="res://grafika/trash_bin_street.png" id="20_trashbin"]
 
 [sub_resource type="Gradient" id="Gradient_6wxwk"]
 offsets = PackedFloat32Array(0, 0.38311687, 0.73376626, 1)
@@ -37,6 +38,9 @@ size = Vector2(298, 246)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xffai"]
 size = Vector2(806, 109)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trash_bin_fit"]
+size = Vector2(80, 170)
 
 [node name="fit_front" type="Node2D" unique_id=1381403444]
 script = ExtResource("1_i1l5q")
@@ -133,7 +137,36 @@ metadata/_custom_type_script = "uid://chu4bvqgwxuts"
 [node name="student1" parent="." unique_id=294159516 instance=ExtResource("11_fnu72")]
 position = Vector2(641, 646)
 global_id = "student_1"
+dialog_color = Color(0.1937885, 0.47977793, 0.28580463, 1)
 
 [node name="student2" parent="." unique_id=418273567 instance=ExtResource("12_wjufx")]
 position = Vector2(569, 649)
 global_id = "student_2"
+dialog_color = Color(0.8634428, 0.48788664, 0.13335153, 1)
+
+[node name="trash_bin_fit" type="Area2D" parent="." unique_id=1568709737]
+process_mode = 1
+position = Vector2(431, 775)
+script = ExtResource("10_gaohi")
+global_id = "trash_bin_fit"
+esc_script = "res://rooms/fit_front/trash_bin_fit.esc"
+tooltip_name = "Koš"
+default_action = "pickup"
+actions_requiring_target_object = PackedStringArray()
+inventory_texture = ExtResource("20_trashbin")
+inventory_texture_hovered = ExtResource("20_trashbin")
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="Sprite2D" type="Sprite2D" parent="trash_bin_fit" unique_id=1563535988]
+position = Vector2(0, -86)
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("20_trashbin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="trash_bin_fit" unique_id=715582453]
+position = Vector2(0, -86)
+shape = SubResource("RectangleShape2D_trash_bin_fit")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="trash_bin_fit" unique_id=1827966946]
+position = Vector2(1, 25)
+script = ExtResource("6_dkhud")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"

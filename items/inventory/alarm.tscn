@@ -2,9 +2,14 @@
 
 [ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="1_v6h8x"]
 [ext_resource type="Texture2D" uid="uid://dndq6t25e6lb3" path="res://grafika/alarm.png" id="2_cwfly"]
+[ext_resource type="Script" path="res://systems/alarm_clock_label.gd" id="3_label"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vqt0v"]
 size = Vector2(94, 115)
+
+[sub_resource type="SystemFont" id="SystemFont_digits"]
+font_names = PackedStringArray("Consolas", "Courier New", "Monospace")
+font_weight = 700
 
 [node name="Alarm" type="Area2D" unique_id=764769222]
 process_mode = 1
@@ -24,3 +29,16 @@ texture = ExtResource("2_cwfly")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=823586084]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_vqt0v")
+
+[node name="time_label" type="Label" parent="." unique_id=1530927745]
+offset_left = -37.0
+offset_top = -21.0
+offset_right = 37.0
+offset_bottom = 19.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.46289164, 1, 0.9114364, 1)
+theme_override_fonts/font = SubResource("SystemFont_digits")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_label")

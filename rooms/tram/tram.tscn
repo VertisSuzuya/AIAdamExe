@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://cl12mdbgdbk6x" path="res://rooms/tram/tram_map_ui.gd" id="11_h0o5q"]
 [ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="12_mesou"]
 [ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="13_s7qkm"]
+[ext_resource type="Texture2D" uid="uid://cwuffxxgouve4" path="res://grafika/coins.png" id="20_coins"]
 
 [sub_resource type="Gradient" id="Gradient_6wxwk"]
 offsets = PackedFloat32Array(0, 0.38311687, 0.73376626, 1)
@@ -31,6 +32,9 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(489, 1082, 504, 291, 65
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uchm2"]
 size = Vector2(357.5, 399)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tram_coins"]
+size = Vector2(100, 90)
 
 [node name="tram" type="Node2D" unique_id=1381403444]
 script = ExtResource("1_r0061")
@@ -105,4 +109,30 @@ script = ExtResource("8_1brlw")
 metadata/_custom_type_script = "uid://chu4bvqgwxuts"
 
 [node name="map_ui" type="CanvasLayer" parent="." unique_id=151463510]
+layer = 2
 script = ExtResource("11_h0o5q")
+
+[node name="tram_coins" type="Area2D" parent="." unique_id=1438448118]
+process_mode = 1
+position = Vector2(770, 830)
+script = ExtResource("12_mesou")
+global_id = "tram_coins"
+esc_script = "res://rooms/tram/tram_coins.esc"
+tooltip_name = "Drobné"
+default_action = "pickup"
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="Sprite2D" type="Sprite2D" parent="tram_coins" unique_id=1251688660]
+position = Vector2(0, 0)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("20_coins")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tram_coins" unique_id=119477160]
+position = Vector2(0, 0)
+shape = SubResource("RectangleShape2D_tram_coins")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="tram_coins" unique_id=999176254]
+position = Vector2(0, 60)
+script = ExtResource("8_1brlw")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"

@@ -8,9 +8,10 @@
 			accept_input("SKIP")
 			say($police_officer, "Stůjte! Vy jste ten manžel, že jo? Ruce, ať je vidím!")
 			say($aidam, "No vida. A je to.", "", "avatar")
-			# Zatím jen restart dne, konec „Vězení“ přijde v kroku s konci.
-			set_global("checkpoint_load_requested", true)
+			set_global("ending_kind", "prison")
+			transition("fade_black", "out", 1.5)
 			accept_input("ALL")
+			change_scene("res://rooms/ending/ending.tscn")
 			done
 		- "Ne. Ještě ne."
 			done

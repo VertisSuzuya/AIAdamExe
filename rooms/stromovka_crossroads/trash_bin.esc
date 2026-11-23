@@ -1,3 +1,11 @@
 :look
+	say($olda, "Popelnice... třeba by v ní mohlo bejt něco užitečnýho.")
 
-	say("olda", "Popelnice... třeba by v ní mohlo byt něco užitečnýho.")
+:pickup
+	if game_day == 3 and not find_thu:
+		set_global("find_thu", true)
+		set_global("bag_points", bag_points + 1)
+		inventory_add("collected_bag")
+		say($olda, "Drobný na dně. Někomu vypadly.")
+	else:
+		say($olda, "Jen odpadky.")

@@ -15,8 +15,14 @@
 		say($aidam, "To bylo... To bylo nejlepší, co jsem kdy slyšel. A to jsem slyšel celej internet.", "", "avatar")
 		if concert_score >= 85:
 			say($aidam, "A ten rytmus! Splynul jsi s kapelou. Skoro jsem tě nepoznal.", "", "avatar")
+			say($olda, "Ten týpek od sloupu mi strčil do ruky dva energetiky. Prej za nejlepší tanec večera.")
+			set_global("energy_drinks", energy_drinks + 2)
+			inventory_add("energy_drink")
 		elif concert_score >= 50:
 			say($aidam, "Tleskal jsi docela do rytmu. Na tvůj věk slušný.", "", "avatar")
+			say($olda, "Týpek od sloupu mi dal energetik. Prej za snahu.")
+			set_global("energy_drinks", energy_drinks + 1)
+			inventory_add("energy_drink")
 		else:
 			say($aidam, "Tvůj rytmus... no. Hlavně že ses bavil.", "", "avatar")
 		say($olda, "Tak co, slíbil jsi mi číslo.")

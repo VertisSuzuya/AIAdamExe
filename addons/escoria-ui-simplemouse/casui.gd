@@ -2,15 +2,14 @@ extends CanvasLayer
 
 const DAYS = ["PONDĚLÍ", "ÚTERÝ", "STŘEDA", "ČTVRTEK", "PÁTEK", "SOBOTA", "NEDĚLE"]
 
-# Místnost, kde Olda vidí čas i bez hodinek (digitální budík).
-const CLOCK_ROOM = "oldas_room"
 
 # Hodnoty se berou z globálů game_day a day_minute (počítá je autoload
 # game_clock). Tyhle se použijí jen, dokud globály neexistují (před New Game).
 @export_range(0, 6) var day_index: int = 0
 @export var minute_of_day: int = 9 * 60   # 9:00
 
-# Čas je vidět jen s hodinkami (watch_taken) nebo v Oldově pokoji.
+# Čas je vidět jen s hodinkami (watch_taken), bez nich ##:##.
+# V pokoji ukazuje čas budík na nočním stolku (systems/alarm_clock_label.gd).
 var has_watch: bool = false
 var current_room: String = ""
 
@@ -66,7 +65,9 @@ func _redraw() -> void:
 	# Po půlnoci (day_minute >= 1440) už je další den, i když game_day
 	# se mění až spánkem (v sobotu se nespí, noc běží do neděle).
 	den_label.text = DAYS[clampi(day_index + floori(minute_of_day / 1440.0), 0, 6)]
-	if has_watch or current_room == CLOCK_ROOM:
+	# Čas jen s hodinkami. V pokoji ho ukazuje budík na nočním stolku
+	# (items/inventory/alarm.tscn, systems/alarm_clock_label.gd).
+	if has_watch:
 		var m: int = posmod(minute_of_day, 1440)
 		cas_label.text = "%02d:%02d" % [floori(m / 60.0), m % 60]
 	else:

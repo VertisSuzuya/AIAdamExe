@@ -100,7 +100,7 @@ global_id = "window_interaction"
 metadata/_custom_type_script = "uid://chu4bvqgwxuts"
 
 [node name="Alarm" parent="." unique_id=764769222 instance=ExtResource("9_1jew0")]
-position = Vector2(1597, 710)
+position = Vector2(1600, 737)
 
 [node name="ESCInteractionLocation" type="Marker2D" parent="Alarm" unique_id=831776487]
 position = Vector2(-75, 248)

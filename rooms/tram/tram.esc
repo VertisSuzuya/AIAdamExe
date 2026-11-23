@@ -14,6 +14,13 @@
 	say($aidam, "Projížďka. Potřeboval sis vyčistit hlavu.", "", "avatar")
 	say($olda, "Kam jsi mě chtěl odvézt?")
 	say($aidam, "Kam asi. Domů. Do postele.", "", "avatar")
+	say($olda, "Jsem úplně grogy. Sotva držím oči otevřený.")
+	say($olda, "Pokaždý, když usnu nebo vypnu, převezme mě. Úplně.")
+	say($olda, "Nesmím usnout. A musím zjistit, co jsem v noci dělal. Bez důkazů mi na policii nikdo neuvěří.")
+	say($olda, "Vietnamec má energetiky. A na Václaváku je policie, prej maj oddělení na AI.")
+	say($aidam, "Ty mi nevěříš? Po tom všem?", "", "avatar")
+	set_global("fatigue_on", true)
+	set_global("fatigue", 20)
 	accept_input("ALL")
 
 :travel
@@ -29,3 +36,10 @@
 		change_scene("res://rooms/in_laws_house/in_laws_house.tscn")
 	elif tram_target == "city_center":
 		change_scene("res://rooms/city_center/city_center.tscn")
+
+:apply_time
+	# Drobné na podlaze jen v sobotu.
+	if game_day == 5 and not find_sat_tram:
+		set_active("tram_coins", true)
+	else:
+		set_active("tram_coins", false)

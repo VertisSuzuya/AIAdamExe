@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://b3nd1ngsc3ne0"]
+
+[ext_resource type="Script" uid="uid://c7fcpp72w3dnj" path="res://addons/escoria-core/game/core-scripts/esc_room.gd" id="1_room"]
+[ext_resource type="PackedScene" uid="uid://ihn2iq8wcqag" path="res://characters/olda/olda.tscn" id="2_olda"]
+[ext_resource type="Texture2D" path="res://rooms/ending/ending_rescue.png" id="3_bg"]
+[ext_resource type="Script" uid="uid://fnwnfflaoeqp" path="res://addons/escoria-core/game/core-scripts/esc_background.gd" id="4_bgscript"]
+[ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="5_aidam"]
+[ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="6_item"]
+[ext_resource type="Script" uid="uid://beh3ds4eapldu" path="res://addons/escoria-core/game/core-scripts/esc_location.gd" id="7_location"]
+[ext_resource type="Script" uid="uid://85bledusisk1" path="res://addons/escoria-core/game/core-scripts/esc_dialog_location.gd" id="8_dialog"]
+[ext_resource type="Texture2D" path="res://rooms/ending/ending_prison.png" id="tex_ending_prison"]
+[ext_resource type="Texture2D" path="res://rooms/ending/ending_aidam.png" id="tex_ending_aidam"]
+[ext_resource type="Texture2D" path="res://rooms/ending/ending_sacrifice.png" id="tex_ending_sacrifice"]
+
+[node name="ending" type="Node2D" unique_id=282944089]
+script = ExtResource("1_room")
+global_id = "ending"
+esc_script = "res://rooms/ending/ending.esc"
+player_scene = ExtResource("2_olda")
+metadata/_custom_type_script = "uid://c7fcpp72w3dnj"
+
+[node name="escbackground" type="TextureRect" parent="." unique_id=355704882]
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource("3_bg")
+script = ExtResource("4_bgscript")
+metadata/_custom_type_script = "uid://fnwnfflaoeqp"
+
+[node name="Aidam" parent="." unique_id=1285868354 instance=ExtResource("5_aidam")]
+
+[node name="ending_start" type="Marker2D" parent="." unique_id=970711277]
+position = Vector2(960, 1400)
+script = ExtResource("7_location")
+global_id = "ending_start"
+is_start_location = true
+metadata/_custom_type_script = "uid://beh3ds4eapldu"
+
+[node name="ending_prison" type="Area2D" parent="." unique_id=1351357020]
+process_mode = 1
+position = Vector2(960, 540)
+script = ExtResource("6_item")
+global_id = "ending_prison"
+actions_requiring_target_object = PackedStringArray()
+is_interactive = false
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="Sprite2D" type="Sprite2D" parent="ending_prison" unique_id=1202828304]
+texture = ExtResource("tex_ending_prison")
+
+[node name="ending_aidam" type="Area2D" parent="." unique_id=257823148]
+process_mode = 1
+position = Vector2(960, 540)
+script = ExtResource("6_item")
+global_id = "ending_aidam"
+actions_requiring_target_object = PackedStringArray()
+is_interactive = false
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="Sprite2D" type="Sprite2D" parent="ending_aidam" unique_id=1141624994]
+texture = ExtResource("tex_ending_aidam")
+
+[node name="ending_sacrifice" type="Area2D" parent="." unique_id=936583707]
+process_mode = 1
+position = Vector2(960, 540)
+script = ExtResource("6_item")
+global_id = "ending_sacrifice"
+actions_requiring_target_object = PackedStringArray()
+is_interactive = false
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="Sprite2D" type="Sprite2D" parent="ending_sacrifice" unique_id=1074155633]
+texture = ExtResource("tex_ending_sacrifice")
+
+[node name="narrator" type="Area2D" parent="." unique_id=241640068]
+process_mode = 1
+script = ExtResource("6_item")
+global_id = "narrator"
+dialog_color = Color(1, 1, 1, 1)
+actions_requiring_target_object = PackedStringArray()
+is_interactive = false
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="ESCDialogLocation" type="Marker2D" parent="narrator" unique_id=1664854562]
+position = Vector2(960, 880)
+script = ExtResource("8_dialog")
+metadata/_custom_type_script = "uid://85bledusisk1"
+
+[node name="olda_voice" type="Area2D" parent="." unique_id=989893405]
+process_mode = 1
+script = ExtResource("6_item")
+global_id = "olda_voice"
+dialog_color = Color(0.69411767, 0.5176471, 1, 1)
+actions_requiring_target_object = PackedStringArray()
+is_interactive = false
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="ESCDialogLocation" type="Marker2D" parent="olda_voice" unique_id=1494198374]
+position = Vector2(960, 960)
+script = ExtResource("8_dialog")
+metadata/_custom_type_script = "uid://85bledusisk1"

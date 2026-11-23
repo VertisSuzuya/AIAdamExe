@@ -96,6 +96,7 @@ script = ExtResource("7_a54ss")
 global_id = "trash_bin"
 esc_script = "res://rooms/stromovka_crossroads/trash_bin.esc"
 tooltip_name = "špinavá popelnice..."
+default_action = "pickup"
 actions_requiring_target_object = PackedStringArray()
 inventory_texture = ExtResource("9_l0jc4")
 inventory_texture_hovered = ExtResource("9_l0jc4")

@@ -20,7 +20,7 @@ pause_menu = NodePath("ui/pause_menu")
 editor_debug_mode = 1
 
 [node name="dialog_layer" type="CanvasLayer" parent="." unique_id=57427122]
-layer = 3
+layer = 4
 
 [node name="ESCDialogPlayer" type="Control" parent="dialog_layer" unique_id=276945588]
 layout_mode = 3
@@ -30,6 +30,7 @@ script = ExtResource("2")
 metadata/_custom_type_script = "uid://dfl7khtlretr7"
 
 [node name="ui" type="CanvasLayer" parent="." unique_id=2005332761]
+layer = 2
 
 [node name="tooltip" parent="ui" unique_id=745625052 instance=ExtResource("6")]
 offset_right = 1.0
@@ -80,7 +81,7 @@ theme = ExtResource("9")
 visible = false
 
 [node name="mouse_layer" type="CanvasLayer" parent="." unique_id=1934925264]
-layer = 2
+layer = 3
 
 [node name="verbs_menu" parent="mouse_layer" unique_id=847506105 instance=ExtResource("4")]
 anchors_preset = 0
@@ -97,6 +98,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 
 [node name="den_a_cas" type="CanvasLayer" parent="." unique_id=1611367024]
+layer = 2
 script = ExtResource("11_2mv1l")
 
 [node name="TextureRect" type="TextureRect" parent="den_a_cas" unique_id=1568546710]
@@ -130,6 +132,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 28
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1353382931]
+layer = 2
 
 [node name="Control" parent="CanvasLayer" unique_id=1577462185 instance=ExtResource("12_8etou")]
 

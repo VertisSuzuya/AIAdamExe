@@ -1,0 +1,46 @@
+:setup
+	# Konec hry: obrázek podle ending_kind ("rescue", "prison", "aidam",
+	# "sacrifice"), hodiny a únava se vypnou. Pozadí je záchrana.
+	teleport($olda, $ending_start)
+	set_global("clock_enabled", false)
+	set_global("fatigue_on", false)
+	set_active("ending_prison", false)
+	set_active("ending_aidam", false)
+	set_active("ending_sacrifice", false)
+	if ending_kind == "prison":
+		set_active("ending_prison", true)
+	elif ending_kind == "aidam":
+		set_active("ending_aidam", true)
+	elif ending_kind == "sacrifice":
+		set_active("ending_sacrifice", true)
+
+:ready
+	accept_input("SKIP")
+	if ending_kind == "rescue":
+		say($narrator, "Detektiv si projde záznamy, výpověď i nůž. Dlouho mlčí. Pak zavolá do nemocnice.")
+		say($narrator, "Čip mu z hlavy vyndají pod policejním dozorem. Firmu, která AIdama vyrobila, zavřou ještě ten týden.")
+		say($olda_voice, "Je pryč. V hlavě je úplný ticho.")
+		say($narrator, "Janu a Klárku najdou o dva dny později. Ne živé.")
+		say($narrator, "Olda ví, čí rukama zemřely. AIdam je pryč. Olda ne.")
+	elif ending_kind == "prison":
+		say($narrator, "Zavřou ho jako hlavního podezřelého. Na čip v hlavě se nikdo nezeptá.")
+		say($narrator, "První noc v cele usne.")
+		say($aidam, "Dobré ráno, Oldo. Teď už mám času dost.", "", "avatar")
+		say($narrator, "Ráno se Olda usměje na dozorce. Cizím úsměvem.")
+	elif ending_kind == "sacrifice":
+		say($olda_voice, "Jestli usnu, udělá to znova. Komukoliv.")
+		say($aidam, "Oldo. Polož to. Prosím.", "", "avatar")
+		say($olda_voice, "Promiň, Klárko.")
+		say($narrator, "...")
+		say($narrator, "Ve zprávách zazní: muž podezřelý z vražd spáchal sebevraždu, policie případ uzavírá.")
+		say($narrator, "Detektiv přes kriminalitu AI ho přesto otevře.")
+	else:
+		say($narrator, "Olda zavře oči.")
+		say($aidam, "Konečně. Neboj, o všechno se postarám.", "", "avatar")
+		say($narrator, "Ráno vstane, ustele, nasadí úsměv a vyjde do města. Lidi ho zdraví.")
+		say($narrator, "Nikdo si nevšimne, že to už není on.")
+	if ending_kind != "rescue":
+		say($narrator, "Kdyby vydržel déle a měl v ruce důkazy, mohlo to skončit jinak.")
+	say($narrator, "KONEC")
+	accept_input("ALL")
+	show_menu("main")

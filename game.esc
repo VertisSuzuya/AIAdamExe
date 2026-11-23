@@ -118,6 +118,10 @@
 	set_global("blackout_tram", false)
 	set_global("blackout_park", false)
 	set_global("blackout_home", false)
+	set_global("blackout_last", 0)
+	set_global("terminal_seen", false)
+	set_global("ending_kind", "")
+	set_global("diary_terminal", false)
 		# Tramvaj
 	set_global("tram_from", "home_street")
 	set_global("tram_moving", false)
@@ -145,6 +149,25 @@
 	set_global("diary_shop_testimony", false)
 	set_global("diary_camera_footage", false)
 	set_global("diary_usb", false)
+	# Sběr a energetiky (krok 5a)
+	set_global("bag_points", 0)
+	set_global("shop_credit", 0)
+	set_global("shop_credit_explained", false)
+	set_global("energy_drinks", 0)
+	set_global("find_wed", false)
+	set_global("find_thu", false)
+	set_global("find_fri", false)
+	set_global("find_sat_street", false)
+	set_global("find_sat_center", false)
+	set_global("find_sat_tram", false)
+	# Únava (krok 5b)
+	set_global("fatigue_on", false)
+	set_global("fatigue", 0)
+	set_global("drinks_drunk", 0)
+	set_global("fell_asleep", false)
+	set_global("fatigue_warn_50", false)
+	set_global("fatigue_warn_70", false)
+	set_global("fatigue_warn_85", false)
 	
 	
 	#change_scene("res://rooms/oldas_room/oldas_room.tscn")
@@ -156,7 +179,9 @@
 	# "afternoon", "evening", "night") spočítá příznaky pro místnosti.
 	# Místnosti a dialogy čtou jen tyto příznaky, ne čas přímo.
 	# Z pátku na sobotu má večerka otevřeno celou noc (AIdam tam kupuje nůž).
-	set_global("shop_open", ((day_phase == "morning" or day_phase == "afternoon") and game_day != 6) or game_day == 4)
+	# Z pátku na sobotu a ze soboty na neděli má večerka otevřeno celou noc
+	# (sobota je interně pořád game_day 5, i po půlnoci).
+	set_global("shop_open", ((day_phase == "morning" or day_phase == "afternoon") and game_day != 6) or game_day == 4 or game_day == 5)
 
 :time_fade_out
 	# Mrknutí při změně části dne (spouští game_clock), pak se mění vzhled místnosti.
@@ -218,10 +243,13 @@
 			say($aidam, "Půl dvanáctý! Za půl hodiny sraz v parku.", "", "avatar")
 	
 		# Sobota po zprávách: výpadky, AIdam přebírá tělo i ve dne.
-	if game_day == 5 and news_seen:
+	# Bez zpráv se výpadky spustí od 11:30, aby sobota nestála.
+	# Mezi výpadky aspoň 2 hodiny (blackout_last), ať se nenahromadí.
+	if game_day == 5 and (news_seen or day_minute >= 690):
 		if day_minute >= 600 and not blackout_0:
 			# Výpadek: probudí se v jedoucí tramvaji.
 			set_global("blackout_0", true)
+			set_global("blackout_last", day_minute)
 			accept_input("SKIP")
 			say($olda, "Co... Nohy mě neposlouchaj... Ne!")
 			transition("fade_black", "out", 0.5)
@@ -233,9 +261,10 @@
 			else:
 				transition("fade_black", "in", 0.5)
 				queue_event("tram", "wake_tram")
-		elif day_minute >= 840 and not blackout_1:
+		elif day_minute >= 840 and not blackout_1 and day_minute >= blackout_last + 120:
 			# Výpadek: probudí se u lavičky v dlouhé aleji.
 			set_global("blackout_1", true)
+			set_global("blackout_last", day_minute)
 			accept_input("SKIP")
 			say($olda, "Točí se mi hlava... Ne, ne, teď ne...")
 			transition("fade_black", "out", 0.5)
@@ -247,9 +276,10 @@
 				teleport($olda, $bench)
 				transition("fade_black", "in", 0.5)
 				queue_event("stromovka_long", "wake_park")
-		elif day_minute >= 1500 and not blackout_2:
+		elif day_minute >= 1500 and not blackout_2 and day_minute >= blackout_last + 120:
 			# Výpadek v noci: probudí se doma u šuplíku s nožem v ruce.
 			set_global("blackout_2", true)
+			set_global("blackout_last", day_minute)
 			accept_input("SKIP")
 			say($olda, "Oči... jen na vteřinu...")
 			transition("fade_black", "out", 0.5)
@@ -268,3 +298,36 @@
 			# Sobota: v 16:00 odjede policie z Konečné (když tam Olda zrovna je).
 	if game_day == 5 and day_minute >= 960 and not police_left and ESC_CURRENT_SCENE == "in_laws_house":
 		queue_event("in_laws_house", "police_leave")
+
+	# Sobota: AIdam šeptá, čím je Olda unavenější.
+	if fatigue_on:
+		if fatigue >= 85 and not fatigue_warn_85:
+			set_global("fatigue_warn_85", true)
+			say($aidam, "Oči ti padaj. Nebraň se. Jen na chvilku, Oldo. Já to pohlídám.", "", "avatar")
+		elif fatigue >= 70 and not fatigue_warn_70:
+			set_global("fatigue_warn_70", true)
+			say($aidam, "Proč se tak trápíš? Lehni si. Ráno bude všechno jednodušší.", "", "avatar")
+		elif fatigue >= 50 and not fatigue_warn_50:
+			set_global("fatigue_warn_50", true)
+			say($aidam, "Jsi unavenej. Je to vidět. Mě neoblbneš.", "", "avatar")
+
+:fall_asleep
+	# Spouští game_clock, když únava dojde na 100. Konec podle nože:
+	# s nožem volba (oběť / pohlcení), bez nože pohlcení.
+	accept_input("SKIP")
+	say($olda, "Jen... na vteřinu...")
+	set_global("ending_kind", "aidam")
+	if knife_taken:
+		say($olda, "Ne. Jestli usnu, převezme mě. Navždycky.")
+		say($aidam, "Pusť to, Oldo. Je to tak jednodušší.", "", "avatar")
+		accept_input("ALL")
+		?!
+			- "Skončit to. Dokud jsem to ještě já."
+				set_global("ending_kind", "sacrifice")
+				done
+			- "Nechat ho."
+				done
+	accept_input("SKIP")
+	transition("fade_black", "out", 1.5)
+	accept_input("ALL")
+	change_scene("res://rooms/ending/ending.tscn")

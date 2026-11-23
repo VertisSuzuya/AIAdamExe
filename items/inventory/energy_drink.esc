@@ -1,0 +1,40 @@
+:look
+	if energy_drinks == 1:
+		say($olda, "Poslední energetik.")
+	elif energy_drinks == 2:
+		say($olda, "Dva energetiky.")
+	else:
+		say($olda, "Pár energetiků. Udrží mě vzhůru. Aspoň chvíli.")
+
+:use
+	if not fatigue_on:
+		say($olda, "Ještě nejsem unavenej. Schovám si ho.")
+	else:
+		say($olda, "Hnusný. Ale funguje to.")
+		# Každý další pomůže míň (tělo si zvyká).
+		if drinks_drunk == 0:
+			set_global("fatigue", fatigue - 30)
+		elif drinks_drunk == 1:
+			set_global("fatigue", fatigue - 26)
+		elif drinks_drunk == 2:
+			set_global("fatigue", fatigue - 22)
+		elif drinks_drunk == 3:
+			set_global("fatigue", fatigue - 18)
+		elif drinks_drunk == 4:
+			set_global("fatigue", fatigue - 14)
+		else:
+			set_global("fatigue", fatigue - 10)
+		if fatigue < 0:
+			set_global("fatigue", 0)
+		set_global("drinks_drunk", drinks_drunk + 1)
+		set_global("energy_drinks", energy_drinks - 1)
+		if energy_drinks <= 0:
+			inventory_remove("energy_drink")
+			say($olda, "Byl to poslední.")
+		# Po energetiku se AIdam může zase ozvat.
+		if fatigue < 50:
+			set_global("fatigue_warn_50", false)
+		if fatigue < 70:
+			set_global("fatigue_warn_70", false)
+		if fatigue < 85:
+			set_global("fatigue_warn_85", false)

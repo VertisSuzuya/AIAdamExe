@@ -39,6 +39,7 @@ var _restart_button: Button
 var _selected_day: int = 0
 var _confirming: bool = false
 var _confirm_left: float = 0.0
+var _menus: Array = []
 
 
 func _ready() -> void:
@@ -48,6 +49,15 @@ func _ready() -> void:
 	entries_label.bbcode_enabled = true
 	_build_controls()
 	diary.changed.connect(_refresh)
+	# V hlavním a pauzovém menu se deník schová (jako hodiny v casui.gd).
+	var ui: Node = get_node_or_null("../../ui")
+	if ui:
+		for menu_name in ["pause_menu", "main_menu"]:
+			var menu: Node = ui.get_node_or_null(menu_name)
+			if menu:
+				_menus.append(menu)
+				menu.visibility_changed.connect(_update_visibility)
+	_update_visibility()
 	_select_day(_current_day())
 	await get_tree().process_frame
 	# Otevřená pozice = tak, jak jsi panel umístil v editoru. Velikost se nemění.
@@ -56,12 +66,22 @@ func _ready() -> void:
 	_initialized = true
 
 
+func _update_visibility() -> void:
+	var menu_open: bool = false
+	for menu in _menus:
+		if menu.visible:
+			menu_open = true
+	visible = not menu_open
+	if menu_open and _is_open:
+		_set_open(false)
+
+
 func _closed_x() -> float:
 	return -panel.size.x + peek_width
 
 
 func _process(delta: float) -> void:
-	if not _initialized:
+	if not _initialized or not visible:
 		return
 
 	if _confirming:

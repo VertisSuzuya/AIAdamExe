@@ -1,0 +1,9 @@
+:look
+	say($olda, "Na zemi se lesknou drobný.")
+
+:pickup
+	set_global("find_sat_tram", true)
+	set_global("bag_points", bag_points + 1)
+	inventory_add("collected_bag")
+	set_active("tram_coins", false)
+	say($olda, "Pár korun. Každá se počítá.")

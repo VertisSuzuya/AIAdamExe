@@ -1,0 +1,13 @@
+:look
+	say($olda, "Terminál policie. „Nahlaste trestný čin spojený s umělou inteligencí.“")
+
+:use
+	if game_day == 5:
+		say($olda, "Oddělení kriminality AI... Detektiv k dispozici: neděle, 8:00.")
+		say($olda, "Do rána. Musím vydržet vzhůru do rána. A mít v ruce důkazy, jinak mě zavřou jako každýho jinýho.")
+		if not terminal_seen:
+			say($aidam, "Celou noc vzhůru? To nezvládneš, Oldo. Nikdo to nezvládne.", "", "avatar")
+		set_global("terminal_seen", true)
+		set_global("diary_terminal", true)
+	else:
+		say($olda, "Nahlásit trestný čin s AI? Zatím nemám co.")

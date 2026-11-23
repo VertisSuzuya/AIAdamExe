@@ -1,8 +1,5 @@
 :look
-	say($olda, "Kafe z automatu. Horký.")
-
-:pickup
-	say($olda, "Opatrně, pálí.")
-	inventory_add("coffee")
-	set_active("coffee", false)
-	set_global("coffee_taken", true)
+	if camera_taken:
+		say($olda, "Kamera z keře na Konečné. Nahrávala celou noc.")
+	else:
+		say($olda, "Malá kamera na baterky. Nahrává celou noc.")

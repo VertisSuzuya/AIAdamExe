@@ -5,14 +5,26 @@
 		teleport($olda, $player_start)
 
 :ready
-	# První příchod: páska na domě.
-	if not in_laws_visited:
+	# Pátek, první příchod: páska na domě.
+	if game_day == 4 and not in_laws_visited:
 		set_global("in_laws_visited", true)
 		accept_input("SKIP")
 		say($olda, "Tady to je. Dům Janinejch rodičů.")
 		say($olda, "...Co to je? Policejní páska?")
 		say($aidam, "Nepanikař. Může to být cokoliv. Vloupání, prasklá trubka...", "", "avatar")
 		say($aidam, "Támhle na schodech sedí soused. Zeptej se ho.", "", "avatar")
+		accept_input("ALL")
+	# Sobota, první příchod: páska i u souseda, policie.
+	if game_day == 5 and not in_laws_sat_seen:
+		set_global("in_laws_sat_seen", true)
+		accept_input("SKIP")
+		say($olda, "Páska je i u souseda...")
+		say($olda, "Ve zprávách říkali soused rodiny. To je on.")
+		say($aidam, "Vidíš? Kdo ví, do čeho byl zapletenej. Možná si na něj někdo počkal.", "", "avatar")
+		if day_minute < 960:
+			say($olda, "A policajti. Jestli mě tu uviděj, zavřou mě dřív, než cokoliv vysvětlím.")
+			if camera_placed:
+				say($olda, "Kamera je pořád v keři. Musím počkat, až odjedou.")
 		accept_input("ALL")
 
 :apply_time
@@ -21,3 +33,26 @@
 		set_active("neighbor", true)
 	else:
 		set_active("neighbor", false)
+	# Od soboty páska i přes verandu souseda.
+	if game_day >= 5:
+		set_active("neighbor_tape", true)
+	else:
+		set_active("neighbor_tape", false)
+	# Sobota: policie hlídá do 16:00.
+	if game_day == 5 and day_minute < 960:
+		set_active("police_car", true)
+		set_active("police_officer", true)
+	else:
+		set_active("police_car", false)
+		set_active("police_officer", false)
+		if game_day == 5:
+			set_global("police_left", true)
+
+:police_leave
+	# Spouští :half_hour v game.esc, když Olda čeká na Konečné do 16:00.
+	accept_input("SKIP")
+	set_global("police_left", true)
+	say($olda, "Odjíždějí. Konečně.")
+	set_active("police_car", false)
+	set_active("police_officer", false)
+	accept_input("ALL")

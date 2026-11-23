@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="ESCAnimationResource" format=3 uid="uid://b0ldadirty01"]
+
+[ext_resource type="Script" uid="uid://bxc3dll30x8tl" path="res://addons/escoria-core/game/core-scripts/resources/esc_directionangle.gd" id="1_angle"]
+[ext_resource type="Script" uid="uid://clixil1u5exq7" path="res://addons/escoria-core/game/core-scripts/resources/esc_animationname.gd" id="2_name"]
+[ext_resource type="Script" uid="uid://sksvt0n8gle2" path="res://addons/escoria-core/game/core-scripts/resources/esc_animationresource.gd" id="3_res"]
+
+[sub_resource type="Resource" id="Angle_a0"]
+script = ExtResource("1_angle")
+angle_start = 315
+angle_size = 90
+
+[sub_resource type="Resource" id="Angle_a1"]
+script = ExtResource("1_angle")
+angle_start = 45
+angle_size = 90
+
+[sub_resource type="Resource" id="Angle_a2"]
+script = ExtResource("1_angle")
+angle_start = 135
+angle_size = 90
+
+[sub_resource type="Resource" id="Angle_a3"]
+script = ExtResource("1_angle")
+angle_start = 225
+angle_size = 90
+
+[sub_resource type="Resource" id="Name_w0"]
+script = ExtResource("2_name")
+animation = "walk_back"
+
+[sub_resource type="Resource" id="Name_w1"]
+script = ExtResource("2_name")
+animation = "walk_left"
+mirrored = true
+
+[sub_resource type="Resource" id="Name_w2"]
+script = ExtResource("2_name")
+animation = "walk_front"
+
+[sub_resource type="Resource" id="Name_w3"]
+script = ExtResource("2_name")
+animation = "walk_left"
+
+[sub_resource type="Resource" id="Name_i0"]
+script = ExtResource("2_name")
+animation = "idle_back"
+
+[sub_resource type="Resource" id="Name_i1"]
+script = ExtResource("2_name")
+animation = "idle_right"
+
+[sub_resource type="Resource" id="Name_i2"]
+script = ExtResource("2_name")
+animation = "idle_front"
+
+[sub_resource type="Resource" id="Name_i3"]
+script = ExtResource("2_name")
+animation = "idle_left"
+
+[sub_resource type="Resource" id="Name_s0"]
+script = ExtResource("2_name")
+animation = "idle_back"
+
+[sub_resource type="Resource" id="Name_s1"]
+script = ExtResource("2_name")
+animation = "idle_right"
+
+[sub_resource type="Resource" id="Name_s2"]
+script = ExtResource("2_name")
+animation = "idle_front"
+
+[sub_resource type="Resource" id="Name_s3"]
+script = ExtResource("2_name")
+animation = "idle_left"
+
+[resource]
+script = ExtResource("3_res")
+dir_angles = Array[ExtResource("1_angle")]([SubResource("Angle_a0"), SubResource("Angle_a1"), SubResource("Angle_a2"), SubResource("Angle_a3")])
+directions = Array[ExtResource("2_name")]([SubResource("Name_w0"), SubResource("Name_w1"), SubResource("Name_w2"), SubResource("Name_w3")])
+idles = Array[ExtResource("2_name")]([SubResource("Name_i0"), SubResource("Name_i1"), SubResource("Name_i2"), SubResource("Name_i3")])
+speaks = Array[ExtResource("2_name")]([SubResource("Name_s0"), SubResource("Name_s1"), SubResource("Name_s2"), SubResource("Name_s3")])

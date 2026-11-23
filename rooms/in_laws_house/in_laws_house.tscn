@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="8_apv0d"]
 [ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="9_od3y5"]
 [ext_resource type="PackedScene" uid="uid://dk24210hp7xp0" path="res://characters/neighbor/neighbor.tscn" id="10_vn3ef"]
+[ext_resource type="Texture2D" uid="uid://cl4s483ggoo2y" path="res://rooms/in_laws_house/police_car.png" id="11_p7omc"]
+[ext_resource type="PackedScene" uid="uid://b17k0ge47qx0b" path="res://characters/police_officer/police_officer.tscn" id="12_o766k"]
+[ext_resource type="Texture2D" uid="uid://5je7xkejvpqu" path="res://rooms/in_laws_house/neighbor_tape.png" id="13_pjk35"]
 
 [sub_resource type="Gradient" id="Gradient_6wxwk"]
 offsets = PackedFloat32Array(0, 0.38311687, 0.73376626, 1)
@@ -41,8 +44,8 @@ player_scene = ExtResource("2_wh85f")
 metadata/_custom_type_script = "uid://c7fcpp72w3dnj"
 
 [node name="escbackground" type="TextureRect" parent="." unique_id=1212681230]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 mouse_filter = 2
 texture = ExtResource("3_ur6ca")
 script = ExtResource("4_kwrcv")
@@ -116,7 +119,7 @@ script = ExtResource("9_od3y5")
 global_id = "hedge"
 esc_script = "res://rooms/in_laws_house/hedge.esc"
 tooltip_name = "Keře u plotu"
-default_action = "look"
+default_action = "use"
 actions_requiring_target_object = PackedStringArray()
 metadata/_custom_type_script = "uid://dshelmw7y44qg"
 
@@ -128,3 +131,35 @@ polygon = PackedVector2Array(208, 636, 496, 647, 503, 768, 206, 744)
 position = Vector2(-8.899994, 51.599976)
 script = ExtResource("6_kp83i")
 metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="police_car" type="Area2D" parent="." unique_id=1689302301]
+process_mode = 1
+script = ExtResource("9_od3y5")
+global_id = "police_car"
+esc_script = "res://rooms/in_laws_house/police_car.esc"
+tooltip_name = "Policejní auto"
+actions_requiring_target_object = PackedStringArray()
+inventory_texture = ExtResource("11_p7omc")
+inventory_texture_hovered = ExtResource("11_p7omc")
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="Sprite2D" type="Sprite2D" parent="police_car" unique_id=1345711284]
+position = Vector2(970, 765)
+texture = ExtResource("11_p7omc")
+
+[node name="police_officer" parent="." unique_id=1977448637 instance=ExtResource("12_o766k")]
+position = Vector2(622, 741)
+
+[node name="neighbor_tape" type="Area2D" parent="." unique_id=1271771907]
+process_mode = 1
+position = Vector2(960, 540)
+script = ExtResource("9_od3y5")
+global_id = "neighbor_tape"
+actions_requiring_target_object = PackedStringArray()
+is_interactive = false
+inventory_texture = ExtResource("13_pjk35")
+inventory_texture_hovered = ExtResource("13_pjk35")
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="Sprite2D" type="Sprite2D" parent="neighbor_tape" unique_id=781987296]
+texture = ExtResource("13_pjk35")

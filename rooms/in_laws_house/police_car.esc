@@ -1,0 +1,2 @@
+:look
+	say($olda, "Policejní auto. Ještě tu jsou.")

@@ -3,5 +3,7 @@
 	say($aidam, "Stříhání... holení... pleťová maska... a nějakej laser, o kterým radši nic nevím.", "", "avatar")
 	say($aidam, "Hotovo. Nový ty.", "", "avatar")
 	set_global("olda_groomed", true)
+	# Nový vzhled Oldy (Escoria si ho pamatuje i v dalších místnostech a v savu).
+	set_animations("olda", "res://characters/olda/olda_clean.tres")
 	set_global("diary_olda_groomed", true)
 	change_scene("res://rooms/city_center/city_center.tscn")

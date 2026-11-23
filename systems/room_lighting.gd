@@ -18,7 +18,7 @@ extends CanvasModulate
 @export var lights: CanvasItem
 ## Kdy se světla rozsvítí (hodiny: 20.0 = 20:00, 19.5 = 19:30).
 @export var lights_on_hour: float = 20.0
-## Kdy zhasnou. Po půlnoci se počítá přes 24 (26.0 = 2:00 ráno, konec dne).
+## Kdy zhasnou. Po půlnoci se počítá přes 24 (26.0 = 2:00 ráno; den končí v 1:00, v sobotu běží dál).
 @export var lights_off_hour: float = 26.0
 ## Jak dlouho se světla rozsvěcují a zhasínají (sekundy).
 @export var lights_fade: float = 2.0
@@ -38,7 +38,7 @@ func _ready() -> void:
 	else:
 		_apply("morning")
 	# Při příchodu do místnosti bez prolínání, rovnou správný stav.
-	var minute: int = 420
+	var minute: int = 540
 	if escoria.globals_manager.has("day_minute"):
 		minute = int(escoria.globals_manager.get_global("day_minute"))
 	_lights_on = _lights_wanted(minute)

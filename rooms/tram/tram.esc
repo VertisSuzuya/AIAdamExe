@@ -2,6 +2,20 @@
 	teleport($olda, $player_start)
 	set_global("tram_map_open", false)
 
+:ready
+	if blackout_tram:
+		queue_event("tram", "wake_tram")
+
+:wake_tram
+	accept_input("SKIP")
+	set_global("blackout_tram", false)
+	say($olda, "...Tramvaj? Jak jsem se sem dostal?")
+	say($olda, "Půl hodiny. Zase mi chybí půl hodiny.")
+	say($aidam, "Projížďka. Potřeboval sis vyčistit hlavu.", "", "avatar")
+	say($olda, "Kam jsi mě chtěl odvézt?")
+	say($aidam, "Kam asi. Domů. Do postele.", "", "avatar")
+	accept_input("ALL")
+
 :travel
 	# Spouští mapa (tram_map_ui.gd), cíl je v tram_target.
 	# Vystoupit tam, kde nastoupil, než se tramvaj rozjede, je zadarmo.

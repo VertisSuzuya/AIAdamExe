@@ -193,7 +193,7 @@ func _on_restart_pressed() -> void:
 		return
 	_cancel_confirm()
 	_set_open(false)
-	# Stejně jako vypršení dne ve 2:00: game_clock načte checkpoint.
+	# Stejně jako vypršení dne v 1:00: game_clock načte checkpoint.
 	escoria.globals_manager.set_global("checkpoint_load_requested", true)
 
 

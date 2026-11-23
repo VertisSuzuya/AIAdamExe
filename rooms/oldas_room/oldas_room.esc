@@ -6,13 +6,13 @@
 		teleport($olda, $tv)
 	else:
 		teleport($olda, $oldas_room_start_location)
-	# Pondělí: Olda se z laboratoře dostane domů ve 22:00, teprve teď
-	# se spustí hodiny (do 2:00 má čas na tutorial).
+	# Pondělí: Olda se z laboratoře dostane domů ve 21:00, teprve teď
+	# se spustí hodiny (do 1:00 má čas na tutorial).
 	if not clock_enabled:
-		set_global("day_minute", 1320)
-		set_global("day_phase", "night")
+		set_global("day_minute", 1260)
+		set_global("day_phase", "evening")
 		set_global("clock_enabled", true)
-		# Začátek pondělí: game_clock uloží checkpoint (ve 2:00 se sem hráč vrátí).
+		# Začátek pondělí: game_clock uloží checkpoint (v 1:00 se sem hráč vrátí).
 		set_global("checkpoint_pending", true)
 	if alarm_taken:
 		set_active("alarm", false)
@@ -103,7 +103,7 @@
 		say($olda, "Počkej. Kde mám peníze? Celá obálka. Byla tady.")
 		say($aidam, "Možná jsi je někde nechal. Včera jsi byl dost rozhozenej.", "", "avatar")
 		say($olda, "Něco je špatně. Pustím si zprávy.")
-		# Od soboty čas běží přes 2:00 až do konce hry.
+		# Od soboty čas běží přes 1:00 až do konce hry.
 		set_global("no_day_limit", true)
 		accept_input("ALL")
 

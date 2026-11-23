@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://b17k0ge47qx0b"]
+
+[ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="1_4f874"]
+[ext_resource type="Script" uid="uid://85bledusisk1" path="res://addons/escoria-core/game/core-scripts/esc_dialog_location.gd" id="3_apx4t"]
+[ext_resource type="Texture2D" uid="uid://c4t8iltwqe0bp" path="res://characters/police_officer/police_officer.png" id="4_64gh3"]
+[ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="5_yb8sb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vqt0v"]
+radius = 57.0
+height = 306.0
+
+[node name="police_officer" type="Area2D" unique_id=294159516]
+process_mode = 1
+script = ExtResource("1_4f874")
+global_id = "police_officer"
+esc_script = "res://characters/police_officer/police_officer.esc"
+tooltip_name = "Policista"
+default_action = "look"
+dialog_color = Color(0.6, 0.75, 1, 1)
+actions_requiring_target_object = PackedStringArray()
+metadata/_custom_type_script = "uid://dshelmw7y44qg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=608450851]
+position = Vector2(4, -1)
+shape = SubResource("CapsuleShape2D_vqt0v")
+
+[node name="ESCDialogLocation" type="Marker2D" parent="." unique_id=421600479]
+position = Vector2(1, -150)
+script = ExtResource("3_apx4t")
+metadata/_custom_type_script = "uid://85bledusisk1"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1908910693]
+position = Vector2(1, 1)
+scale = Vector2(0.5702643, 0.6269555)
+texture = ExtResource("4_64gh3")
+
+[node name="ESCInteractionLocation" type="Marker2D" parent="." unique_id=1667240957]
+position = Vector2(-2, 130)
+script = ExtResource("5_yb8sb")
+metadata/_custom_type_script = "uid://chu4bvqgwxuts"

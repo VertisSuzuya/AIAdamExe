@@ -15,7 +15,7 @@
 
 	# Čas a den (počítá autoload game_clock, viz systems/game_clock.gd)
 	set_global("game_day", 0)
-	set_global("day_minute", 420)
+	set_global("day_minute", 540)
 	set_global("day_phase", "morning")
 	set_global("day_task_done", false)
 	# Hodiny stojí, dokud se Olda v pondělí večer nedostane domů
@@ -112,6 +112,12 @@
 	set_global("diary_knife_found", false)
 	set_global("diary_news_seen", false)
 	
+	set_global("blackout_0", false)
+	set_global("blackout_1", false)
+	set_global("blackout_2", false)
+	set_global("blackout_tram", false)
+	set_global("blackout_park", false)
+	set_global("blackout_home", false)
 		# Tramvaj
 	set_global("tram_from", "home_street")
 	set_global("tram_moving", false)
@@ -124,6 +130,11 @@
 	set_global("diary_stop_dejvice", false)
 	set_global("diary_stop_in_laws", false)
 	set_global("diary_stop_center", false)
+	
+	set_global("camera_taken", false)
+	set_global("diary_camera_taken", false)
+	set_global("in_laws_sat_seen", false)
+	set_global("police_left", false)
 	
 	#change_scene("res://rooms/oldas_room/oldas_room.tscn")
 	change_scene("res://rooms/laboratory/laboratory.tscn")
@@ -153,27 +164,27 @@
 	# sleep_requested.
 	set_global("sleep_requested", false)
 	set_global("game_day", game_day + 1)
-	set_global("day_minute", 420)
+	set_global("day_minute", 540)
 	set_global("day_phase", "morning")
 	set_global("day_task_done", false)
 	# game_clock uloží checkpoint dne, až doběhne mrknutí a bude klid.
 	set_global("checkpoint_pending", true)
 
 :day_timeout
-	# Spustí game_clock, když čas dojde do 2:00 a hráč nešel spát.
+	# Spustí game_clock, když čas dojde do 1:00 a hráč nešel spát.
 	# game_clock pak načte checkpoint dne (začátek dne i s inventářem a postupem).
 	# Mluví current_player, mozna lepsi by Aidam
 	# (say na objekt mimo místnost shodí hru).
-	say("current_player", "Už jsou dvě ráno... Nějak se mi zavírají oči.")
+	say("current_player", "Už je jedna ráno... Nějak se mi zavírají oči.")
 	set_global("checkpoint_load_requested", true)
 
 :day_reset
 	# Náhrada, když checkpoint neexistuje (např. starý save): vrátí se jen čas
-	# na začátek dne (pondělí 22:00, kdy Olda poprvé přijde domů, ostatní dny 7:00).
+	# na začátek dne (pondělí 21:00, kdy Olda poprvé přijde domů, ostatní dny 9:00).
 	if game_day == 0:
-		set_global("day_minute", 1320)
+		set_global("day_minute", 1260)
 	else:
-		set_global("day_minute", 420)
+		set_global("day_minute", 540)
 	# change_scene na místnost, ve které hráč už je, shodí hru (chyba Escorie,
 	# esc_room_manager.gd _check_and_prepare_managers_for_room), proto jen mimo pokoj.
 	if ESC_CURRENT_SCENE != "oldas_room":
@@ -194,3 +205,55 @@
 			say($aidam, "Je jedenáct. Ve dvanáct u lavičky v dlouhé aleji.", "", "avatar")
 		elif day_minute >= 690 and day_minute < 720:
 			say($aidam, "Půl dvanáctý! Za půl hodiny sraz v parku.", "", "avatar")
+	
+		# Sobota po zprávách: výpadky, AIdam přebírá tělo i ve dne.
+	if game_day == 5 and news_seen:
+		if day_minute >= 600 and not blackout_0:
+			# Výpadek: probudí se v jedoucí tramvaji.
+			set_global("blackout_0", true)
+			accept_input("SKIP")
+			say($olda, "Co... Nohy mě neposlouchaj... Ne!")
+			transition("fade_black", "out", 0.5)
+			set_global("day_minute", day_minute + 30)
+			set_global("blackout_tram", true)
+			set_global("tram_from", "")
+			if ESC_CURRENT_SCENE != "tram":
+				change_scene("res://rooms/tram/tram.tscn")
+			else:
+				transition("fade_black", "in", 0.5)
+				queue_event("tram", "wake_tram")
+		elif day_minute >= 840 and not blackout_1:
+			# Výpadek: probudí se u lavičky v dlouhé aleji.
+			set_global("blackout_1", true)
+			accept_input("SKIP")
+			say($olda, "Točí se mi hlava... Ne, ne, teď ne...")
+			transition("fade_black", "out", 0.5)
+			set_global("day_minute", day_minute + 30)
+			set_global("blackout_park", true)
+			if ESC_CURRENT_SCENE != "stromovka_long":
+				change_scene("res://rooms/stromovka_long/stromovka_long.tscn")
+			else:
+				teleport($olda, $bench)
+				transition("fade_black", "in", 0.5)
+				queue_event("stromovka_long", "wake_park")
+		elif day_minute >= 1500 and not blackout_2:
+			# Výpadek v noci: probudí se doma u šuplíku s nožem v ruce.
+			set_global("blackout_2", true)
+			accept_input("SKIP")
+			say($olda, "Oči... jen na vteřinu...")
+			transition("fade_black", "out", 0.5)
+			set_global("day_minute", day_minute + 30)
+			if not knife_taken:
+				inventory_add("knife")
+				set_global("knife_found", true)
+				set_global("knife_taken", true)
+			set_global("blackout_home", true)
+			if ESC_CURRENT_SCENE != "oldas_room":
+				change_scene("res://rooms/oldas_room/oldas_room.tscn")
+			else:
+				teleport($olda, $nightstand)
+				transition("fade_black", "in", 0.5)
+				queue_event("oldas_room", "wake_home")
+			# Sobota: v 16:00 odjede policie z Konečné (když tam Olda zrovna je).
+	if game_day == 5 and day_minute >= 960 and not police_left and ESC_CURRENT_SCENE == "in_laws_house":
+		queue_event("in_laws_house", "police_leave")

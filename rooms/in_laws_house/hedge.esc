@@ -1,5 +1,5 @@
 :look
-	if camera_placed:
+	if camera_placed and not camera_taken:
 		say($olda, "Kamera je pořád mezi větvemi. Kouká přímo na verandu.")
 	else:
 		say($olda, "Keře u plotu. Je odsud vidět přímo na verandu souseda.")
@@ -15,3 +15,21 @@
 		accept_input("ALL")
 	else:
 		say($olda, "Teď ne.")
+		
+
+:use
+	if game_day == 5 and camera_placed and not camera_taken:
+		if day_minute < 960:
+			say($olda, "Teď ne. Policajt stojí pár metrů odsud.")
+		else:
+			accept_input("SKIP")
+			say($olda, "Pořád tam je. Mokrá, ale celá.")
+			inventory_add("camera")
+			set_global("camera_taken", true)
+			set_global("diary_camera_taken", true)
+			say($olda, "Nahrávala celou noc. Musím to vidět.")
+			say($olda, "Vietnamec říkal, že mi záznam přetáhne do počítače.")
+			say($aidam, "Uvidíš souseda, jak se plíží kolem domu. Říkal jsem ti to.", "", "avatar")
+			accept_input("ALL")
+	else:
+		say($olda, "Jen mokrý keře.")

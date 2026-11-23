@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cchvtaah1gxar"
-path="res://.godot/imported/Olda_čistej_přední.png-3aec5f59b0e5a1c3d8e52228eee5d5e2.ctex"
+uid="uid://bw3f5lmte4lmg"
+path="res://.godot/imported/Olda_clean_left.png-1c6443fa20f9f6ab7ada37d337098da2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://grafika/Olda_čistej_přední.png"
-dest_files=["res://.godot/imported/Olda_čistej_přední.png-3aec5f59b0e5a1c3d8e52228eee5d5e2.ctex"]
+source_file="res://characters/olda/Olda_clean_left.png"
+dest_files=["res://.godot/imported/Olda_clean_left.png-1c6443fa20f9f6ab7ada37d337098da2.ctex"]
 
 [params]
 

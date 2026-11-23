@@ -3,7 +3,7 @@ extends Node
 #
 # Čas je uložený v globálech Escorie, takže přežije uložení a načtení hry:
 #   game_day   0 = pondělí ... 6 = neděle
-#   day_minute minuty od půlnoci dne (7:00 = 420, 2:00 ráno = 26 * 60 = 1560)
+#   day_minute minuty od půlnoci dne (9:00 = 540, 1:00 ráno = 25 * 60 = 1500)
 #   day_phase  "morning" / "afternoon" / "evening" / "night"
 #
 # Hodiny běží jen ve stavu DEFAULT (stojí v dialozích, při načítání a v pauze,
@@ -17,7 +17,7 @@ extends Node
 # :apply_time místnosti se spouští i při příchodu do místnosti, hned po :setup
 # (ještě před prolnutím), a po načtení hry (tam Escoria :setup nespouští).
 #
-# Ve 2:00 se zastaví a spustí :day_timeout z game.esc, potom načte checkpoint.
+# V 1:00 se zastaví a spustí :day_timeout z game.esc, potom načte checkpoint.
 #
 # Checkpoint dne: když skript nastaví checkpoint_pending (:new_day, pondělí
 # v oldas_room.esc), uloží hru do CHECKPOINT_PATH, mimo běžné savy.
@@ -25,8 +25,8 @@ extends Node
 ## Kolik herních minut uběhne za jednu reálnou sekundu.
 @export var minutes_per_second: float = 2
 
-const DAY_START: int = 7 * 60    # 7:00
-const DAY_END: int = 26 * 60     # 2:00 ráno dalšího dne
+const DAY_START: int = 9 * 60    # 9:00
+const DAY_END: int = 25 * 60     # 1:00 ráno dalšího dne
 
 # Začátky částí dne (v minutách), seřazené od nejpozdější.
 const PHASES: Array = [
@@ -38,7 +38,7 @@ const PHASES: Array = [
 
 const EVENT_APPLY_TIME: String = "apply_time"
 
-# Checkpoint dne (uloží se při začátku dne, načte ve 2:00).
+# Checkpoint dne (uloží se při začátku dne, načte v 1:00).
 const CHECKPOINT_PATH: String = "user://checkpoint/day.tres"
 const CHECKPOINT_SLOT: int = 900
 
@@ -130,8 +130,14 @@ func _process(delta: float) -> void:
 
 	# Čas přešel do jiné části dne: mrknutí.
 	if escoria.globals_manager.get_global("day_phase") != phase:
+		# Počkat, až Olda dojde a nic neběží (jinak se jeho akce vklíní
+		# do mrknutí a zůstane černá obrazovka).
+		if not _front_channel_idle() or _player_moving(room):
+			return
 		_pending_key = key
 		var steps: Array = [
+			# Vstup vypnout hned, ne až prvním příkazem :time_fade_out.
+			func(): escoria.inputs_manager.input_mode = escoria.inputs_manager.INPUT_NONE,
 			[escoria.start_script, "time_fade_out"],
 			func(): escoria.globals_manager.set_global("day_phase", phase),
 			[escoria.start_script, "update_schedule"],
@@ -174,7 +180,7 @@ func _current_key() -> String:
 
 
 ## Vrátí část dne pro danou minutu. Minuty po půlnoci jdou dál (0:30 = 1470),
-## takže se neořezávají na 24 h, jinak by 0:00–2:00 vyšlo jako ráno.
+## takže se neořezávají na 24 h, jinak by 0:00–1:00 vyšlo jako ráno.
 static func phase_for_minute(minute: int) -> String:
 	for p in PHASES:
 		if minute >= p[0]:
@@ -323,6 +329,18 @@ func _check_pending() -> void:
 			return
 	if _pending_event == "day_timeout":
 		_timed_out = false
+	# Ztratilo se mrknutí uprostřed: rozsvítit, jinak zůstane černá obrazovka.
+	var needs_fade_in: bool = _pending_event == "time_fade_out"
+	for step in _steps:
+		if step is Array and step[1] == "time_fade_in":
+			needs_fade_in = true
 	_steps.clear()
 	_pending_event = ""
 	_busy = false
+	if needs_fade_in:
+		_run_steps([[escoria.start_script, "time_fade_in"]])
+
+
+# Olda zrovna jde (kliknutí na předmět, akce se spustí až po příchodu).
+func _player_moving(room: ESCRoom) -> bool:
+	return room != null and is_instance_valid(room.player) and room.player.is_moving()

@@ -1,0 +1,16 @@
+:look
+	say($olda, "Policajt. Hlídá dům. Nesmí mě vidět.")
+
+:talk
+	say($olda, "Jestli za ním půjdu, zavřou mě. A v cele jednou usnu...")
+	?!
+		- "Půjdu za ním a řeknu všechno."
+			accept_input("SKIP")
+			say($police_officer, "Stůjte! Vy jste ten manžel, že jo? Ruce, ať je vidím!")
+			say($aidam, "No vida. A je to.", "", "avatar")
+			# Zatím jen restart dne, konec „Vězení“ přijde v kroku s konci.
+			set_global("checkpoint_load_requested", true)
+			accept_input("ALL")
+			done
+		- "Ne. Ještě ne."
+			done

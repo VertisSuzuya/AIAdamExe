@@ -6,24 +6,23 @@ extends Node
 #   Ctrl+šipka doprava / doleva   čas +1 hodina / -1 hodina
 #   Ctrl+T   zrychlení času x60 zapnout / vypnout
 #   Ctrl+K   denní úkol splněn (day_task_done = true), jde se spát
-#   Ctrl+1 až Ctrl+9   skok do místnosti ze seznamu ROOMS
+#   Ctrl+1 až Ctrl+8   skok do místnosti ze seznamu ROOMS
 #   Ctrl+W   hodinky zapnout / vypnout (čas vidět i mimo pokoj)
 #   Ctrl+R   rychlá chůze Oldy zapnout / vypnout (doběhne skoro hned)
 #   Ctrl+C   rovnou na koncert (středa, studenti a kavárna hotové)
 #
 # Funguje až po New Game (dokud neexistují globály, nic nedělá).
 
-## Místnosti pro Ctrl+1 až Ctrl+9 (doplňuj podle potřeby).
+## Místnosti pro Ctrl+1 až Ctrl+8 (doplňuj podle potřeby).
 const ROOMS: Array = [
 	"res://rooms/oldas_room/oldas_room.tscn",                # Ctrl+1
 	"res://rooms/home_street/home_street.tscn",              # Ctrl+2
 	"res://rooms/corner_shop/corner_shop.tscn",              # Ctrl+3
 	"res://rooms/tram/tram.tscn",                            # Ctrl+4
 	"res://rooms/fit_front/fit_front.tscn",                  # Ctrl+5
-	"res://rooms/fit_inside/fit_inside.tscn",                # Ctrl+6
-	"res://rooms/stromovka_crossroads/stromovka_crossroads.tscn",  # Ctrl+7
-	"res://rooms/stromovka_long/stromovka_long.tscn",        # Ctrl+8
-	"res://rooms/laboratory/laboratory.tscn",                # Ctrl+9
+	"res://rooms/city_center/city_center.tscn",              # Ctrl+6
+	"res://rooms/in_laws_house/in_laws_house.tscn",          # Ctrl+7
+	"res://rooms/laboratory/laboratory.tscn",                # Ctrl+8
 ]
 
 const DAY_NAMES = ["pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota", "neděle"]
@@ -94,8 +93,8 @@ func _set_day(day: int) -> void:
 
 
 func _set_minute(minute: int) -> void:
-	# Mezi 7:00 a 1:59 (2:00 by hned spustilo vypršení dne).
-	minute = clampi(minute, 7 * 60, 26 * 60 - 1)
+	# Mezi 9:00 a 0:59 (1:00 by hned spustilo vypršení dne).
+	minute = clampi(minute, 9 * 60, 25 * 60 - 1)
 	escoria.globals_manager.set_global("day_minute", minute)
 	print("[debug] čas: %02d:%02d" % [(minute / 60) % 24, minute % 60])
 

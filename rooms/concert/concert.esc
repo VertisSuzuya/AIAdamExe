@@ -6,6 +6,8 @@
 	stop_snd("_music")
 
 :ready
+	# Klikání nesmí rozhovor přerušit (ALL vrátí Escoria po změně místnosti).
+	accept_input("SKIP")
 	say($aidam, "TO JSOU ONI! Mutanti hledaj východisko! Živě!", "", "avatar")
 	say($aidam, "Pomoz mi držet rytmus! Mačkej šipky, až dopadnou na terčíky.", "", "avatar")
 	set_global("concert_play", true)

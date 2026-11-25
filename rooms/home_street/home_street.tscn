@@ -30,12 +30,12 @@ fill_from = Vector2(1, 0.5504587)
 fill_to = Vector2(0.9908257, 1)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_xffai"]
-vertices = PackedVector2Array(1079, 857.89844, 1079, 770.65625, 1121.2734, 773.3594, 1123.2734, 843.8125, 957.1328, 780.6172, 962.25, 780.40625, 964.25, 859.10156, 952.1328, 833.7031, 3.0625, 1075.0234, 4.9296875, 767.1172, 780.3125, 776.8672, 782.3281, 839.3281, 3226.9219, 843, 3229, 864.4375, 3229, 1081.9688, 3174.6484, 843, 3129.8203, 830.6719, 2917.4063, 832.2031, 1346.6094, 848.1875, 1349.6094, 771.03906, 2863.4219, 777.9531, 2865.3516, 822.35156, 2928.0234, 812.03125, 3117.7031, 812.96875)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(12, 13, 14, 8, 15), PackedInt32Array(16, 15, 8, 17), PackedInt32Array(18, 19, 20, 21), PackedInt32Array(11, 7, 6, 8), PackedInt32Array(17, 22, 23, 16), PackedInt32Array(18, 21, 17, 8, 0), PackedInt32Array(0, 3, 18), PackedInt32Array(8, 6, 0)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(2873, 768, 2875, 814, 2912, 821, 2922, 802, 3123, 803, 3136, 822, 3176, 833, 3236, 833, 3239, 864, 3239, 1092, -7, 1085, -5, 757, 790, 767, 792, 829, 943, 824, 948, 771, 972, 770, 974, 849, 1069, 848, 1069, 760, 1163.7803, 766.0703, 1131, 763, 1133, 834, 1337, 838, 1340, 761)])
+vertices = PackedVector2Array(957.1328, 780.6172, 962.25, 780.40625, 964.25, 859.10156, 952.1328, 833.7031, 3229, 1081.9688, 3.0625, 1075.0234, 4.9296875, 767.0078, 1115.0313, 827, 1079, 857.89844, 1079, 770, 1109.2891, 770, 1120.1563, 771.5469, 780.27344, 767.97656, 782.28906, 839.3281, 1346.8281, 768, 2863.3516, 768, 2865.289, 822.34375, 1339.8281, 824, 3174.6484, 843, 3226.9219, 843, 3229, 864.4375, 1200.1797, 792.10156, 1265.4609, 792.8906, 1270.4766, 824, 1193.2031, 827, 2917.4063, 832.2031, 2928.0234, 812.03125, 3117.7031, 812.96875, 3129.8203, 830.6719)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 2), PackedInt32Array(7, 8, 9, 10, 11), PackedInt32Array(6, 12, 13), PackedInt32Array(14, 15, 16, 17), PackedInt32Array(18, 19, 20, 4), PackedInt32Array(21, 22, 23, 24), PackedInt32Array(13, 3, 2), PackedInt32Array(25, 26, 27, 28, 4), PackedInt32Array(28, 18, 4), PackedInt32Array(8, 7, 24), PackedInt32Array(17, 16, 25, 4, 8), PackedInt32Array(8, 24, 23, 17), PackedInt32Array(2, 8, 4), PackedInt32Array(6, 13, 2)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(2873, 758, 2875, 814, 2912, 821, 2922, 802, 3123, 803, 3136, 822, 3176, 833, 3236, 833, 3239, 864, 3239, 1092, -7, 1085, -5, 757, 790, 758, 792, 829, 943, 824, 948, 771, 972, 770, 974, 849, 1069, 848, 1069, 760, 1110, 760, 1131, 763, 1126, 817, 1185, 817, 1192, 782, 1274, 783, 1279, 814, 1331, 814, 1338, 758)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vqt0v"]
-size = Vector2(160, 208)
+size = Vector2(148, 252)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xffai"]
 size = Vector2(154, 278)
@@ -117,7 +117,7 @@ esc_script = "res://items/inventory/ticket.esc"
 position = Vector2(356, 773)
 
 [node name="ESCExit" type="Area2D" parent="." unique_id=1166144501]
-position = Vector2(821, 656)
+position = Vector2(673, 639)
 script = ExtResource("6_m3kow")
 target_scene = "uid://c1gjsgktafs5j"
 global_id = "exit_to_corner_shop"
@@ -125,11 +125,11 @@ tooltip_name = "Jít do večerky"
 metadata/_custom_type_script = "uid://btt4cprco53ec"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ESCExit" unique_id=927965820]
-position = Vector2(16, 1)
+position = Vector2(-2, 8)
 shape = SubResource("RectangleShape2D_vqt0v")
 
 [node name="ESCInteractionLocation" type="Marker2D" parent="ESCExit" unique_id=1839325239]
-position = Vector2(18, 127)
+position = Vector2(0, 142)
 script = ExtResource("8_d0d1h")
 metadata/_custom_type_script = "uid://chu4bvqgwxuts"
 
@@ -144,7 +144,7 @@ actions_requiring_target_object = PackedStringArray()
 metadata/_custom_type_script = "uid://dshelmw7y44qg"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="coffee_mashine" unique_id=1731438088]
-position = Vector2(-155, 0)
+position = Vector2(-155, 7)
 shape = SubResource("RectangleShape2D_xffai")
 
 [node name="ESCInteractionLocation" type="Marker2D" parent="coffee_mashine" unique_id=206213339]
@@ -167,7 +167,7 @@ position = Vector2(-13, 5)
 shape = SubResource("RectangleShape2D_rlnn4")
 
 [node name="ESCInteractionLocation" type="Marker2D" parent="telephone" unique_id=1654611831]
-position = Vector2(-11, 217)
+position = Vector2(-12, 224)
 script = ExtResource("8_d0d1h")
 metadata/_custom_type_script = "uid://chu4bvqgwxuts"
 

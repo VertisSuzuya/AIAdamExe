@@ -8,6 +8,7 @@
 
 :ready
 	if ESC_LAST_SCENE == "salon_booth" and not stop_dejvice:
+		accept_input("SKIP")
 		say($olda, "No teda. To jsem já?")
 		say($aidam, "Konečně vypadáš trochu víc k světu. Teď se tě nebudou bát ani studenti.", "", "avatar")
 		say($olda, "A chtěl bych zavolat ženě. Jenže číslo jsem měl jen v mobilu a ten je pryč.")
@@ -15,3 +16,4 @@
 		say($aidam, "O umělý inteligenci ti víc řeknou na ČVUT FIT v Dejvicích. Přidal jsem ti je na mapu, zastávka je hned tady.", "", "avatar")
 		set_global("stop_dejvice", true)
 		set_global("diary_stop_dejvice", true)
+		accept_input("ALL")

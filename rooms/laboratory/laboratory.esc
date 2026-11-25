@@ -4,6 +4,8 @@
 
 :ready
 	if not lab_intro_done:
+		# Klikání nesmí rozhovor přerušit (ALL vrátí Escoria po změně místnosti).
+		accept_input("SKIP")
 		if not lab_flashbacks_done:
 			say($scientist, "Operace proběhla. Jestli mě slyšíte, zkuste mrknout.")
 			say($olda, "...Slyším. Co mi to vlastně dali do hlavy?")

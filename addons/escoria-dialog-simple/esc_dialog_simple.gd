@@ -66,9 +66,23 @@ func enable_preserve_dialog_box() -> void:
 func disable_preserve_dialog_box() -> void:
 	_should_preserve_dialog_box = false
 
-	if is_instance_valid(_dialog_player) and _dialog_player.get_children().has(_type_player):
+	if _is_type_player_shown():
 		_dialog_player.remove_child(_type_player)
 		_preserved_type_player_type = ""
+
+
+# Whether the current dialog box still exists and is being shown.
+#
+# Do not use `get_children().has(_type_player)` for this: the avatar dialog box
+# frees itself when removed from the tree and passing a freed object to a typed
+# array crashes release builds (debug builds only print an error).
+#
+# **Returns** Whether the dialog box is a child of the dialog player
+func _is_type_player_shown() -> bool:
+	if not is_instance_valid(_type_player) or not is_instance_valid(_dialog_player):
+		return false
+
+	return _type_player.get_parent() == _dialog_player
 
 
 # Output a text said by the item specified by the global id. Emit
@@ -91,7 +105,7 @@ func say(dialog_player: Node, global_id: String, text: String, type: String, key
 		# we want to remove the old one (if it exists) and then initialize and add the new dialog
 		# box type to the dialog player
 		if type != _preserved_type_player_type:
-			if is_instance_valid(_type_player) and _dialog_player.get_children().has(_type_player):
+			if _is_type_player_shown():
 				_dialog_player.remove_child(_type_player)
 
 			_init_type_player(type)
@@ -106,7 +120,7 @@ func say(dialog_player: Node, global_id: String, text: String, type: String, key
 func do_say(global_id: String, text: String) -> void:
 	# Only add_child here in order to prevent _type_player from running its _process method
 	# before we're ready, and only if it's necessary
-	if not _dialog_player.get_children().has(_type_player):
+	if not _is_type_player_shown():
 		_dialog_player.add_child(_type_player)
 
 	_type_player.say(global_id, text)
@@ -136,7 +150,7 @@ func _initialize_say_states(global_id: String, text: String, type: String, key: 
 
 
 func _on_say_finished():
-	if not _should_preserve_dialog_box and _dialog_player.get_children().has(_type_player):
+	if not _should_preserve_dialog_box and _is_type_player_shown():
 		_dialog_player.remove_child(_type_player)
 
 	_is_saying = false
@@ -193,13 +207,13 @@ func finish():
 
 # The say command has been interrupted, cancel the dialog display
 func interrupt():
-	if _dialog_player.get_children().has(_type_player):
+	if _is_type_player_shown():
 		(
 			escoria.object_manager.get_object(escoria.object_manager.SPEECH).node\
 			 as ESCSpeechPlayer
 		).set_state("off")
 
-		if not _should_preserve_dialog_box and _dialog_player.get_children().has(_type_player):
+		if not _should_preserve_dialog_box and _is_type_player_shown():
 			_dialog_player.remove_child(_type_player)
 
 		say_finished.emit()

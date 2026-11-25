@@ -1,4 +1,6 @@
 :ready
+	# Klikání nesmí rozhovor přerušit (ALL vrátí Escoria po změně místnosti).
+	accept_input("SKIP")
 	say($aidam, "Tak jo, zavři oči. A hlavně se nehýbej.", "", "avatar")
 	say($aidam, "Stříhání... holení... pleťová maska... a nějakej laser, o kterým radši nic nevím.", "", "avatar")
 	say($aidam, "Hotovo. Nový ty.", "", "avatar")

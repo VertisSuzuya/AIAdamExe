@@ -20,8 +20,8 @@ inventory_texture_hovered = ExtResource("2_bee7u")
 metadata/_custom_type_script = "uid://dshelmw7y44qg"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1601864450]
-position = Vector2(0, 1)
-scale = Vector2(0.014251062, 0.011154021)
+position = Vector2(0.49999714, 1.9073486e-06)
+scale = Vector2(0.7361111, 0.4722222)
 texture = ExtResource("2_bee7u")
 
 [node name="ESCInteractionLocation" type="Marker2D" parent="." unique_id=704789273]

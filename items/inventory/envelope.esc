@@ -6,8 +6,10 @@
 	inventory_add("envelope")
 	set_active("envelope", false)
 	set_global("envelope_taken", true)
+	#otestovat jak moc intuitivni to je bez napovedy, napoveda ve stredu je celkem late
+	say($aidam, "Vyber ozubené kolo, klikni na obálku a pak na sebe.", "", "avatar")
 
-:use
+:use olda
 	say($olda, "Peníze! Víc, než jsem čekal.")
 	say($aidam, "Výplata pro pokusnýho králíka. Gratuluju, jsi zaměstnanec měsíce.", "", "avatar")
 	say($olda, "Je tu i lísteček. Děkujeme za spolupráci, kontroly nejsou nutné.")

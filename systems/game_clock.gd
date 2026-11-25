@@ -159,7 +159,10 @@ func _process(delta: float) -> void:
 		_pending_key = key
 		_run_steps([[escoria.start_script, "update_schedule"]])
 		return
-
+	# V tramvaji čas neběží, jízdu přičte :travel (+30 min).
+	if room.global_id == "tram":
+		return
+	
 	# Běh času.
 	_minute_accumulator += delta * minutes_per_second
 	if _minute_accumulator >= 1.0:

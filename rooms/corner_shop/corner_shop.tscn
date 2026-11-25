@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://y8rcnhro5eea" path="res://characters/shopkeeper/shopkeeper.tscn" id="11_0ab4e"]
 [ext_resource type="Texture2D" uid="uid://4q1j4wgic18e" path="res://rooms/corner_shop/shop_register.png" id="12_f8beq"]
 [ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="13_78x35"]
+[ext_resource type="Texture2D" uid="uid://nk0dtbjop5pk" path="res://grafika/light_round.tres" id="14_wsxt2"]
 
 [sub_resource type="Gradient" id="Gradient_f8beq"]
 
@@ -24,9 +25,9 @@ fill_from = Vector2(0, 0.6188467)
 fill_to = Vector2(0, 1)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_abbhq"]
-vertices = PackedVector2Array(1670.7578, 1057.1016, 465.90625, 1069.0313, 891, 976.0469, 1283.9219, 728, 1663.2188, 730.9219, 891, 749.03906, 991.0781, 727, 1283.9219, 727.9922)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 0, 2, 5, 6), PackedInt32Array(6, 7, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(1284, 718, 1673, 721, 1681, 1067, 369, 1080, 881, 968, 881, 741, 990, 717)])
+vertices = PackedVector2Array(17.148438, 864.5, 183.28125, 792.53125, 172.54688, 1030.7266, 21.773438, 1070.9063, 1670.7578, 1057.0781, 889.5, 778.78125, 884.2031, 732.9297, 1219.75, 730.9531, 1481.0391, 734.1094, 1663.2188, 731.15625, 1226.7578, 703.90625, 1469.0234, 701.0781, 614.90625, 1042.1016)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8), PackedInt32Array(8, 9, 4), PackedInt32Array(7, 10, 11, 8), PackedInt32Array(12, 5, 4), PackedInt32Array(12, 4, 3), PackedInt32Array(12, 3, 2)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1212, 721, 1219, 694, 1476, 691, 1488, 724, 1673, 721, 1681, 1067, 12, 1081, 7, 858, 194, 777, 183, 1021, 611, 1032, 879, 775, 873, 723)])
 
 [node name="corner_shop" type="Node2D" unique_id=1381403444]
 script = ExtResource("1_his46")
@@ -80,25 +81,38 @@ global_id = "player_start"
 is_start_location = true
 metadata/_custom_type_script = "uid://chu4bvqgwxuts"
 
-[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1813585703]
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1813585703 node_paths=PackedStringArray("lights")]
 script = ExtResource("9_33rn8")
+lights = NodePath("../Node2D")
 
 [node name="shopkeeper" parent="." unique_id=294159516 instance=ExtResource("11_0ab4e")]
-position = Vector2(1380, 528)
+position = Vector2(1406, 523)
 default_action = "look"
 
-[node name="table" type="TextureRect" parent="shopkeeper" unique_id=1079478745]
-offset_left = -378.0
-offset_top = 20.0
-offset_right = 318.0
-offset_bottom = 198.0
+[node name="table" type="TextureRect" parent="." unique_id=1079478745]
+offset_right = 1920.0
+offset_bottom = 1080.0
 texture = ExtResource("10_cbd3w")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1061658634]
-offset_left = 1053.0
-offset_top = 492.0
-offset_right = 1179.0
-offset_bottom = 576.0
+offset_left = -288.0
+offset_top = 116.0
+offset_right = -162.0
+offset_bottom = 200.0
 texture = ExtResource("12_f8beq")
 
 [node name="Aidam" parent="." unique_id=1389523226 instance=ExtResource("13_78x35")]
+
+[node name="Node2D" type="Node2D" parent="." unique_id=594303633]
+
+[node name="PointLight2D" type="PointLight2D" parent="Node2D" unique_id=1762546879]
+position = Vector2(1295.0001, 7.499977)
+scale = Vector2(3.5742188, 1.4785155)
+color = Color(1, 0.8039216, 0.32156864, 1)
+texture = ExtResource("14_wsxt2")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Node2D" unique_id=2076420144]
+position = Vector2(652, 6.249977)
+scale = Vector2(2.321289, 1.7314454)
+color = Color(1, 0.8039216, 0.32156864, 1)
+texture = ExtResource("14_wsxt2")

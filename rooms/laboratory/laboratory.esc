@@ -17,15 +17,16 @@
 		
 
 		?!
-			- "Můžeš to říct jinak?"
+			- "Můžeš to říct jinak?" [not lab_asked_repeat]
+				set_global("lab_asked_repeat", true)
 				say($aidam, "Můžu, ale moc se mi nechce.", "", "avatar")
-			- "Co je tohle vlastně za místo?"
+			- "Co je tohle vlastně za místo?" [not lab_asked_place]
+				set_global("lab_asked_place", true)
 				say($scientist, "To vám radši neřekneme.")
-			- "Chci pryč."
+			- "Chci pryč." [lab_asked_repeat and lab_asked_place]
 				say($aidam, "To se nám hodí, protože já bych taky někam šel.", "", "avatar")
 				done
 		
-		say($aidam, "A až půjdeš spát, neboj se, já tě pohlídám. Hlavně se nebojíš toho co se děje v noci, že?", "", "avatar")
 		say($scientist, "Dostaneme vás do bytu, tak abyste nevěděl kde se naše laboratoř nachází, tak jak jste podepsal.")
 		set_global("lab_intro_done", true)
 		change_scene("res://rooms/oldas_room/oldas_room.tscn")

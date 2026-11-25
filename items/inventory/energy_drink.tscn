@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://qn5qck0tbnmp0"]
+[gd_scene format=3 uid="uid://7i8ydcs1t4ox"]
 
 [ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="1_item"]
 [ext_resource type="Texture2D" uid="uid://iogxco7vmrlc" path="res://items/inventory/energy_drink.png" id="2_tex"]
@@ -14,7 +14,8 @@ global_id = "energy_drink"
 esc_script = "res://items/inventory/energy_drink.esc"
 tooltip_name = "Energetik"
 default_action = "look"
-actions_requiring_target_object = PackedStringArray()
+actions_requiring_target_object = PackedStringArray("use")
+use_from_inventory_only = true
 inventory_texture = ExtResource("2_tex")
 inventory_texture_hovered = ExtResource("2_tex")
 metadata/_custom_type_script = "uid://dshelmw7y44qg"

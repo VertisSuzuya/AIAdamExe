@@ -1,5 +1,12 @@
 :look
-	say($olda, "Lavička. První v dlouhé aleji. Tady jsme měli sraz.")
+	if park_waited:
+		say($olda, "Lavička. První v dlouhé aleji. Tady jsme měli sraz.")
+	elif game_day == 4:
+		say($olda, "První lavička v dlouhé aleji. Tady máme ve dvanáct sraz.")
+	elif game_day == 3 and family_met:
+		say($olda, "První lavička v dlouhé aleji. Tady máme zítra sraz.")
+	else:
+		say($olda, "Lavička. První v dlouhé aleji.")
 
 :use
 	# Pátek: sraz ve 12:00. Nikdo nepřijde.

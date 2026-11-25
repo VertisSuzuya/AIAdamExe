@@ -34,6 +34,10 @@
 	# Příznaky z rozvrhu (:update_schedule je přepíše, tady jen výchozí hodnoty,
 	# aby byly definované dřív, než je přečte :setup místnosti)
 	set_global("shop_open", true)
+	
+	set_global("lab_asked_repeat", false)
+	set_global("lab_asked_place", false)
+	
 	#####################################TUESDAY#####################################
 									#tuasday home street#
 	set_global("drunk_gone", false)
@@ -242,10 +246,9 @@
 		elif day_minute >= 690 and day_minute < 720:
 			say($aidam, "Půl dvanáctý! Za půl hodiny sraz v parku.", "", "avatar")
 	
-		# Sobota po zprávách: výpadky, AIdam přebírá tělo i ve dne.
-	# Bez zpráv se výpadky spustí od 11:30, aby sobota nestála.
+	# Sobota po zprávách: výpadky, AIdam přebírá tělo i ve dne.
 	# Mezi výpadky aspoň 2 hodiny (blackout_last), ať se nenahromadí.
-	if game_day == 5 and (news_seen or day_minute >= 690):
+	if game_day == 5 and news_seen:
 		if day_minute >= 600 and not blackout_0:
 			# Výpadek: probudí se v jedoucí tramvaji.
 			set_global("blackout_0", true)

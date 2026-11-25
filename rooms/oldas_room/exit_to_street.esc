@@ -1,7 +1,9 @@
 :exit_scene
-	# V pondělí (tutorial) ven nejde, jinak normálně na ulici.
+	# V pondělí (tutorial) ven nejde, v sobotu až po zprávách.
 	if game_day == 0:
 		say($aidam, "Je pozdě večer. Venku teď nic nevyřešíš. Nastav budík a jdi spát.", "", "avatar")
+	elif game_day == 5 and not news_seen:
+		say($olda, "Ne. Nejdřív si pustím zprávy. Musím vědět, co se v noci stalo.")
 	else:
 		play_snd("res://sound/efekt.mp3", _sound)
 		change_scene("res://rooms/home_street/home_street.tscn")

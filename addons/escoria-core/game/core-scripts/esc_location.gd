@@ -92,7 +92,7 @@ func _ready():
 			)
 	else:
 		queue_redraw()
-		var selection: EditorSelection = EditorInterface.get_selection()
+		var selection = Engine.get_singleton("EditorInterface").get_selection()
 		if not selection.selection_changed.is_connected(queue_redraw):
 			selection.selection_changed.connect(queue_redraw)
 
@@ -112,7 +112,7 @@ func _exit_tree():
 			editor_is_start_location_set.emit(self)
 
 	if Engine.is_editor_hint():
-		var selection: EditorSelection = EditorInterface.get_selection()
+		var selection = Engine.get_singleton("EditorInterface").get_selection()
 		if selection.selection_changed.is_connected(queue_redraw):
 			selection.selection_changed.disconnect(queue_redraw)
 
@@ -221,7 +221,7 @@ func _is_gizmo_visible() -> bool:
 	if not (parent is ESCItem):
 		return true
 
-	var selected_nodes: Array[Node] = EditorInterface.get_selection().get_selected_nodes()
+	var selected_nodes: Array = Engine.get_singleton("EditorInterface").get_selection().get_selected_nodes()
 	return selected_nodes.has(self) or selected_nodes.has(parent)
 
 

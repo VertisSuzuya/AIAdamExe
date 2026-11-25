@@ -102,7 +102,8 @@
 		accept_input("ALL")
 	elif game_day == 5:
 		accept_input("SKIP")
-		inventory_remove("money")
+		if money_taken:
+			inventory_remove("money")
 		say($olda, "Zase stopy. Mokrý. Od dveří až k nočnímu stolku... a pak do postele.")
 		say($olda, "To zase pršelo? A já byl zase venku?")
 		say($aidam, "Měl jsi neklidnou noc, to je celý. Nic se neděje.", "", "avatar")

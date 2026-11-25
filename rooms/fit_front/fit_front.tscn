@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://dshelmw7y44qg" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="10_gaohi"]
 [ext_resource type="PackedScene" uid="uid://q8tbobebdlog" path="res://characters/students/student1.tscn" id="11_fnu72"]
 [ext_resource type="PackedScene" uid="uid://b8nwdnck6baiv" path="res://characters/students/student2.tscn" id="12_wjufx"]
+[ext_resource type="Texture2D" uid="uid://nk0dtbjop5pk" path="res://grafika/light_round.tres" id="14_kpimt"]
 [ext_resource type="Texture2D" uid="uid://dmosdxj63fgv6" path="res://grafika/trash_bin_street.png" id="20_trashbin"]
 
 [sub_resource type="Gradient" id="Gradient_6wxwk"]
@@ -74,8 +75,9 @@ global_id = "player_start"
 is_start_location = true
 metadata/_custom_type_script = "uid://chu4bvqgwxuts"
 
-[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1813585703]
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1813585703 node_paths=PackedStringArray("lights")]
 script = ExtResource("7_csjcf")
+lights = NodePath("../Node2D")
 
 [node name="exit_to_stromovka" type="Area2D" parent="." unique_id=1166144501]
 position = Vector2(1772, 773)
@@ -170,3 +172,18 @@ shape = SubResource("RectangleShape2D_trash_bin_fit")
 position = Vector2(1, 25)
 script = ExtResource("6_dkhud")
 metadata/_custom_type_script = "uid://chu4bvqgwxuts"
+
+[node name="Node2D" type="Node2D" parent="." unique_id=625634756]
+
+[node name="PointLight2D" type="PointLight2D" parent="Node2D" unique_id=601558488]
+position = Vector2(806, 460)
+texture = ExtResource("14_kpimt")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Node2D" unique_id=2046641007]
+position = Vector2(1495, 462)
+texture = ExtResource("14_kpimt")
+
+[node name="PointLight2D3" type="PointLight2D" parent="Node2D" unique_id=1394492398]
+position = Vector2(377, 474)
+color = Color(1, 0.8472311, 0.47657922, 1)
+texture = ExtResource("14_kpimt")

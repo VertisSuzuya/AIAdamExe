@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dtj0s5uk7r833" path="res://rooms/tram/tram_outside.gd" id="4_3o06i"]
 [ext_resource type="Script" uid="uid://fnwnfflaoeqp" path="res://addons/escoria-core/game/core-scripts/esc_background.gd" id="4_baffg"]
 [ext_resource type="Texture2D" uid="uid://gs8j0p7qadt" path="res://rooms/tram/tram.png" id="4_h0o5q"]
+[ext_resource type="Texture2D" uid="uid://nk0dtbjop5pk" path="res://grafika/light_round.tres" id="5_2d7ec"]
 [ext_resource type="Script" uid="uid://5pbcieq7gpdo" path="res://addons/escoria-core/game/core-scripts/esc_terrain.gd" id="5_ag7vo"]
 [ext_resource type="Script" uid="uid://chu4bvqgwxuts" path="res://addons/escoria-core/game/core-scripts/esc_interaction_location.gd" id="8_1brlw"]
 [ext_resource type="Script" uid="uid://bg1sl307y6lbi" path="res://systems/room_lighting.gd" id="9_5uxqx"]
@@ -15,8 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://cwuffxxgouve4" path="res://grafika/coins.png" id="20_coins"]
 
 [sub_resource type="Gradient" id="Gradient_6wxwk"]
-offsets = PackedFloat32Array(0, 0.38311687, 0.73376626, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.2987013, 0.2987013, 0.2987013, 1, 0.763773, 0.763773, 0.763773, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.57228917, 0.89759034, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.44596145, 0.44596145, 0.44596145, 1, 0.763773, 0.763773, 0.763773, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ptrtu"]
 gradient = SubResource("Gradient_6wxwk")
@@ -45,18 +46,39 @@ metadata/_custom_type_script = "uid://c7fcpp72w3dnj"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=516059212]
 z_index = -2
-position = Vector2(-90, -370)
+position = Vector2(-1380, 100)
+rotation = -0.38397244
+skew = 0.38397244
 texture = ExtResource("3_1rn2y")
 centered = false
 script = ExtResource("4_3o06i")
 
 [node name="Sprite2D3" type="Sprite2D" parent="." unique_id=519799522]
 z_index = -1
-position = Vector2(-3525.9998, 363.99988)
-rotation = -0.2617994
+position = Vector2(720, -611)
+rotation = 0.19198622
+skew = -0.19198622
 texture = ExtResource("3_1rn2y")
 centered = false
 script = ExtResource("4_3o06i")
+speed = -200.0
+
+[node name="front_window" type="ColorRect" parent="." unique_id=1377204518]
+z_index = -3
+offset_left = 400.0
+offset_top = 60.0
+offset_right = 720.0
+offset_bottom = 200.0
+mouse_filter = 2
+color = Color(0.7019608, 0.7882353, 0.8509804, 1)
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1908867553]
+
+[node name="PointLight2D" type="PointLight2D" parent="Node2D" unique_id=1205272251]
+position = Vector2(821, 29)
+scale = Vector2(3.939453, 1.9726561)
+color = Color(1, 0.60038817, 0.1931151, 1)
+texture = ExtResource("5_2d7ec")
 
 [node name="escbackground" type="TextureRect" parent="." unique_id=1212681230]
 offset_right = 40.0
@@ -83,8 +105,9 @@ global_id = "player_start"
 is_start_location = true
 metadata/_custom_type_script = "uid://chu4bvqgwxuts"
 
-[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1813585703]
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1813585703 node_paths=PackedStringArray("lights")]
 script = ExtResource("9_5uxqx")
+lights = NodePath("../Node2D")
 
 [node name="Aidam" parent="." unique_id=1389523226 instance=ExtResource("13_s7qkm")]
 
@@ -121,15 +144,15 @@ esc_script = "res://rooms/tram/tram_coins.esc"
 tooltip_name = "Drobné"
 default_action = "pickup"
 actions_requiring_target_object = PackedStringArray()
+inventory_texture = ExtResource("20_coins")
+inventory_texture_hovered = ExtResource("20_coins")
 metadata/_custom_type_script = "uid://dshelmw7y44qg"
 
 [node name="Sprite2D" type="Sprite2D" parent="tram_coins" unique_id=1251688660]
-position = Vector2(0, 0)
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("20_coins")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tram_coins" unique_id=119477160]
-position = Vector2(0, 0)
 shape = SubResource("RectangleShape2D_tram_coins")
 
 [node name="ESCInteractionLocation" type="Marker2D" parent="tram_coins" unique_id=999176254]

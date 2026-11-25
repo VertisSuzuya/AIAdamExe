@@ -17,6 +17,9 @@
 				if bin_bottles_taken and not bin_bottles_returned:
 					inventory_remove("trash_bottles")
 					set_global("bin_bottles_returned", true)
+				if not coins_have:
+					inventory_add("coins")
+					set_global("coins_have", true)
 			- "Opilec je pryč." [shop_deal and drunk_gone and not watch_taken]
 				set_global("shop_reward_now", true)
 				done
@@ -33,6 +36,9 @@
 				if bin_bottles_taken and not bin_bottles_returned:
 					inventory_remove("trash_bottles")
 					set_global("bin_bottles_returned", true)
+				if not coins_have:
+					inventory_add("coins")
+					set_global("coins_have", true)	
 			- "Prodáváte i kamery?" [game_day == 4 and neighbor_talked and not camera_bought]
 				say($shopkeeper, "Kamery? Mám. Malá, na baterku, nahrává celou noc. Pět stovek.")
 				say($olda, "Beru.")

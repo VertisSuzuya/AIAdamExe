@@ -13,7 +13,9 @@
 		say($student_2, "To jsou kecy z fóra. Hlavně dneska večer hrajou v atriu Mutanti!, 15 piv vole!")
 		say($student_1, "V šest začátek. Přijď včas, pak se tam nevlezeš.")
 		#domyslet
-		say($aidam, "MUTANTI?! Když jsem se učil chápat lidskou hudbu, tak  A Mutanty miluju!", "", "avatar")
+		say($aidam, "MUTANTI?! Když jsem se učil chápat lidskou hudbu, tak jsem nejvíc obdivoval mutanty za jejich lyriku.", "", "avatar")
+		say($aidam, "Miluju Mutanty!", "", "avatar")
+
 		say($olda, "A co z toho budu mít já?")
 		say($aidam, "Číslo na tvou ženu. Dostaneš ho za koncert.", "", "avatar")
 		say($aidam, "Ale přesně v šest. Ne v šest deset, ne v šest patnáct. V ŠEST.", "", "avatar")

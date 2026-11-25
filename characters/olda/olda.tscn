@@ -131,6 +131,7 @@ height = 74.0
 process_mode = 1
 position = Vector2(0, 1)
 script = ExtResource("1_u2acx")
+selectable = true
 global_id = "olda"
 is_movable = true
 dialog_color = Color(0.69411767, 0.5176471, 1, 1)

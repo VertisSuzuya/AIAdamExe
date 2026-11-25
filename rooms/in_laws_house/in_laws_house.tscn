@@ -86,7 +86,7 @@ script = ExtResource("9_od3y5")
 global_id = "tram_stop"
 esc_script = "res://rooms/in_laws_house/tram_stop.esc"
 tooltip_name = "Zastávka"
-default_action = "look"
+default_action = "use"
 actions_requiring_target_object = PackedStringArray()
 metadata/_custom_type_script = "uid://dshelmw7y44qg"
 
@@ -180,6 +180,8 @@ esc_script = "res://rooms/in_laws_house/trash_bin_end.esc"
 tooltip_name = "Koš"
 default_action = "pickup"
 actions_requiring_target_object = PackedStringArray()
+inventory_texture = ExtResource("20_trashbin")
+inventory_texture_hovered = ExtResource("20_trashbin")
 metadata/_custom_type_script = "uid://dshelmw7y44qg"
 
 [node name="Sprite2D" type="Sprite2D" parent="trash_bin_end" unique_id=1296339139]

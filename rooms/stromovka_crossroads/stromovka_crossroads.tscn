@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dffv72s1x51ft" path="res://rooms/stromovka_crossroads/construction.png" id="14_qjtn2"]
 [ext_resource type="Script" uid="uid://beh3ds4eapldu" path="res://addons/escoria-core/game/core-scripts/esc_location.gd" id="15_abw7k"]
 [ext_resource type="PackedScene" uid="uid://cttkkqymf5mgr" path="res://characters/aidam/aidam.tscn" id="16_njnkt"]
+[ext_resource type="Texture2D" uid="uid://nk0dtbjop5pk" path="res://grafika/light_round.tres" id="17_46xgy"]
 
 [sub_resource type="Gradient" id="Gradient_outif"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -162,8 +163,9 @@ metadata/_custom_type_script = "uid://chu4bvqgwxuts"
 position = Vector2(1549, 628)
 shape = SubResource("RectangleShape2D_vqt0v")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1003792598]
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1003792598 node_paths=PackedStringArray("lights")]
 script = ExtResource("12_e1v8y")
+lights = NodePath("../Node2D")
 
 [node name="cafe_front" type="Area2D" parent="." unique_id=808145947]
 process_mode = 1
@@ -222,3 +224,15 @@ global_id = "cafe_door"
 metadata/_custom_type_script = "uid://beh3ds4eapldu"
 
 [node name="Aidam" parent="." unique_id=1389523226 instance=ExtResource("16_njnkt")]
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1565357605]
+
+[node name="PointLight2D" type="PointLight2D" parent="Node2D" unique_id=1555901793]
+position = Vector2(222, 270)
+scale = Vector2(1.4003906, 1.3535156)
+texture = ExtResource("17_46xgy")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Node2D" unique_id=992460218]
+position = Vector2(1443.0001, 330.00003)
+scale = Vector2(1.4003906, 1.4082031)
+texture = ExtResource("17_46xgy")

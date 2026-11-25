@@ -5,9 +5,9 @@ extends Sprite2D
 ## Rychlost jízdy v pixelech za sekundu.
 @export var speed: float = 300.0
 ## Za kolik sekund se tramvaj rozjede.
-@export var depart_delay: float = 20.0
+@export var depart_delay: float = 6
 ## Jak rychle se rozjede (sekundy do plné rychlosti).
-@export var accel_time: float = 3.0
+@export var accel_time: float = 5
 
 var _time: float = 0.0
 var _moving: bool = false
@@ -30,5 +30,5 @@ func _process(delta: float) -> void:
 		escoria.globals_manager.set_global("tram_moving", true)
 	# plynulý rozjezd
 	var k: float = clampf((_time - depart_delay) / accel_time, 0.0, 1.0)
-	region_rect.position.x = fmod(region_rect.position.x + speed * k * delta,
+	region_rect.position.x = fmod(region_rect.position.x - speed * k * delta,
 		texture.get_width())
